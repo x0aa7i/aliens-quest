@@ -4,151 +4,150 @@
 @import "./animate.css";
 
 @layer base {
-	*,
-	::after,
-	::before,
-	::backdrop,
-	::file-selector-button {
-		border-color: var(--color-gray-200, currentColor);
-	}
+  *,
+  ::after,
+  ::before,
+  ::backdrop,
+  ::file-selector-button {
+    border-color: var(--color-gray-200, currentColor);
+  }
 
-	:root {
-		block-size: 100%;
-		text-rendering: optimizeLegibility;
-		-webkit-tap-highlight-color: transparent; /* remove tap highlight on mobile */
+  :root {
+    block-size: 100%;
+    text-rendering: optimizeLegibility;
+    -webkit-tap-highlight-color: transparent; /* remove tap highlight on mobile */
 
-		background: var(--color-gray-950);
-		color: var(--color-gray-50);
+    background: var(--color-gray-950);
+    color: var(--color-gray-50);
 
-		@media (prefers-reduced-motion: no-preference) {
-			scroll-behavior: smooth;
-		}
-	}
+    @media (prefers-reduced-motion: no-preference) {
+      scroll-behavior: smooth;
+    }
+  }
 }
 
 @theme {
-	--breakpoint-2xl: initial;
+  --breakpoint-2xl: initial;
 
-	--font-sans: "Inter", "system-ui", "sans-serif";
-	--font-mono:
-		"JetBrains Mono", "ui-monospace", "SFMono-Regular", "Menlo", "Monaco", "Consolas", "monospace";
+  --font-sans: "Space Grotesk", "system-ui", "sans-serif";
+  --font-head: "Chakra Petch", "system-ui", "sans-serif";
 
-	--text-xs: 0.75rem;
-	--text-xs--line-height: 1.125rem;
+  --text-xs: 0.75rem;
+  --text-xs--line-height: 1.125rem;
 
-	--text-sm: 0.875rem;
-	--text-sm--line-height: 1.25rem;
+  --text-sm: 0.875rem;
+  --text-sm--line-height: 1.25rem;
 
-	--text-md: 1rem;
-	--text-md--line-height: 1.6rem;
+  --text-md: 1rem;
+  --text-md--line-height: 1.6rem;
 
-	--text-lg: 1.125rem;
-	--text-lg--line-height: 1.75rem;
+  --text-lg: 1.125rem;
+  --text-lg--line-height: 1.75rem;
 
-	--text-xl: 1.25rem;
-	--text-xl--line-height: 1.875rem;
+  --text-xl: 1.25rem;
+  --text-xl--line-height: 1.875rem;
 
-	--text-2xl: 1.5rem;
-	--text-2xl--line-height: 2rem;
+  --text-2xl: 1.5rem;
+  --text-2xl--line-height: 2rem;
 
-	--text-3xl: 1.875rem;
-	--text-3xl--line-height: 2.375rem;
+  --text-3xl: 1.875rem;
+  --text-3xl--line-height: 2.375rem;
 
-	--text-4xl: 2.25rem;
-	--text-4xl--line-height: 2.75rem;
-	--text-4xl--letter-spacing: -1%;
+  --text-4xl: 2.25rem;
+  --text-4xl--line-height: 2.75rem;
+  --text-4xl--letter-spacing: -1%;
 
-	--text-5xl: 3rem;
-	--text-5xl--line-height: 3.75rem;
-	--text-5xl--letter-spacing: -1%;
+  --text-5xl: 3rem;
+  --text-5xl--line-height: 3.75rem;
+  --text-5xl--letter-spacing: -1%;
 
-	--text-6xl: 3.75rem;
-	--text-6xl--line-height: 4.5rem;
-	--text-6xl--letter-spacing: -1%;
+  --text-6xl: 3.75rem;
+  --text-6xl--line-height: 4.5rem;
+  --text-6xl--letter-spacing: -1%;
 
-	--text-7xl: 4.5rem;
-	--text-7xl--line-height: 5.625rem;
-	--text-7xl--letter-spacing: -2%;
+  --text-7xl: 4.5rem;
+  --text-7xl--line-height: 5.625rem;
+  --text-7xl--letter-spacing: -2%;
 
-	--color-gray-50: hsl(218, 4%, 98%);
-	--color-gray-100: hsl(220, 12%, 95%);
-	--color-gray-200: hsl(222, 14%, 92%);
-	--color-gray-300: hsl(226, 12%, 84%);
-	--color-gray-400: hsl(234, 11%, 64%);
-	--color-gray-500: hsl(236, 10%, 46%);
-	--color-gray-600: hsl(232, 9%, 34%);
-	--color-gray-700: hsl(230, 8%, 19%);
-	--color-gray-800: hsl(233, 8%, 13%);
-	--color-gray-900: hsl(236, 6%, 9%);
-	--color-gray-950: hsl(240, 4%, 6%);
+  --color-gray-50: hsl(218, 4%, 98%);
+  --color-gray-100: hsl(220, 12%, 95%);
+  --color-gray-200: hsl(222, 14%, 92%);
+  --color-gray-300: hsl(226, 12%, 84%);
+  --color-gray-400: hsl(234, 11%, 64%);
+  --color-gray-500: hsl(236, 10%, 46%);
+  --color-gray-600: hsl(232, 9%, 34%);
+  --color-gray-700: hsl(230, 8%, 19%);
+  --color-gray-800: hsl(233, 8%, 13%);
+  --color-gray-900: hsl(236, 6%, 9%);
+  --color-gray-950: hsl(240, 4%, 6%);
 
-	/* shadcn-svelte */
-	--color-background: hsl(220, 10%, 4%);
-	--color-foreground: hsl(0, 0%, 98%);
-	--color-muted: hsl(240, 3.7%, 15.9%);
-	--color-muted-foreground: hsl(240, 5%, 64.9%);
-	--color-popover: hsl(240, 10%, 3.9%);
-	--color-popover-foreground: hsl(0, 0%, 98%);
-	--color-card: hsl(240, 10%, 3.9%);
-	--color-card-foreground: hsl(0, 0%, 98%);
-	--color-border: hsl(240, 3.7%, 15.9%);
-	--color-input: hsl(240, 3.7%, 15.9%);
-	--color-primary: hsl(0, 0%, 98%);
-	--color-primary-foreground: hsl(240, 5.9%, 10%);
-	--color-secondary: hsl(240, 3.7%, 15.9%);
-	--color-secondary-foreground: hsl(0, 0%, 98%);
-	--color-accent: hsl(240, 3.7%, 15.9%);
-	--color-accent-foreground: hsl(0, 0%, 98%);
-	--color-danger: hsl(0, 62.8%, 30.6%);
-	--color-danger-foreground: hsl(0, 0%, 98%);
-	--color-ring: hsl(240, 4.9%, 83.9%);
+  /* shadcn-svelte */
+  --color-background: hsl(220, 10%, 4%);
+  --color-foreground: hsl(0, 0%, 98%);
+  --color-muted: hsl(240, 3.7%, 15.9%);
+  --color-muted-foreground: hsl(240, 5%, 64.9%);
+  --color-popover: hsl(240, 10%, 3.9%);
+  --color-popover-foreground: hsl(0, 0%, 98%);
+  --color-card: hsl(240, 10%, 3.9%);
+  --color-card-foreground: hsl(0, 0%, 98%);
+  --color-border: hsl(240, 3.7%, 15.9%);
+  --color-input: hsl(240, 3.7%, 15.9%);
+  --color-primary: hsl(0, 0%, 98%);
+  --color-primary-foreground: hsl(240, 5.9%, 10%);
+  --color-secondary: hsl(240, 3.7%, 15.9%);
+  --color-secondary-foreground: hsl(0, 0%, 98%);
+  --color-accent: hsl(240, 3.7%, 15.9%);
+  --color-accent-foreground: hsl(0, 0%, 98%);
+  --color-danger: hsl(0, 62.8%, 30.6%);
+  --color-danger-foreground: hsl(0, 0%, 98%);
+  --color-ring: hsl(240, 4.9%, 83.9%);
 
-	--color-sidebar-background: hsl(240, 5.9%, 10%);
-	--color-sidebar-foreground: hsl(240, 4.8%, 95.9%);
-	--color-sidebar-primary: hsl(224.3, 76.3%, 48%);
-	--color-sidebar-primary-foreground: hsl(0, 0%, 100%);
-	--color-sidebar-accent: hsl(240, 3.7%, 15.9%);
-	--color-sidebar-accent-foreground: hsl(240, 4.8%, 95.9%);
-	--color-sidebar-border: hsl(240, 3.7%, 15.9%);
-	--color-sidebar-ring: hsl(217.2, 91.2%, 59.8%);
+  --color-sidebar-background: hsl(240, 5.9%, 10%);
+  --color-sidebar-foreground: hsl(240, 4.8%, 95.9%);
+  --color-sidebar-primary: hsl(224.3, 76.3%, 48%);
+  --color-sidebar-primary-foreground: hsl(0, 0%, 100%);
+  --color-sidebar-accent: hsl(240, 3.7%, 15.9%);
+  --color-sidebar-accent-foreground: hsl(240, 4.8%, 95.9%);
+  --color-sidebar-border: hsl(240, 3.7%, 15.9%);
+  --color-sidebar-ring: hsl(217.2, 91.2%, 59.8%);
 
-	--radius: 0.5rem;
-	--radius-sm: calc(var(--radius) - 4px);
-	--radius-md: calc(var(--radius) - 2px);
-	--radius-lg: var(--radius);
-	--radius-xl: calc(var(--radius) + 4px);
+  --radius: 0.5rem;
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
 
-	--animate-accordion-down: accordion-down 0.2s ease-out;
-	--animate-accordion-up: accordion-up 0.2s ease-out;
-	--animate-caret-blink: caret-blink 1.25s ease-out infinite;
+  --animate-accordion-down: accordion-down 0.2s ease-out;
+  --animate-accordion-up: accordion-up 0.2s ease-out;
+  --animate-caret-blink: caret-blink 1.25s ease-out infinite;
 }
 
 @keyframes accordion-down {
-	from {
-		height: 0;
-	}
-	to {
-		height: var(--bits-accordion-content-height);
-	}
+  from {
+    height: 0;
+  }
+  to {
+    height: var(--bits-accordion-content-height);
+  }
 }
 
 @keyframes accordion-up {
-	from {
-		height: var(--bits-accordion-content-height);
-	}
-	to {
-		height: 0;
-	}
+  from {
+    height: var(--bits-accordion-content-height);
+  }
+  to {
+    height: 0;
+  }
 }
 
 @keyframes caret-blink {
-	0%,
-	70%,
-	100% {
-		opacity: 1;
-	}
-	20%,
-	50% {
-		opacity: 0;
-	}
+  0%,
+  70%,
+  100% {
+    opacity: 1;
+  }
+  20%,
+  50% {
+    opacity: 0;
+  }
 }
