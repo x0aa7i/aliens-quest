@@ -2,3 +2,6 @@
 package-lock.json
 pnpm-lock.yaml
 yarn.lock
+
+# Prettier does not support ignore comments for files.
+./src/styles/animate.css

@@ -1,6 +1,9 @@
 <script lang="ts">
+	import type { WithoutChild } from "bits-ui";
+
+	import { Select as SelectPrimitive } from "bits-ui";
 	import Check from "lucide-svelte/icons/check";
-	import { Select as SelectPrimitive, type WithoutChild } from "bits-ui";
+
 	import { cn } from "$lib/utils.js";
 
 	let {
@@ -17,7 +20,7 @@
 	bind:ref
 	{value}
 	class={cn(
-		"data-[highlighted]:bg-accent data-[highlighted]:text-accent-foreground relative flex w-full cursor-default select-none items-center rounded-sm py-1.5 pl-8 pr-2 text-sm outline-none data-[disabled]:pointer-events-none data-[disabled]:opacity-50",
+		"data-highlighted:bg-accent data-highlighted:text-accent-foreground outline-hidden data-disabled:pointer-events-none data-disabled:opacity-50 relative flex w-full cursor-default select-none items-center rounded-sm py-1.5 pl-8 pr-2 text-sm",
 		className
 	)}
 	{...restProps}
