@@ -31,5 +31,17 @@ export default ts.config(
 				parser: ts.parser
 			}
 		}
+	},
+	{
+		rules: {
+			// Allow unused variables prefixed with `_`
+			"@typescript-eslint/no-unused-vars": [
+				"warn",
+				{
+					varsIgnorePattern: "^_",
+					argsIgnorePattern: "^_"
+				}
+			]
+		}
 	}
 );
