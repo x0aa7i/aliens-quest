@@ -1,5 +1,5 @@
 ---
-title: The Dark Forest Hypothesis
+title: The Dark Forest
 date: 2023-01-01
 image: https://picsum.photos/id/23/400/400
 mortality: 0.5
