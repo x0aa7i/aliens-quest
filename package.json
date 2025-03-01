@@ -55,6 +55,7 @@
 	"dependencies": {
 		"@libsql/client": "^0.14.0",
 		"drizzle-orm": "^0.38.4",
-		"fuzzysort": "^3.1.0"
+		"fuzzysort": "^3.1.0",
+		"mode-watcher": "^0.5.1"
 	}
 }
