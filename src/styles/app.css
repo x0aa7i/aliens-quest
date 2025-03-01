@@ -26,7 +26,7 @@
 @theme {
 	--breakpoint-2xl: initial;
 
-	--font-sans: "Onest", "system-ui", "sans-serif";
+	--font-sans: "Titillium web", "system-ui", "sans-serif";
 	--font-head: "Chakra Petch", "system-ui", "sans-serif";
 
 	--text-xs: 0.75rem;
@@ -74,9 +74,9 @@
 	--color-gray-500: hsl(236, 8%, 52%);
 	--color-gray-600: hsl(232, 9%, 36%);
 	--color-gray-700: hsl(230, 8%, 19%);
-	--color-gray-800: hsl(233, 12%, 13%);
-	--color-gray-900: hsl(236, 18%, 9%);
-	--color-gray-950: hsl(240, 22%, 6%);
+	--color-gray-800: hsl(233, 10%, 13%);
+	--color-gray-900: hsl(236, 12%, 9%);
+	--color-gray-950: hsl(240, 14%, 6%);
 
 	/* shadcn-svelte */
 	--color-background: hsl(220, 10%, 4%);

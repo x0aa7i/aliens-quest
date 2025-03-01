@@ -1,6 +1,4 @@
 <script lang="ts">
-	// import ChevronDown from "lucide-svelte/icons/chevron-down";
-	// import ChevronUp from "lucide-svelte/icons/chevron-up";
 	import type { Metadata } from "$lib/solutions";
 
 	import Danger from "$lib/components/icons/danger.svelte";
@@ -11,24 +9,22 @@
 	let { title, probability, mortality, image, slug }: Metadata = $props();
 </script>
 
-<article
-	itemscope
-	itemtype="https://schema.org/BlogPosting"
-	itemprop="blogPost"
-	class="flex flex-col items-center justify-center gap-2"
->
-	<!-- Image container -->
-	<div class="image h-32 w-full bg-gray-900">
-		<img src={image} alt={title} class="h-full w-full object-cover" />
-	</div>
+<a href="/solution/{slug}" class="group block">
+	<article
+		itemscope
+		itemtype="https://schema.org/BlogPosting"
+		itemprop="blogPost"
+		class="flex flex-col items-center justify-center gap-2"
+	>
+		<!-- Image container -->
+		<div class="image h-32 w-full transition-all">
+			<img src={image} alt={title} />
+		</div>
 
-	<div class="flex w-full gap-2">
-		<div class="w-full grow space-y-3 border px-6 py-4">
+		<div class="w-full grow space-y-3 border border-[var(--border-color)] px-6 py-4 transition-all">
 			<!-- Title -->
-			<h2 class="font-head text-xl font-bold text-gray-200">
-				<a href="/solution/{slug}" class="hover:underline" itemprop="url">
-					{title}
-				</a>
+			<h2 class="font-head text-xl font-semibold text-gray-200">
+				{title}
 			</h2>
 			<!-- <span class="text-gray-400">001</span> -->
 
@@ -49,26 +45,42 @@
 				{/if}
 			</div>
 		</div>
-		<!-- <div class="flex h-full flex-col items-center justify-center gap-2 border text-center"> -->
-		<!-- 	<div class="inline-flex size-10 items-center justify-center"> -->
-		<!-- 		<ChevronUp class="text-gray-300" /> -->
-		<!-- 	</div> -->
-		<!-- 	<span>49</span> -->
-		<!-- 	<div class="inline-flex size-10 items-center justify-center"> -->
-		<!-- 		<ChevronDown class="text-gray-300" /> -->
-		<!-- 	</div> -->
-		<!-- </div> -->
-	</div>
-</article>
+	</article>
+</a>
 
 <style>
-	.image,
-	.image img {
-		clip-path: polygon(0 16px, 16px 0, calc(100% - 16px) 0, 100% 16px, 100% 100%, 0 100%);
+	.image {
+		--clip: polygon(0 16px, 16px 0, calc(100% - 16px) 0, 100% 16px, 100% 100%, 0 100%);
+
+		width: 100%;
+		position: relative;
+		z-index: 1;
+		background: none;
+		overflow: hidden;
+		box-sizing: border-box;
+
+		clip-path: var(--clip);
+		-webkit-clip-path: var(--clip);
+		background-color: var(--border-color);
+
+		img {
+			position: absolute;
+			top: 1px;
+			left: 1px;
+			width: calc(100% - 2px);
+			height: calc(100% - 2px);
+			object-fit: cover;
+			object-position: center;
+			clip-path: var(--clip);
+			-webkit-clip-path: var(--clip);
+		}
 	}
 
-	.image {
-		padding: 1px;
-		background-color: var(--color-gray-800);
+	a {
+		--border-color: var(--color-gray-700);
+
+		&:hover {
+			--border-color: var(--color-gray-600);
+		}
 	}
 </style>

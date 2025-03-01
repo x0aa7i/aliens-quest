@@ -15,7 +15,7 @@ export async function getAllSolutions() {
 }
 
 export async function getSolution(slug: string) {
-	const source = await import(`./${slug}.md`);
+	const source = await import(/* @vite-ignore */ `./${slug}.md`);
 
 	return {
 		meta: source.metadata as Metadata,

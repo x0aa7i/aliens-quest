@@ -16,9 +16,9 @@ The term "Dark Forest" originates from the science fiction novel _The Dark Fores
 
 The hypothesis is based on three fundamental assumptions about interstellar civilizations:
 
-1. **Survival is the primary goal of any civilization.**
-2. **There is no way to determine the true intentions of an alien civilization.**
-3. **Due to the vast distances and technological asymmetries, a preemptive strike is the safest strategy.**
+1. Survival is the primary goal of any civilization.
+2. There is no way to determine the true intentions of an alien civilization.
+3. Due to the vast distances and technological asymmetries, a preemptive strike is the safest strategy.
 
 In this scenario, the universe is likened to a **dark forest**, where every civilization is like a hidden hunter. To reveal oneself is to invite potential destruction from a more advanced or hostile civilization. Since no civilization can ever be certain that another will remain peaceful, rational actors may choose to remain silent to avoid being targeted.
 

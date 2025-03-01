@@ -3,7 +3,7 @@
 
 	import fuzzysort from "fuzzysort";
 
-	import SolutionCard from "$lib/components/solution-card.svelte";
+	import SolutionCard from "$lib/components/solution-card2.svelte";
 
 	let data: { posts: Metadata[] } = $props();
 	let search = $state("");
@@ -23,7 +23,7 @@
 	});
 </script>
 
-<section class="min-h-150 bg-gray-950">
+<section class="min-h-150 bg-gray-950" id="explore">
 	<div class="container mx-auto px-8 py-4">
 		<div class="mt-10 h-12 bg-gray-900">
 			<input
@@ -34,7 +34,7 @@
 			/>
 		</div>
 
-		<div class="mt-10 grid grid-cols-2 gap-4 lg:grid-cols-3">
+		<div class="mt-10 grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
 			{#each posts as post}
 				<SolutionCard {...post} />
 			{/each}
