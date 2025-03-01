@@ -4,83 +4,68 @@
 	import Danger from "$lib/components/icons/danger.svelte";
 	import Target from "$lib/components/icons/target.svelte";
 
-	import Progress from "./progress.svelte";
+	let { title, probability, mortality, logo: Logo, image, slug }: Metadata = $props();
 
-	let { title, probability, mortality, image, slug }: Metadata = $props();
+	const stats = [
+		{ name: "Probability", value: probability, Icon: Target },
+		{ name: "Mortality", value: mortality, Icon: Danger }
+	];
 </script>
 
-<a href="/solution/{slug}" class="group block">
+<a href="/solution/{slug}" class="group relative block w-full overflow-hidden border">
 	<article
 		itemscope
 		itemtype="https://schema.org/BlogPosting"
 		itemprop="blogPost"
-		class="flex flex-col items-center justify-center gap-2"
+		class="flex h-24 items-center gap-5 px-8 py-3 md:px-10"
 	>
-		<!-- Image container -->
-		<div class="image h-32 w-full transition-all">
-			<img src={image} alt={title} />
+		<!-- bg image and effect -->
+		<div class="glow"></div>
+		<div class="image">
+			<img src={image} alt={title} class="h-full w-full object-cover" />
 		</div>
 
-		<div class="w-full grow space-y-3 border border-[var(--border-color)] px-6 py-4 transition-all">
-			<!-- Title -->
-			<h2 class="font-head text-xl font-semibold text-gray-200">
+		<div class={["z-10 shrink-0 text-gray-300", !Logo && "hidden"]}>
+			<!-- eslint-disable-next-line svelte/no-at-html-tags -->
+			{@html Logo}
+		</div>
+
+		<!-- Info -->
+		<div class="z-10 flex items-center gap-5 overflow-hidden text-gray-300">
+			<h2 class="font-head truncate text-3xl uppercase text-gray-200">
 				{title}
 			</h2>
-			<!-- <span class="text-gray-400">001</span> -->
+		</div>
 
-			<div class="mt-1 flex flex-wrap gap-5 text-sm text-gray-300">
-				{#if probability > 0}
-					<div class="flex items-center gap-1.5 text-sm text-gray-300">
-						<Target width="20" height="20" class="shrink-0" />
-						<Progress value={probability} />
-						<span class="ml-0.5 text-sm font-medium"> {probability * 100}% </span>
+		<!-- Stats -->
+		<div class="z-10 ml-auto hidden grid-cols-2 gap-6 text-gray-400 transition-all md:grid">
+			{#each stats as { name, value, Icon }}
+				{#if value > 0}
+					<div class="flex items-center justify-center gap-1 text-sm">
+						<span class="sr-only">{name} = {value * 100}%</span>
+						<Icon width="20" height="20" class="shrink-0" />
+						<span class="text-md font-semibold"> {value * 100}% </span>
 					</div>
 				{/if}
-				{#if mortality > 0}
-					<div class="flex items-center gap-1.5 text-sm text-gray-300">
-						<Danger width="20" height="20" class="shrink-0" />
-						<Progress value={mortality} />
-						<span class="ml-0.5 text-sm font-medium"> {mortality * 100}% </span>
-					</div>
-				{/if}
-			</div>
+			{/each}
 		</div>
 	</article>
 </a>
 
 <style>
 	.image {
-		--clip: polygon(0 16px, 16px 0, calc(100% - 16px) 0, 100% 16px, 100% 100%, 0 100%);
-
-		width: 100%;
-		position: relative;
-		z-index: 1;
-		background: none;
-		overflow: hidden;
-		box-sizing: border-box;
-
-		clip-path: var(--clip);
-		-webkit-clip-path: var(--clip);
-		background-color: var(--border-color);
-
-		img {
-			position: absolute;
-			top: 1px;
-			left: 1px;
-			width: calc(100% - 2px);
-			height: calc(100% - 2px);
-			object-fit: cover;
-			object-position: center;
-			clip-path: var(--clip);
-			-webkit-clip-path: var(--clip);
-		}
+		position: absolute;
+		inset: 0;
+		left: 50%;
+		object-fit: cover;
+		filter: grayscale(0.8) brightness(0.2);
+		mask-image: linear-gradient(to right, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 1));
 	}
 
-	a {
-		--border-color: var(--color-gray-700);
-
-		&:hover {
-			--border-color: var(--color-gray-600);
-		}
+	.glow {
+		position: absolute;
+		inset: 0;
+		background: linear-gradient(165deg, #212429, var(--color-gray-950) 40%);
+		opacity: 0.8;
 	}
 </style>
