@@ -29,7 +29,7 @@
 @theme {
 	--breakpoint-2xl: initial;
 
-	--font-sans: "Space Grotesk", "system-ui", "sans-serif";
+	--font-sans: "Onest", "system-ui", "sans-serif";
 	--font-head: "Chakra Petch", "system-ui", "sans-serif";
 
 	--text-xs: 0.75rem;
