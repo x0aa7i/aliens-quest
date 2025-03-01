@@ -9,9 +9,9 @@
 	<meta property="og:title" content={data.meta.title} />
 </svelte:head>
 
-<article class="prose-neutral prose prose-invert">
+<article class="prose mx-auto max-w-prose">
 	<hgroup>
-		<h1>{data.meta.title}</h1>
+		<h2>{data.meta.title}</h2>
 	</hgroup>
 
 	<Content />

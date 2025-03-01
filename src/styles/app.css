@@ -1,7 +1,4 @@
 @import "tailwindcss";
-@plugin "@tailwindcss/typography";
-
-@import "./animate.css";
 
 @layer base {
 	*,
@@ -9,7 +6,7 @@
 	::before,
 	::backdrop,
 	::file-selector-button {
-		border-color: var(--color-gray-800, currentColor);
+		border-color: var(--color-gray-700, currentColor);
 	}
 
 	:root {
@@ -62,7 +59,7 @@
 	--text-5xl--letter-spacing: -1%;
 
 	--text-6xl: 3.75rem;
-	--text-6xl--line-height: 4.5rem;
+	--text-6xl--line-height: 4rem;
 	--text-6xl--letter-spacing: -1%;
 
 	--text-7xl: 4.5rem;
@@ -70,16 +67,16 @@
 	--text-7xl--letter-spacing: -2%;
 
 	--color-gray-50: hsl(218, 4%, 98%);
-	--color-gray-100: hsl(220, 12%, 95%);
-	--color-gray-200: hsl(222, 14%, 92%);
-	--color-gray-300: hsl(226, 12%, 84%);
-	--color-gray-400: hsl(234, 10%, 68%);
-	--color-gray-500: hsl(236, 10%, 48%);
-	--color-gray-600: hsl(232, 9%, 34%);
+	--color-gray-100: hsl(220, 12%, 94%);
+	--color-gray-200: hsl(222, 14%, 90%);
+	--color-gray-300: hsl(226, 12%, 80%);
+	--color-gray-400: hsl(234, 6%, 64%);
+	--color-gray-500: hsl(236, 8%, 52%);
+	--color-gray-600: hsl(232, 9%, 36%);
 	--color-gray-700: hsl(230, 8%, 19%);
-	--color-gray-800: hsl(233, 8%, 13%);
-	--color-gray-900: hsl(236, 6%, 8%);
-	--color-gray-950: hsl(240, 4%, 4%);
+	--color-gray-800: hsl(233, 12%, 13%);
+	--color-gray-900: hsl(236, 18%, 9%);
+	--color-gray-950: hsl(240, 22%, 6%);
 
 	/* shadcn-svelte */
 	--color-background: hsl(220, 10%, 4%);
@@ -151,3 +148,11 @@
 		opacity: 0;
 	}
 }
+
+@utility h-dvh {
+	height: 100vh;
+	height: 100dvh;
+}
+
+@import "./animate.css";
+@import "./typography.css";
