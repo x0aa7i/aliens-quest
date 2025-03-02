@@ -17,9 +17,9 @@
 		background: var(--color-gray-950);
 		color: var(--color-gray-50);
 
-		@media (prefers-reduced-motion: no-preference) {
-			scroll-behavior: smooth;
-		}
+		/* @media (prefers-reduced-motion: no-preference) { */
+		/* scroll-behavior: smooth; */
+		/* } */
 	}
 }
 

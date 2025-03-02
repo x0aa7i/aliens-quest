@@ -1,7 +1,21 @@
-<script>
+<script lang="ts">
+	import type { EventHandler } from "svelte/elements";
+
 	import ChevronsDown from "lucide-svelte/icons/chevrons-down";
 
 	import Background from "$lib/components/hero-bg.svelte";
+
+	const onClick: EventHandler<MouseEvent, HTMLAnchorElement> = (e) => {
+		e.preventDefault();
+
+		const targetId = e.currentTarget.getAttribute("href")?.substring(1);
+		if (!targetId) return;
+
+		const target = document.getElementById(targetId);
+		if (!target) return;
+
+		target.scrollIntoView({ behavior: "smooth", block: "start" });
+	};
 </script>
 
 <section class="container mx-auto px-8 py-4">
@@ -24,6 +38,7 @@
 
 	<div class="absolute bottom-2 left-1/2 -translate-x-1/2">
 		<a
+			on:click={onClick}
 			href="#explore"
 			class="inline-flex cursor-pointer items-center gap-2 rounded-md px-4 py-2 text-gray-500"
 		>
