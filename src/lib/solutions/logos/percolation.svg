@@ -1,0 +1,9 @@
+<!-- <svg width="52" height="32" viewBox="0 0 52 32" fill="none" xmlns="http://www.w3.org/2000/svg"> -->
+<!--   <circle cx="13" cy="16" r="6.5" stroke="currentColor"/> -->
+<!--   <circle cx="36" cy="16" r="9.5" stroke="currentColor"/> -->
+<!-- </svg> -->
+
+<svg width="52" height="32" viewBox="0 0 52 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+<circle cx="11" cy="16" r="6.5" stroke="currentColor"/>
+<circle cx="36" cy="16" r="11.5" stroke="currentColor"/>
+</svg>

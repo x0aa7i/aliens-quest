@@ -1,5 +1,5 @@
 ---
-title: The Simulation Hypothesis
+title: The Simulation
 image: https://picsum.photos/id/24/400/400
 mortality: 0.5
 probability: 0.5
