@@ -153,6 +153,11 @@
 		font-weight: var(--font-weight-semibold);
 	}
 
+	em:where(:not(.not-prose, .not-prose *)) {
+		color: var(--prose-strong-color);
+		font-style: italic;
+	}
+
 	table:where(:not(.not-prose, .not-prose *)) {
 		width: 100%;
 		table-layout: auto;
