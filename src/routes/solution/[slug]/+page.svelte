@@ -1,4 +1,6 @@
 <script lang="ts">
+	import Header from "$lib/sections/header.svelte";
+
 	let { data } = $props();
 	const Content = data.content;
 </script>
@@ -9,10 +11,12 @@
 	<meta property="og:title" content={data.meta.title} />
 </svelte:head>
 
-<article class="prose mx-auto max-w-prose">
-	<hgroup>
-		<h2>{data.meta.title}</h2>
-	</hgroup>
+<Header />
 
-	<Content />
-</article>
+<section class="container mx-auto mt-10 px-8 py-4">
+	<article class="prose mx-auto max-w-prose">
+		<h1>{data.meta.title}</h1>
+
+		<Content />
+	</article>
+</section>
