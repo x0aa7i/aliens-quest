@@ -24,8 +24,8 @@
 	</div>
 
 	<div class="grid h-4/5 w-full place-items-center">
-		<div class="w-full space-y-6 text-gray-300">
-			<h1 class="font-head max-w-[12ch] text-balance text-6xl font-semibold">
+		<div class="w-full space-y-6">
+			<h1 class="font-head max-w-[12ch] text-balance text-6xl font-semibold text-gray-200">
 				But.. Where Is Everybody?
 			</h1>
 

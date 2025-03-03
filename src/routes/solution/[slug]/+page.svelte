@@ -17,6 +17,12 @@
 	<article class="prose mx-auto max-w-prose">
 		<h1>{data.meta.title}</h1>
 
+		{#if data.meta.cover}
+			<div class="h-52 w-full">
+				<img src={data.meta.cover} alt={data.meta.title} class="h-full w-full object-cover" />
+			</div>
+		{/if}
+
 		<Content />
 	</article>
 </section>

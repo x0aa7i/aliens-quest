@@ -1,10 +1,13 @@
 ---
 title: The Dark Forest
 date: 2023-01-01
-image: https://picsum.photos/id/23/400/400
 mortality: 0.5
 probability: 0.5
 ---
+
+<script>
+import image from "./cover.webp";
+</script>
 
 The **Dark Forest Hypothesis** is a proposed solution to the absence of observable extraterrestrial civilizations. It suggests that intelligent life is deliberately silent and hidden due to the existential threat posed by other civilizations.
 
