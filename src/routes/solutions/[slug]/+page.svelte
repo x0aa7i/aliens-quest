@@ -1,15 +1,17 @@
 <script lang="ts">
+	import { page } from "$app/state";
+
 	import Danger from "$lib/components/icons/danger.svelte";
 	import Target from "$lib/components/icons/target.svelte";
 	import * as Tabs from "$lib/components/ui/tabs";
 
 	let { data } = $props();
-	const post = data.post;
+	const post = $derived(data.post);
 
-	const stats = [
-		{ name: "probability", value: post.probability, Icon: Target },
-		{ name: "mortality", value: post.mortality, Icon: Danger },
-	];
+	const stats = $derived([
+		{ name: "probability", value: data.post.probability, Icon: Target },
+		{ name: "mortality", value: data.post.mortality, Icon: Danger },
+	]);
 </script>
 
 <svelte:head>
@@ -18,10 +20,29 @@
 	<meta property="og:title" content={post.title} />
 </svelte:head>
 
-<article class="container mx-auto mt-10 px-8 py-4">
-	<div class="container mx-auto grid grid-cols-1 gap-6 lg:grid-cols-[minmax(0,1fr)_auto]">
+<article class="container mx-auto mt-10 flex min-h-[calc(100vh-220px)] flex-col xl:px-8">
+	<div
+		class="grid flex-1 auto-rows-fr grid-cols-1 lg:grid-cols-[minmax(0,1fr)_auto] xl:grid-cols-[200px_minmax(0,1fr)_auto]"
+	>
+		<div class="hidden border-r xl:block">
+			<span class="font-semibold text-gray-200">Solutions</span>
+
+			<ul class="mt-2 text-gray-400">
+				{#each data.posts as post (post.slug)}
+					<li
+						class={[
+							"text-sm transition-colors hover:text-gray-50",
+							page.url.pathname === post.permalink && "text-gray-50",
+						]}
+					>
+						<a href={post.permalink} class="block py-1.5"> {post.title} </a>
+					</li>
+				{/each}
+			</ul>
+		</div>
+
 		<div class="space-y-5">
-			<div class="space-y-2">
+			<div class="space-y-2 px-4 xl:px-8">
 				<div class="flex items-center gap-3">
 					<!-- eslint-disable-next-line svelte/no-at-html-tags -->
 					{@html post.logo}
@@ -44,20 +65,19 @@
 			{@render tabs(post.content)}
 		</div>
 
-		<img
-			src={post.cover.src}
-			alt=""
-			class="mt-12 hidden aspect-square w-96 object-cover lg:block xl:w-[460px]"
-		/>
+		<img src={post.cover.src} alt="" class="ml-8 hidden aspect-square w-96 object-cover lg:block" />
 	</div>
 </article>
 
 {#snippet tabs(data: { title: string; content: string }[])}
 	<Tabs.Root value={data[0].title} class="max-w-full">
 		<div
-			class="no-scrollbar overflow-x-auto scroll-smooth whitespace-nowrap border-b border-b-gray-700"
+			class="no-scrollbar relative overflow-x-auto scroll-smooth whitespace-nowrap border-b border-b-gray-700 xl:px-5"
 		>
-			<Tabs.List>
+			<div
+				class="to-background fixed bottom-0 right-0 top-0 w-24 bg-gradient-to-r from-transparent"
+			></div>
+			<Tabs.List class="pr-12">
 				{#each data as tab (tab.title)}
 					<Tabs.Trigger value={tab.title}>
 						{tab.title}
@@ -67,7 +87,7 @@
 		</div>
 
 		{#each data as tab (tab.title)}
-			<Tabs.Content value={tab.title} class="prose mt-5">
+			<Tabs.Content value={tab.title} class="prose px-4 pb-8 pt-4 xl:px-8">
 				<!-- eslint-disable-next-line svelte/no-at-html-tags -->
 				{@html tab.content}
 			</Tabs.Content>
