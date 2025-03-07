@@ -1,11 +1,11 @@
 <script lang="ts">
-	import type { Metadata } from "$lib/solutions";
+	import type { Solution } from "$content/index";
 
 	import fuzzysort from "fuzzysort";
 
 	import SolutionCard from "$lib/components/solution-card.svelte";
 
-	let data: { posts: Metadata[] } = $props();
+	let data: { posts: Omit<Solution, "content">[] } = $props();
 	let search = $state("");
 
 	const posts = $derived.by(() => {
@@ -17,7 +17,7 @@
 			.go(search, data.posts, {
 				keys: ["title"],
 				limit: 12,
-				threshold: 0.3
+				threshold: 0.3,
 			})
 			.map((post) => post.obj);
 	});
@@ -35,7 +35,7 @@
 		</div>
 
 		<div class="mt-10 grid grid-cols-1 gap-4">
-			{#each posts as post}
+			{#each posts as post (post.slug)}
 				<SolutionCard {...post} />
 			{/each}
 		</div>

@@ -1,0 +1,74 @@
+import { readFile } from "fs/promises";
+import { dirname, join } from "path";
+import { fileURLToPath } from "url";
+import { defineConfig, s } from "velite";
+
+export default defineConfig({
+	output: {
+		assets: "./static/assets",
+		base: "/assets/",
+	},
+	collections: {
+		solutions: {
+			name: "Solution", // collection type name
+			pattern: "solutions/**/*.md", // content files glob pattern
+			schema: s
+				.object({
+					title: s.string().max(99),
+					slug: s.path(), // auto generate slug from file path
+					cover: s.image().optional().default("./cover.webp"), // input image relative path, output image object with blurImage.
+					content: s.markdown(), // transform markdown to html
+					risk: s.number().min(0).max(1).optional(), // risk of the solution
+					probability: s.number().min(0).max(1).optional(), // probability of the solution
+				})
+				// more additional fields (computed fields)
+				.transform(async (data) => ({
+					...data,
+					slug: data.slug.replace(/^.*\//, ""),
+					permalink: `/${data.slug}`,
+					logo: await readSvgFile("../content/" + data.slug + "/logo.svg"),
+					content: splitIntoSections(data.content),
+				})),
+		},
+	},
+	// prepare: (data, context) => {
+	// const solutions = data.solutions;
+	// console.log(solutions);
+	// },
+});
+
+const __dirname = dirname(fileURLToPath(import.meta.url));
+
+async function readSvgFile(filePath: string): Promise<string> {
+	try {
+		const fullPath = join(__dirname, filePath);
+		const svgContent = await readFile(fullPath, "utf-8");
+		return svgContent;
+	} catch (error) {
+		console.error("Error reading SVG file:", error);
+		throw error;
+	}
+}
+
+export function splitIntoSections(renderedHtml?: string): { title: string; content: string }[] {
+	if (!renderedHtml) return [];
+	const sections: { title: string; content: string }[] = [];
+
+	// This regex matches an <h2> tag and its content, followed by any text (including newlines)
+	// until the next <h2> tag or the end of the string.
+	const regex = /<h2[^>]*>(.*?)<\/h2>([\s\S]*?)(?=<h2[^>]*>|$)/gi;
+	let match: RegExpExecArray | null;
+
+	while ((match = regex.exec(renderedHtml)) !== null) {
+		const title = match[1].trim();
+		const content = match[2].trim();
+		sections.push({ title, content });
+	}
+
+	// Fallback: If no <h2> tags were found, return the entire HTML as one section.
+	if (sections.length === 0) {
+		sections.push({ title: "Overview", content: renderedHtml.trim() });
+	}
+
+	return sections;
+}

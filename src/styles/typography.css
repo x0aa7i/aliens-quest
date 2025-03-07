@@ -42,7 +42,7 @@
 	}
 
 	color: var(--prose-color);
-	font-size: var(--text-lg);
+	font-size: var(--text-md);
 	line-height: 1.7;
 
 	*:where(:not(.not-prose, .not-prose *)) + *:where(:not(.not-prose, .not-prose *)) {
@@ -50,8 +50,8 @@
 	}
 
 	h1:where(:not(.not-prose, .not-prose *)) {
-		font-size: var(--text-2xl);
-		line-height: var(--text-2xl--line-height);
+		font-size: var(--text-3xl);
+		line-height: var(--text-3xl--line-height);
 		letter-spacing: -0.025em;
 		color: var(--prose-code-color);
 		font-weight: var(--font-weight-semibold);
