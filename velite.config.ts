@@ -3,6 +3,8 @@ import { dirname, join } from "path";
 import { fileURLToPath } from "url";
 import { defineConfig, s } from "velite";
 
+const scale = ["lowest", "low", "medium", "high", "highest"] as const;
+
 export default defineConfig({
 	output: {
 		assets: "./static/assets",
@@ -18,8 +20,8 @@ export default defineConfig({
 					slug: s.path(), // auto generate slug from file path
 					cover: s.image().optional().default("./cover.webp"), // input image relative path, output image object with blurImage.
 					content: s.markdown(), // transform markdown to html
-					risk: s.number().min(0).max(1).optional(), // risk of the solution
-					probability: s.number().min(0).max(1).optional(), // probability of the solution
+					mortality: s.enum(scale).optional(), // risk of the solution
+					probability: s.enum(scale).optional(), // probability of the solution
 				})
 				// more additional fields (computed fields)
 				.transform(async (data) => ({
@@ -31,10 +33,6 @@ export default defineConfig({
 				})),
 		},
 	},
-	// prepare: (data, context) => {
-	// const solutions = data.solutions;
-	// console.log(solutions);
-	// },
 });
 
 const __dirname = dirname(fileURLToPath(import.meta.url));

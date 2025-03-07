@@ -1,15 +1,7 @@
 <script lang="ts">
 	import type { Solution } from "$content/index";
 
-	// import Danger from "$lib/components/icons/danger.svelte";
-	// import Target from "$lib/components/icons/target.svelte";
-
 	let { title, permalink, logo: Logo, cover }: Omit<Solution, "content"> = $props();
-
-	// const stats = [
-	// 	{ name: "Probability", value: probability, Icon: Target },
-	// 	{ name: "Mortality", value: mortality, Icon: Danger }
-	// ];
 </script>
 
 <a href={permalink} class="group relative block w-full overflow-hidden border">
@@ -23,7 +15,7 @@
 		<div class="glow"></div>
 
 		<!-- bg image -->
-		{#if cover}
+		{#if cover.src}
 			<div class="image">
 				<img src={cover.src} alt="" class="h-full w-full object-cover" />
 			</div>
@@ -38,19 +30,6 @@
 		<h2 class="font-head duration-250 z-10 truncate text-3xl uppercase transition-colors">
 			{title}
 		</h2>
-
-		<!-- Stats -->
-		<!-- <div class="z-10 ml-auto hidden grid-cols-2 gap-6 text-gray-400 transition-all md:grid"> -->
-		<!-- 	{#each stats as { name, value, Icon }} -->
-		<!-- 		{#if value > 0} -->
-		<!-- 			<div class="flex items-center justify-center gap-1 text-sm"> -->
-		<!-- 				<span class="sr-only">{name} = {value * 100}%</span> -->
-		<!-- 				<Icon width="20" height="20" class="shrink-0" /> -->
-		<!-- 				<span class="text-md"> {value * 100}% </span> -->
-		<!-- 			</div> -->
-		<!-- 		{/if} -->
-		<!-- 	{/each} -->
-		<!-- </div> -->
 	</article>
 </a>
 

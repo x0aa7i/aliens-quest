@@ -1,12 +1,12 @@
 ---
 title: The Aestivation
-mortality: 0.5
-probability: 0.5
+mortality: low
+probability: low
 ---
 
 The **Aestivation Hypothesis** is a speculative solution to the Fermi Paradox, proposing that advanced extraterrestrial civilizations may be in a state of **prolonged hibernation** or **aestivation** (a term borrowed from biology, referring to a state of dormancy during hot or dry periods) to optimize their use of energy and resources. This hypothesis suggests that these civilizations are waiting for more favorable cosmological conditions before becoming active and expanding across the universe.
 
-## Overview of the Aestivation Hypothesis
+## Overview
 
 The Aestivation Hypothesis was first proposed by **Anders Sandberg**, **Stuart Armstrong**, and **Milan M. Ćirković** in a 2017 paper. The hypothesis is based on the idea that advanced civilizations prioritize **energy efficiency** and **long-term survival** over immediate expansion. According to this theory, such civilizations may choose to enter a state of dormancy, or aestivation, during periods when the universe is too warm for optimal computation and energy use.
 
@@ -42,7 +42,7 @@ The Aestivation Hypothesis raises several important questions and implications f
 4. **Ethical Considerations**:
    - The idea of aestivation raises ethical questions about the responsibilities of advanced civilizations. Should they intervene in the development of younger civilizations, or is it more ethical to remain dormant and avoid interference?
 
-## Criticisms and Counterarguments
+## Criticisms
 
 Like all solutions to the Fermi Paradox, the Aestivation Hypothesis has its critics. Some of the main criticisms include:
 
