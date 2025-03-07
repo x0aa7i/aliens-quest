@@ -21,11 +21,6 @@
 			})
 			.map((post) => post.obj);
 	});
-
-	const covers = import.meta.glob("../../../content/solutions/**/cover.webp", {
-		query: { enhanced: true },
-	});
-	console.log(Object.values(covers)[0]);
 </script>
 
 <section class="min-h-150 bg-gray-950" id="explore">

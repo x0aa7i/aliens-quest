@@ -54,7 +54,9 @@
 
 {#snippet tabs(data: { title: string; content: string }[])}
 	<Tabs.Root value={data[0].title} class="max-w-full">
-		<div class="no-scrollbar overflow-x-auto scroll-smooth whitespace-nowrap">
+		<div
+			class="no-scrollbar overflow-x-auto scroll-smooth whitespace-nowrap border-b border-b-gray-700"
+		>
 			<Tabs.List>
 				{#each data as tab (tab.title)}
 					<Tabs.Trigger value={tab.title}>
