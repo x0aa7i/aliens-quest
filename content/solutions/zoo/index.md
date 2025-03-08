@@ -1,7 +1,7 @@
 ---
 title: The Zoo
 image: https://picsum.photos/id/33/400/400
-mortality: low
+risk: low
 probability: low
 ---
 

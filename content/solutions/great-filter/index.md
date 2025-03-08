@@ -1,7 +1,7 @@
 ---
 title: The Great Filter
 image: https://picsum.photos/id/19/400/400
-mortality: low
+risk: low
 probability: low
 ---
 

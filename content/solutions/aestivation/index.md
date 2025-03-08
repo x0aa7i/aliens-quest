@@ -1,6 +1,6 @@
 ---
 title: The Aestivation
-mortality: low
+risk: low
 probability: low
 ---
 

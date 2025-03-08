@@ -1,7 +1,7 @@
 ---
 title: Percolation Theory
 image: https://picsum.photos/id/26/400/400
-mortality: low
+risk: low
 probability: low
 ---
 

@@ -1,7 +1,7 @@
 ---
 title: The Dark Forest
 date: 2023-01-01
-mortality: low
+risk: low
 probability: low
 ---
 

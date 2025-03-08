@@ -10,7 +10,7 @@
 
 	const stats = $derived([
 		{ name: "probability", value: data.post.probability, Icon: Target },
-		{ name: "mortality", value: data.post.mortality, Icon: Danger },
+		{ name: "risk", value: data.post.risk, Icon: Danger },
 	]);
 </script>
 
@@ -49,10 +49,10 @@
 					<h1 class="not-prose font-head text-3xl font-semibold">{post.title}</h1>
 				</div>
 
-				<div class="flex gap-5 text-gray-400">
+				<div class="flex gap-4 text-gray-400">
 					{#each stats as { name, value, Icon } (name)}
 						{#if value}
-							<div class="inline-flex items-center justify-center gap-2">
+							<div class="inline-flex items-center justify-center gap-1">
 								<Icon width="16" height="16" class="shrink-0" aria-hidden="true" />
 								<span class="text-sm"> {value} {name} </span>
 							</div>

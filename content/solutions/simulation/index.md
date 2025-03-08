@@ -1,7 +1,7 @@
 ---
 title: The Simulation
 image: https://picsum.photos/id/24/400/400
-mortality: low
+risk: low
 probability: low
 ---
 

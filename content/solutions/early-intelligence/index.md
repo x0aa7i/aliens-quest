@@ -1,7 +1,7 @@
 ---
 title: Early Intelligence
 image: https://picsum.photos/id/35/400/400
-mortality: low
+risk: low
 probability: low
 ---
 

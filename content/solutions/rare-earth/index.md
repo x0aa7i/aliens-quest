@@ -1,7 +1,7 @@
 ---
 title: Rare Earth
 image: https://picsum.photos/id/28/400/400
-mortality: low
+risk: low
 probability: low
 ---
 

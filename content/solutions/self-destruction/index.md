@@ -1,7 +1,7 @@
 ---
 title: Self-Destruction
 image: https://picsum.photos/id/27/400/400
-mortality: low
+risk: low
 probability: low
 ---
 

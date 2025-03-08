@@ -1,7 +1,7 @@
 ---
 title: Incomprehensibility
 image: https://picsum.photos/id/29/400/400
-mortality: low
+risk: low
 probability: low
 ---
 

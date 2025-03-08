@@ -20,7 +20,7 @@ export default defineConfig({
 					slug: s.path(), // auto generate slug from file path
 					cover: s.image().optional().default("./cover.webp"), // input image relative path, output image object with blurImage.
 					content: s.markdown(), // transform markdown to html
-					mortality: s.enum(scale).optional(), // risk of the solution
+					risk: s.enum(scale).optional(), // risk of the solution
 					probability: s.enum(scale).optional(), // probability of the solution
 				})
 				// more additional fields (computed fields)
