@@ -3,8 +3,6 @@ import { dirname, join } from "path";
 import { fileURLToPath } from "url";
 import { defineConfig, s } from "velite";
 
-const scale = ["lowest", "low", "medium", "high", "highest"] as const;
-
 export default defineConfig({
 	output: {
 		assets: "./static/assets",
@@ -20,8 +18,8 @@ export default defineConfig({
 					slug: s.path(), // auto generate slug from file path
 					cover: s.image().optional().default("./cover.webp"), // input image relative path, output image object with blurImage.
 					content: s.markdown(), // transform markdown to html
-					risk: s.enum(scale).optional(), // risk of the solution
-					probability: s.enum(scale).optional(), // probability of the solution
+					risk: s.number().min(1).max(5).optional(), // risk of the solution
+					probability: s.number().min(1).max(5).optional(), // probability of the solution
 				})
 				// more additional fields (computed fields)
 				.transform(async (data) => ({
@@ -30,6 +28,8 @@ export default defineConfig({
 					permalink: `/${data.slug}`,
 					logo: await readSvgFile("../content/" + data.slug + "/logo.svg"),
 					content: splitIntoSections(data.content),
+					risk: getScale(data.risk),
+					probability: getScale(data.probability),
 				})),
 		},
 	},
@@ -69,4 +69,11 @@ export function splitIntoSections(renderedHtml?: string): { title: string; conte
 	}
 
 	return sections;
+}
+
+export function getScale(value?: number): string | undefined {
+	if (!value) return undefined;
+
+	const scale = ["low", "medium", "high"] as const;
+	return scale[value - 1] ?? (value > 3 ? "high" : "low");
 }

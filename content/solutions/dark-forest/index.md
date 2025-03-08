@@ -1,8 +1,8 @@
 ---
 title: The Dark Forest
 date: 2023-01-01
-risk: low
-probability: low
+risk: 1
+probability: 1
 ---
 
 The **Dark Forest Hypothesis** is a proposed solution to the absence of observable extraterrestrial civilizations. It suggests that intelligent life is deliberately silent and hidden due to the existential threat posed by other civilizations.

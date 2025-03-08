@@ -1,7 +1,7 @@
 ---
 title: The Aestivation
-risk: low
-probability: low
+risk: 1
+probability: 1
 ---
 
 The **Aestivation Hypothesis** is a speculative solution to the Fermi Paradox, proposing that advanced extraterrestrial civilizations may be in a state of **prolonged hibernation** or **aestivation** (a term borrowed from biology, referring to a state of dormancy during hot or dry periods) to optimize their use of energy and resources. This hypothesis suggests that these civilizations are waiting for more favorable cosmological conditions before becoming active and expanding across the universe.
