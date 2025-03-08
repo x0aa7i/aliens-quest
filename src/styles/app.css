@@ -14,8 +14,8 @@
 		text-rendering: optimizeLegibility;
 		-webkit-tap-highlight-color: transparent; /* remove tap highlight on mobile */
 
-		background: var(--color-gray-950);
-		color: var(--color-gray-50);
+		background: var(--color-background);
+		color: var(--color-foreground);
 
 		/* @media (prefers-reduced-motion: no-preference) { */
 		/* scroll-behavior: smooth; */
@@ -90,8 +90,8 @@
 	--color-gray-950: hsl(240, 14%, 6%);
 
 	/* shadcn-svelte */
-	--color-background: hsl(220, 10%, 4%);
-	--color-foreground: hsl(0, 0%, 98%);
+	--color-background: var(--color-gray-950);
+	--color-foreground: var(--color-gray-50);
 	--color-muted: hsl(240, 3.7%, 15.9%);
 	--color-muted-foreground: hsl(240, 5%, 64.9%);
 	--color-popover: hsl(240, 10%, 3.9%);

@@ -1,10 +1,10 @@
 <script lang="ts">
 	import type { Solution } from "$content/index";
 
-	let { title, permalink, logo: Logo, cover }: Omit<Solution, "content"> = $props();
+	let { title, url, logo: Logo, cover }: Omit<Solution, "content"> = $props();
 </script>
 
-<a href={permalink} class="group relative block w-full overflow-hidden border">
+<a href={url} class="group relative block w-full overflow-hidden border">
 	<article
 		itemscope
 		itemtype="https://schema.org/BlogPosting"

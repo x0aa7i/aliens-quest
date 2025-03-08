@@ -24,7 +24,7 @@
 </script>
 
 <section class="min-h-150 bg-gray-950" id="explore">
-	<div class="container mx-auto px-8 py-4">
+	<div class="container mx-auto px-8 pb-8 pt-4">
 		<div class="mt-10 h-12 bg-gray-900">
 			<input
 				type="text"
@@ -34,7 +34,7 @@
 			/>
 		</div>
 
-		<div class="mt-10 grid grid-cols-1 gap-4">
+		<div class="mt-10 grid grid-cols-1 gap-4 lg:grid-cols-2">
 			{#each posts as post (post.slug)}
 				<SolutionCard {...post} />
 			{/each}

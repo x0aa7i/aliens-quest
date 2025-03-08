@@ -1,38 +1,43 @@
 import { readFile } from "fs/promises";
 import { dirname, join } from "path";
 import { fileURLToPath } from "url";
-import { defineConfig, s } from "velite";
+import rehypeSlug from "rehype-slug";
+import { defineCollection, defineConfig, s } from "velite";
+
+const solutions = defineCollection({
+	name: "Solution", // collection type name
+	pattern: "solutions/**/*.md", // content files glob pattern
+	schema: s
+		.object({
+			title: s.string().max(99),
+			slug: s.path(), // auto generate slug from file path
+			cover: s.image().optional().default("./cover.webp"), // input image relative path, output image object with blurImage.
+			content: s.markdown(), // transform markdown to html
+			toc: s.toc(),
+			risk: s.number().min(1).max(5).optional(), // risk of the solution
+			probability: s.number().min(1).max(5).optional(), // probability of the solution
+		})
+		// more additional fields (computed fields)
+		.transform(async (data) => ({
+			...data,
+			slug: data.slug.replace(/^.*\//, ""),
+			url: `/${data.slug}`,
+			logo: await readSvgFile("../content/" + data.slug + "/logo.svg"),
+			// sections: splitIntoSections(data.content),
+			risk: getScale(data.risk),
+			probability: getScale(data.probability),
+		})),
+});
 
 export default defineConfig({
 	output: {
 		assets: "./static/assets",
 		base: "/assets/",
 	},
-	collections: {
-		solutions: {
-			name: "Solution", // collection type name
-			pattern: "solutions/**/*.md", // content files glob pattern
-			schema: s
-				.object({
-					title: s.string().max(99),
-					slug: s.path(), // auto generate slug from file path
-					cover: s.image().optional().default("./cover.webp"), // input image relative path, output image object with blurImage.
-					content: s.markdown(), // transform markdown to html
-					risk: s.number().min(1).max(5).optional(), // risk of the solution
-					probability: s.number().min(1).max(5).optional(), // probability of the solution
-				})
-				// more additional fields (computed fields)
-				.transform(async (data) => ({
-					...data,
-					slug: data.slug.replace(/^.*\//, ""),
-					permalink: `/${data.slug}`,
-					logo: await readSvgFile("../content/" + data.slug + "/logo.svg"),
-					content: splitIntoSections(data.content),
-					risk: getScale(data.risk),
-					probability: getScale(data.probability),
-				})),
-		},
+	markdown: {
+		rehypePlugins: [rehypeSlug],
 	},
+	collections: { solutions },
 });
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
@@ -48,7 +53,7 @@ async function readSvgFile(filePath: string): Promise<string> {
 	}
 }
 
-export function splitIntoSections(renderedHtml?: string): { title: string; content: string }[] {
+function splitIntoSections(renderedHtml?: string): { title: string; content: string }[] {
 	if (!renderedHtml) return [];
 	const sections: { title: string; content: string }[] = [];
 

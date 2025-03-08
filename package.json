@@ -39,6 +39,7 @@
     "prettier": "^3.5.3",
     "prettier-plugin-svelte": "^3.3.3",
     "prettier-plugin-tailwindcss": "^0.6.11",
+    "rehype-slug": "^6.0.0",
     "svelte": "^5.22.3",
     "svelte-check": "^4.1.4",
     "tailwind-merge": "^3.0.2",

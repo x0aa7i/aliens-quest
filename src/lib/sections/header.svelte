@@ -5,7 +5,7 @@
 	];
 </script>
 
-<header class="container mx-auto px-8 py-4">
+<header class="container mx-auto px-4 py-4 lg:px-6 xl:px-8">
 	<nav class="mx-auto flex items-center justify-between">
 		<a href="/" class="text-xl font-bold text-gray-50">
 			<img src="/logo.svg" alt="logo" class="h-8 w-auto" />

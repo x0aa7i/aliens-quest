@@ -1,17 +1,75 @@
 <script lang="ts">
+	import { onMount } from "svelte";
+
 	import { page } from "$app/state";
 
 	import Danger from "$lib/components/icons/danger.svelte";
 	import Target from "$lib/components/icons/target.svelte";
-	import * as Tabs from "$lib/components/ui/tabs";
+	import Toc from "$lib/components/toc.svelte";
 
 	let { data } = $props();
 	const post = $derived(data.post);
 
 	const stats = $derived([
-		{ name: "probability", value: data.post.probability, Icon: Target },
 		{ name: "risk", value: data.post.risk, Icon: Danger },
+		{ name: "probability", value: data.post.probability, Icon: Target },
 	]);
+
+	let activeToc: string | null = $state(null);
+
+	function getAbsoluteTop(element: Element): number {
+		let offsetTop = 0;
+		let currentElement: HTMLElement | null = element as HTMLElement;
+
+		while (currentElement && currentElement !== document.body) {
+			offsetTop += currentElement.offsetTop;
+			currentElement = currentElement.offsetParent as HTMLElement | null;
+		}
+
+		return offsetTop;
+	}
+
+	function setActiveLink() {
+		const scrollY = window.scrollY;
+		const innerHeight = window.innerHeight;
+		const offsetHeight = document.body.offsetHeight;
+		const isBottom = Math.abs(scrollY + innerHeight - offsetHeight) < 1;
+
+		const headers = [...document.querySelectorAll("h2[id]")]
+			.map((el) => ({ id: el.id, top: getAbsoluteTop(el) }))
+			.filter(({ top }) => !Number.isNaN(top))
+			.sort((a, b) => a.top - b.top);
+
+		if (!headers.length) {
+			activeToc = null;
+			return;
+		}
+
+		if (scrollY < 1) {
+			activeToc = null;
+			return;
+		}
+
+		if (isBottom) {
+			activeToc = headers[headers.length - 1].id;
+			return;
+		}
+
+		// Find the closest header to the current scroll position (within 33% of the viewport height)
+		let current: string | null = null;
+		for (const { id, top } of headers) {
+			if (top > scrollY + innerHeight / 3) break;
+			current = id;
+		}
+		activeToc = current;
+	}
+
+	onMount(() => {
+		setActiveLink();
+		window.addEventListener("scroll", setActiveLink, { passive: true });
+
+		return () => window.removeEventListener("scroll", setActiveLink);
+	});
 </script>
 
 <svelte:head>
@@ -20,29 +78,19 @@
 	<meta property="og:title" content={post.title} />
 </svelte:head>
 
-<article class="container mx-auto mt-10 flex min-h-[calc(100vh-220px)] flex-col xl:px-8">
+<article class="container mx-auto mt-10 flex min-h-[calc(100vh-220px)] flex-col lg:px-8">
 	<div
-		class="grid flex-1 auto-rows-fr grid-cols-1 lg:grid-cols-[minmax(0,1fr)_auto] xl:grid-cols-[200px_minmax(0,1fr)_auto]"
+		class="grid flex-1 auto-rows-fr grid-cols-1 lg:grid-cols-[200px_minmax(0,1fr)] xl:grid-cols-[200px_minmax(0,1fr)_minmax(0,240px)]"
 	>
-		<div class="hidden border-r xl:block">
-			<span class="font-semibold text-gray-200">Solutions</span>
-
-			<ul class="mt-2 text-gray-400">
-				{#each data.posts as post (post.slug)}
-					<li
-						class={[
-							"text-sm transition-colors hover:text-gray-50",
-							page.url.pathname === post.permalink && "text-gray-50",
-						]}
-					>
-						<a href={post.permalink} class="block py-1.5"> {post.title} </a>
-					</li>
-				{/each}
-			</ul>
-		</div>
+		<Toc
+			title="Solutions"
+			data={data.posts}
+			active={page.url.pathname}
+			class="hidden border-r pr-4 lg:block"
+		/>
 
 		<div class="space-y-5">
-			<div class="space-y-2 px-4 xl:px-8">
+			<div class="space-y-2 px-4 lg:px-6 xl:px-8">
 				<div class="flex flex-wrap items-center gap-3">
 					<!-- eslint-disable-next-line svelte/no-at-html-tags -->
 					{@html post.logo}
@@ -61,33 +109,20 @@
 				</div>
 			</div>
 
-			<img src={post.cover.src} alt="" class="max-h-44 w-full object-cover lg:hidden" />
-			{@render tabs(post.content)}
+			<img
+				src={post.cover.src}
+				alt="cover"
+				class="max-h-44 w-full border-t object-cover pt-6 lg:px-6 xl:px-8"
+			/>
+			<div class="w-full px-4 pb-8 pt-2 lg:px-6 xl:px-8">
+				<div class="prose max-w-prose">
+					<!-- eslint-disable-next-line svelte/no-at-html-tags -->
+					{@html post.content}
+				</div>
+			</div>
+			<!-- {@render tabs(post.sections)} -->
 		</div>
 
-		<img src={post.cover.src} alt="" class="ml-8 hidden aspect-square w-96 object-cover lg:block" />
+		<Toc title="On this page" data={post.toc} active={`#${activeToc}`} class="border-l pl-4" />
 	</div>
 </article>
-
-{#snippet tabs(data: { title: string; content: string }[])}
-	<Tabs.Root value={data[0].title} class="max-w-full">
-		<div
-			class="no-scrollbar overflow-x-auto scroll-smooth whitespace-nowrap border-b border-b-gray-700 xl:px-5"
-		>
-			<Tabs.List>
-				{#each data as tab (tab.title)}
-					<Tabs.Trigger value={tab.title}>
-						{tab.title}
-					</Tabs.Trigger>
-				{/each}
-			</Tabs.List>
-		</div>
-
-		{#each data as tab (tab.title)}
-			<Tabs.Content value={tab.title} class="prose px-4 pb-8 pt-4 xl:px-8">
-				<!-- eslint-disable-next-line svelte/no-at-html-tags -->
-				{@html tab.content}
-			</Tabs.Content>
-		{/each}
-	</Tabs.Root>
-{/snippet}
