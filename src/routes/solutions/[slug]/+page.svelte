@@ -43,13 +43,13 @@
 
 		<div class="space-y-5">
 			<div class="space-y-2 px-4 xl:px-8">
-				<div class="flex items-center gap-3">
+				<div class="flex flex-wrap items-center gap-3">
 					<!-- eslint-disable-next-line svelte/no-at-html-tags -->
 					{@html post.logo}
 					<h1 class="not-prose font-head text-3xl font-semibold">{post.title}</h1>
 				</div>
 
-				<div class="flex gap-4 text-gray-400">
+				<div class="flex flex-wrap gap-x-4 text-gray-400">
 					{#each stats as { name, value, Icon } (name)}
 						{#if value}
 							<div class="inline-flex items-center justify-center gap-1">
@@ -72,12 +72,9 @@
 {#snippet tabs(data: { title: string; content: string }[])}
 	<Tabs.Root value={data[0].title} class="max-w-full">
 		<div
-			class="no-scrollbar relative overflow-x-auto scroll-smooth whitespace-nowrap border-b border-b-gray-700 xl:px-5"
+			class="no-scrollbar overflow-x-auto scroll-smooth whitespace-nowrap border-b border-b-gray-700 xl:px-5"
 		>
-			<div
-				class="to-background fixed bottom-0 right-0 top-0 w-24 bg-gradient-to-r from-transparent"
-			></div>
-			<Tabs.List class="pr-12">
+			<Tabs.List>
 				{#each data as tab (tab.title)}
 					<Tabs.Trigger value={tab.title}>
 						{tab.title}
