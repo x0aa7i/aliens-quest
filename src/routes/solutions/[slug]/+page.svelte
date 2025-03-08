@@ -89,15 +89,15 @@
 			class="hidden border-r pr-4 lg:block"
 		/>
 
-		<div class="space-y-5">
-			<div class="space-y-2 px-4 lg:px-6 xl:px-8">
-				<div class="flex flex-wrap items-center gap-3">
+		<div class="space-y-8">
+			<div class=" space-y-2 px-4 lg:px-6 xl:px-8">
+				<div class="mx-auto flex max-w-prose flex-wrap items-center gap-3">
 					<!-- eslint-disable-next-line svelte/no-at-html-tags -->
 					{@html post.logo}
 					<h1 class="not-prose font-head text-3xl font-semibold">{post.title}</h1>
 				</div>
 
-				<div class="flex flex-wrap gap-x-4 text-gray-400">
+				<div class="mx-auto flex max-w-prose flex-wrap gap-x-4 text-gray-400">
 					{#each stats as { name, value, Icon } (name)}
 						{#if value}
 							<div class="inline-flex items-center justify-center gap-1">
@@ -109,18 +109,18 @@
 				</div>
 			</div>
 
-			<img
-				src={post.cover.src}
-				alt="cover"
-				class="max-h-44 w-full border-t object-cover pt-6 lg:px-6 xl:px-8"
-			/>
-			<div class="w-full px-4 pb-8 pt-2 lg:px-6 xl:px-8">
-				<div class="prose max-w-prose">
+			<div class="w-full space-y-8 border-t px-4 pb-24 pt-6 lg:px-6 xl:px-8 xl:pt-8">
+				<img
+					src={post.cover.src}
+					alt="cover"
+					class="mx-auto max-h-44 w-full max-w-prose object-cover"
+				/>
+
+				<div class="prose mx-auto max-w-prose">
 					<!-- eslint-disable-next-line svelte/no-at-html-tags -->
 					{@html post.content}
 				</div>
 			</div>
-			<!-- {@render tabs(post.sections)} -->
 		</div>
 
 		<Toc title="On this page" data={post.toc} active={`#${activeToc}`} class="border-l pl-4" />
