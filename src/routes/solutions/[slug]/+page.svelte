@@ -6,6 +6,7 @@
 	import Danger from "$lib/components/icons/danger.svelte";
 	import Target from "$lib/components/icons/target.svelte";
 	import Toc from "$lib/components/toc.svelte";
+	import Footer from "$lib/sections/footer.svelte";
 
 	let { data } = $props();
 	const post = $derived(data.post);
@@ -35,7 +36,7 @@
 		const offsetHeight = document.body.offsetHeight;
 		const isBottom = Math.abs(scrollY + innerHeight - offsetHeight) < 1;
 
-		const headers = [...document.querySelectorAll("h2[id]")]
+		const headers = [...document.querySelectorAll("h2[id], h3[id], h4[id]")]
 			.map((el) => ({ id: el.id, top: getAbsoluteTop(el) }))
 			.filter(({ top }) => !Number.isNaN(top))
 			.sort((a, b) => a.top - b.top);
@@ -80,13 +81,13 @@
 
 <article class="container mx-auto mt-10 flex min-h-[calc(100vh-220px)] flex-col lg:px-8">
 	<div
-		class="grid flex-1 auto-rows-fr grid-cols-1 lg:grid-cols-[200px_minmax(0,1fr)] xl:grid-cols-[200px_minmax(0,1fr)_minmax(0,240px)]"
+		class="grid flex-1 auto-rows-fr grid-cols-1 lg:grid-cols-[200px_minmax(0,1fr)] xl:grid-cols-[200px_minmax(0,1fr)_240px]"
 	>
 		<Toc
 			title="Solutions"
 			data={data.posts}
 			active={page.url.pathname}
-			class="hidden border-r pr-4 lg:block"
+			class="hidden border-r pr-6 lg:block"
 		/>
 
 		<div class="space-y-8">
@@ -116,13 +117,20 @@
 					class="mx-auto max-h-44 w-full max-w-prose object-cover"
 				/>
 
-				<div class="prose mx-auto max-w-prose">
+				<div class="prose mx-auto max-w-prose text-pretty">
 					<!-- eslint-disable-next-line svelte/no-at-html-tags -->
 					{@html post.content}
 				</div>
 			</div>
 		</div>
 
-		<Toc title="On this page" data={post.toc} active={`#${activeToc}`} class="border-l pl-4" />
+		<Toc
+			title="On this page"
+			data={post.toc}
+			active={`#${activeToc}`}
+			class="hidden border-l pl-6 xl:block"
+		/>
 	</div>
 </article>
+
+<Footer />

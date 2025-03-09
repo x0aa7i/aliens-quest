@@ -1,5 +1,5 @@
 <script lang="ts">
-	type TocEntry = { title: string; url: string };
+	type TocEntry = { title: string; url: string; items?: TocEntry[] };
 
 	type Props = {
 		title: string;
@@ -11,23 +11,27 @@
 	let { title, data, active, class: _class }: Props = $props();
 </script>
 
-{#if data.length > 0}
-	<div class={_class}>
-		<div class="sticky top-8">
-			<span class="font-semibold text-gray-200">{title}</span>
-
-			<ul class="mt-2 overflow-y-auto overflow-x-hidden overscroll-contain text-gray-400">
-				{#each data as toc (toc.title)}
-					<li
-						class={[
-							"text-sm transition-colors hover:text-gray-50",
-							active === toc.url && "text-gray-50",
-						]}
-					>
-						<a href={toc.url} class="block truncate py-1.5"> {toc.title} </a>
-					</li>
-				{/each}
-			</ul>
-		</div>
+<nav class={_class}>
+	<div class="sticky top-8 overflow-y-auto overflow-x-hidden pb-2">
+		<span class="font-semibold text-gray-200">{title}</span>
+		{@render list(data, "mt-2")}
 	</div>
-{/if}
+</nav>
+
+{#snippet list(items?: TocEntry[], className?: string)}
+	{#if items?.length}
+		<ul class={["text-gray-400", className]}>
+			{#each items as item (item.title)}
+				<li
+					class={[
+						"text-sm transition-colors hover:text-gray-50",
+						active === item.url && "text-gray-50",
+					]}
+				>
+					<a href={item.url} class="block truncate py-1.5"> {item.title} </a>
+					{@render list(item.items, "pl-5")}
+				</li>
+			{/each}
+		</ul>
+	{/if}
+{/snippet}
