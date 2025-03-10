@@ -3,10 +3,11 @@
 
 	import { page } from "$app/state";
 
+	import { classList } from "$lib/actions/classlist.js";
 	import Danger from "$lib/components/icons/danger.svelte";
 	import Target from "$lib/components/icons/target.svelte";
 	import Toc from "$lib/components/toc.svelte";
-	import Footer from "$lib/sections/footer.svelte";
+	import Header from "$lib/sections/header.svelte";
 
 	let { data } = $props();
 	const post = $derived(data.post);
@@ -79,7 +80,12 @@
 	<meta property="og:title" content={post.title} />
 </svelte:head>
 
-<article class="container mx-auto mt-10 flex min-h-[calc(100vh-220px)] flex-col lg:px-8">
+<!-- update page background color -->
+<svelte:body use:classList={"bg-gray-900"} />
+
+<Header />
+
+<article class="container mx-auto flex min-h-[calc(100vh-220px)] flex-col pt-12 lg:px-8">
 	<div
 		class="grid flex-1 auto-rows-fr grid-cols-1 lg:grid-cols-[200px_minmax(0,1fr)] xl:grid-cols-[200px_minmax(0,1fr)_240px]"
 	>
@@ -87,10 +93,10 @@
 			title="Solutions"
 			data={data.posts}
 			active={page.url.pathname}
-			class="hidden border-r pr-6 lg:block"
+			class="hidden border-r pr-6 pt-4 lg:block"
 		/>
 
-		<div class="space-y-8">
+		<div class="space-y-8 pt-4">
 			<div class=" space-y-2 px-4 lg:px-6 xl:px-8">
 				<div class="mx-auto flex max-w-prose flex-wrap items-center gap-3">
 					<!-- eslint-disable-next-line svelte/no-at-html-tags -->
@@ -128,9 +134,7 @@
 			title="On this page"
 			data={post.toc}
 			active={`#${activeToc}`}
-			class="hidden border-l pl-6 xl:block"
+			class="hidden border-l pl-6 pt-4 xl:block"
 		/>
 	</div>
 </article>
-
-<Footer />

@@ -1,11 +1,19 @@
-<script>
-	const navLinks = [
-		{ label: "Solutions", href: "/#explore" },
+<script lang="ts">
+	type Props = {
+		class?: string;
+	};
+
+	let { class: _class }: Props = $props();
+
+	type NavLink = { label: string; href: string };
+
+	const navLinks: NavLink[] = [
+		// { label: "Explore", href: "/solutions" },
 		// { label: "About", href: "/about" },
 	];
 </script>
 
-<header class="container mx-auto px-4 py-4 lg:px-6 xl:px-8">
+<header class={["container mx-auto px-4 py-4 lg:px-6 xl:px-8", _class]}>
 	<nav class="mx-auto flex items-center justify-between">
 		<a href="/" class="text-xl font-bold text-gray-50">
 			<img src="/logo.svg" alt="logo" class="h-8 w-auto" />
