@@ -117,11 +117,9 @@
 			</div>
 
 			<div class="w-full space-y-8 border-t px-4 pb-24 pt-6 lg:px-6 xl:px-8 xl:pt-8">
-				<img
-					src={post.cover.src}
-					alt="cover"
-					class="mx-auto max-h-44 w-full max-w-prose object-cover"
-				/>
+				<div class="mx-auto h-44 w-full max-w-prose overflow-hidden bg-cover">
+					<img src={post.cover.src} alt="cover" class="h-full w-full object-cover" />
+				</div>
 
 				<div class="prose mx-auto max-w-prose text-pretty">
 					<!-- eslint-disable-next-line svelte/no-at-html-tags -->

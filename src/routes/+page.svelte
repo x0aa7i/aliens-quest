@@ -10,6 +10,6 @@
 	<title>Aliens Quest</title>
 </svelte:head>
 
-<Header class="max-w-7xl" />
+<Header class="xl:max-w-7xl" />
 <Hero />
 <Explore posts={data.posts} />

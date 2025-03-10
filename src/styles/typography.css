@@ -46,7 +46,7 @@
 	line-height: 1.7;
 
 	*:where(:not(.not-prose, .not-prose *)) + *:where(:not(.not-prose, .not-prose *)) {
-		margin-top: calc(var(--spacing) * 2);
+		margin-top: calc(var(--spacing) * 4);
 	}
 
 	h1:where(:not(.not-prose, .not-prose *)) {

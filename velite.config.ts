@@ -4,6 +4,16 @@ import { fileURLToPath } from "url";
 import rehypeSlug from "rehype-slug";
 import { defineCollection, defineConfig, s } from "velite";
 
+const about = defineCollection({
+	name: "About", // collection type name
+	single: true,
+	pattern: "site/about.md", // content files glob pattern
+	schema: s.object({
+		title: s.string().max(99),
+		content: s.markdown(), // transform markdown to html
+	}),
+});
+
 const solutions = defineCollection({
 	name: "Solution", // collection type name
 	pattern: "solutions/**/*.md", // content files glob pattern
@@ -37,7 +47,7 @@ export default defineConfig({
 	markdown: {
 		rehypePlugins: [rehypeSlug],
 	},
-	collections: { solutions },
+	collections: { solutions, about },
 });
 
 const __dirname = dirname(fileURLToPath(import.meta.url));

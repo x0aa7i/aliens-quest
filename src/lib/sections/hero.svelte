@@ -2,9 +2,6 @@
 	import type { EventHandler } from "svelte/elements";
 
 	import ChevronsDown from "lucide-svelte/icons/chevrons-down";
-	import ChevronsRight from "lucide-svelte/icons/chevrons-right";
-
-	import Button from "$lib/components/ui/button/button.svelte";
 
 	const onClick: EventHandler<MouseEvent, HTMLAnchorElement> = (e) => {
 		e.preventDefault();
@@ -39,11 +36,6 @@
 				Are they hiding, extinct, or just ignoring us? Explore the possibilities and decide for
 				yourself.
 			</p>
-
-			<!-- <Button href="/solutions"> -->
-			<!-- 	Explore -->
-			<!-- 	<ChevronsRight class="h-5 w-5" /> -->
-			<!-- </Button> -->
 		</div>
 	</div>
 

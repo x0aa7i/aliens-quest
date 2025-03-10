@@ -8,8 +8,8 @@
 	type NavLink = { label: string; href: string };
 
 	const navLinks: NavLink[] = [
-		// { label: "Explore", href: "/solutions" },
-		// { label: "About", href: "/about" },
+		{ label: "Explore", href: "/#explore" },
+		{ label: "About", href: "/about" },
 	];
 </script>
 
@@ -18,9 +18,9 @@
 		<a href="/" class="text-xl font-bold text-gray-50">
 			<img src="/logo.svg" alt="logo" class="h-8 w-auto" />
 		</a>
-		<ul class="flex items-center gap-8 text-sm font-medium text-gray-200">
+		<ul class="flex items-center gap-8 text-sm font-medium uppercase text-gray-300">
 			{#each navLinks as link (link.label)}
-				<li><a href={link.href}>{link.label}</a></li>
+				<li><a href={link.href} class="transition-colors hover:text-gray-50">{link.label}</a></li>
 			{/each}
 		</ul>
 	</nav>

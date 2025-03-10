@@ -1,26 +1,27 @@
 <script lang="ts">
 	import type { Solution } from "$content/index";
 
-	import fuzzysort from "fuzzysort";
+	// import fuzzysort from "fuzzysort";
 
 	import SolutionCard from "$lib/components/solution-card.svelte";
 
 	let data: { posts: Omit<Solution, "content">[] } = $props();
-	let search = $state("");
+	let posts = data.posts;
+	// let search = $state("");
 
-	const posts = $derived.by(() => {
-		if (search.length === 0) {
-			return data.posts;
-		}
-
-		return fuzzysort
-			.go(search, data.posts, {
-				keys: ["title"],
-				limit: 12,
-				threshold: 0.3,
-			})
-			.map((post) => post.obj);
-	});
+	// const posts = $derived.by(() => {
+	// 	if (search.length === 0) {
+	// 		return data.posts;
+	// 	}
+	//
+	// 	return fuzzysort
+	// 		.go(search, data.posts, {
+	// 			keys: ["title"],
+	// 			limit: 12,
+	// 			threshold: 0.3,
+	// 		})
+	// 		.map((post) => post.obj);
+	// });
 </script>
 
 <section class="min-h-150 bg-gray-950 pb-24 pt-12" id="explore">
