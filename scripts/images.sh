@@ -14,13 +14,13 @@ for IMAGE in "$SOURCE_DIR"/*; do
   if [ -f "$IMAGE" ]; then
     # Extract the slug from the filename
     SLUG=$(basename "$IMAGE" | cut -d'.' -f1)
-    DEST_DIR="./src/lib/solutions/$SLUG"
+    DEST_DIR="./content/solutions/$SLUG"
 
     # Check if the destination directory exists
-    if [ -d "$DEST_DIR" ] && [ ! -f "$DEST_DIR/cover.webp" ]; then
-      # if [ -d "$DEST_DIR" ]; then
+    # if [ -d "$DEST_DIR" ] && [ ! -f "$DEST_DIR/cover.webp" ]; then
+    if [ -d "$DEST_DIR" ]; then
       # Convert image to .webp format and move to destination directory
-      magick "$IMAGE" -quality 82 -define webp:lossless=false "$DEST_DIR/cover.webp"
+      magick "$IMAGE" -auto-orient -strip -resize 1024x1024\> -quality 80 -define webp:lossless=false "$DEST_DIR/cover.webp"
     fi
   fi
 done
