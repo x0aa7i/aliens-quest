@@ -21,7 +21,14 @@
 		<!-- bg image -->
 		{#if cover.src}
 			<div class="image">
-				<img src={cover.src} alt="cover" loading="lazy" class="h-full w-full object-cover" />
+				<img
+					src={cover.src}
+					width={cover.width}
+					height={cover.height}
+					alt="cover"
+					loading="lazy"
+					class="h-full w-full object-cover"
+				/>
 			</div>
 		{/if}
 
