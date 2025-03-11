@@ -4,10 +4,12 @@ title: About
 
 ## About This Website
 
-This Website is dedicated to exploring the fascinating and enigmatic Fermi Paradox. A creative endeavor aimed at sparking curiosity and imagination around one of the most intriguing questions in science: _Where is everybody?_
+This project explores the mystery of the Fermi Paradox: Why, in such a vast universe, haven’t we found any signs of intelligent life?
 
-The Fermi Paradox questions why, given the vastness of the universe and the high probability of extraterrestrial life, we have yet to encounter any evidence of intelligent civilizations. This site presents a handful of potential solutions to the paradox, ranging from scientific hypotheses to speculative ideas. However, it’s important to note that the list of solutions discussed here is neither exhaustive nor definitive. It is a curated selection intended to inspire thought and exploration.
+Here, you’ll find a handful of possible explanations—ranging from scientific theories to creative ideas. These aren’t meant to be complete or definitive, just thought-provoking starting points to spark curiosity and imagination.
 
-_Disclaimer: This website is for entertainment and educational purposes only. The content is not intended to be taken as factual or scientific truth. Always verify information through reliable sources._
+Thanks for stopping by!
 
-Thank you for visiting, and remember: the universe is full of mysteries—enjoy the journey of exploring them!
+---
+
+_Disclaimer: The content here isn’t proven fact. If something catches your interest, be sure to explore further with reliable sources._
