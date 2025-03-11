@@ -1,12 +1,15 @@
 <script lang="ts">
-	import type { Solution } from "$content/index";
+	import type { SolutionCardProps } from "$lib/components/solution-card.svelte";
 
 	// import fuzzysort from "fuzzysort";
 
 	import SolutionCard from "$lib/components/solution-card.svelte";
 
-	let data: { posts: Omit<Solution, "content">[] } = $props();
-	let posts = data.posts;
+	type Props = {
+		posts: SolutionCardProps[];
+	};
+
+	let { posts }: Props = $props();
 	// let search = $state("");
 
 	// const posts = $derived.by(() => {
@@ -36,7 +39,7 @@
 		<!-- </div> -->
 
 		<div class="mt-10 grid grid-cols-1 gap-4 lg:grid-cols-2">
-			{#each posts as post (post.slug)}
+			{#each posts as post (post.title)}
 				<SolutionCard {...post} />
 			{/each}
 		</div>

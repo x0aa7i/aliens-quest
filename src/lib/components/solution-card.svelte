@@ -1,7 +1,11 @@
+<script module lang="ts">
+	export type SolutionCardProps = Pick<Solution, "title" | "url" | "logo" | "cover">;
+</script>
+
 <script lang="ts">
 	import type { Solution } from "$content/index";
 
-	let { title, url, logo: Logo, cover }: Omit<Solution, "content"> = $props();
+	let { title, url, logo: Logo, cover }: SolutionCardProps = $props();
 </script>
 
 <a href={url} class="group relative block w-full overflow-hidden border">
