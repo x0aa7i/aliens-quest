@@ -23,6 +23,7 @@ const solutions = defineCollection({
 			slug: s.path(), // auto generate slug from file path
 			cover: s.image().optional().default("./cover.webp"), // input image relative path, output image object with blurImage.
 			content: s.markdown(), // transform markdown to html
+			excerpt: s.excerpt(),
 			toc: s.toc(),
 			risk: s.number().min(1).max(5).optional(), // risk of the solution
 			probability: s.number().min(1).max(5).optional(), // probability of the solution

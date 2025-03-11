@@ -94,8 +94,12 @@
 
 <svelte:head>
 	<title>{post.title}</title>
-	<meta property="og:type" content="article" />
 	<meta property="og:title" content={post.title} />
+	<meta property="og:type" content="article" />
+	<meta property="og:description" content={post.excerpt} />
+	<meta name="description" content={post.excerpt} />
+	<!-- <meta property="og:url" content={post.url} /> -->
+	<meta property="og:image" content={post.cover.src} />
 </svelte:head>
 
 <!-- update page background color -->
