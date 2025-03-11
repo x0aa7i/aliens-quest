@@ -92,7 +92,7 @@
 		font-family: var(--font-head);
 		scroll-margin-top: calc(var(--spacing) * 32);
 		@variant lg {
-			scroll-margin-top: calc(var(--spacing) * 18);
+			scroll-margin-top: calc(var(--spacing) * 24);
 		}
 	}
 
@@ -123,7 +123,7 @@
 		color: var(--prose-marker-color);
 	}
 
-	a:not(:where(:is(h2, h3, h4) *)):where(:not(.not-prose, .not-prose *)) {
+	a:not(:where(:is(h2, h3, h4) *)):where(:not(.not-prose, .not-prose *, sup *)) {
 		color: var(--prose-link-color);
 		font-weight: var(--font-weight-semibold);
 		text-decoration: underline;
@@ -260,6 +260,21 @@
 			line-height: var(--text-sm--line-height);
 			font-style: italic;
 			color: color-mix(in oklab, var(--prose-color) 75%, transparent);
+		}
+	}
+
+	sup:where(:not(.not-prose, .not-prose *)) {
+		color: var(--prose-color);
+		font-size: var(--text-xs);
+		line-height: 0;
+		padding: 0 0.25em;
+		vertical-align: baseline;
+		background-color: var(--color-gray-700);
+		border-radius: var(--radius-sm);
+		margin-left: 0.3rem;
+
+		&:hover {
+			background-color: var(--color-gray-600);
 		}
 	}
 

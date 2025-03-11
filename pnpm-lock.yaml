@@ -105,6 +105,9 @@ importers:
       typescript-eslint:
         specifier: ^8.26.0
         version: 8.26.0(eslint@9.21.0(jiti@2.4.2))(typescript@5.8.2)
+      vaul-svelte:
+        specifier: 1.0.0-next.6
+        version: 1.0.0-next.6(svelte@5.22.3)
       velite:
         specifier: ^0.2.2
         version: 0.2.2(acorn@8.14.1)
@@ -2914,6 +2917,12 @@ packages:
 
   util-deprecate@1.0.2:
     resolution: {integrity: sha512-EPD5q1uXyFxJpCrLnCc1nHnq3gOa6DZBocAIiI2TaSCA7VCJ1UJDMagCzIkXNsUYfD1daK//LTEQ8xiIbrHtcw==}
+
+  vaul-svelte@1.0.0-next.6:
+    resolution: {integrity: sha512-leEKb9Qoj7JOrC0wLnqoczLhHZcwo7UHKBJ7SWBRhdFn0o+x9W1XioUK2OeiZHb5Bp7LyYKtUUjVWO3uJULUCw==}
+    engines: {node: '>=18', pnpm: '>=8.7.0'}
+    peerDependencies:
+      svelte: ^5.0.0
 
   velite@0.2.2:
     resolution: {integrity: sha512-VuaowCAIrlarURqVvTeTc1pMCLXUjjrw6FqwpxFahPht9AsWWZ1i8P/DY411n82s5ZwLqC3f8K4ZqzAnAGvJMA==}
@@ -5755,6 +5764,12 @@ snapshots:
       punycode: 2.3.1
 
   util-deprecate@1.0.2: {}
+
+  vaul-svelte@1.0.0-next.6(svelte@5.22.3):
+    dependencies:
+      runed: 0.23.4(svelte@5.22.3)
+      svelte: 5.22.3
+      svelte-toolbelt: 0.7.1(svelte@5.22.3)
 
   velite@0.2.2(acorn@8.14.1):
     dependencies:

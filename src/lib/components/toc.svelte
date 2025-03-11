@@ -1,21 +1,19 @@
-<script lang="ts">
-	type TocEntry = { title: string; url: string; items?: TocEntry[] };
+<script module lang="ts">
+	export type TocEntry = { title: string; url: string; items?: TocEntry[] };
+</script>
 
+<script lang="ts">
 	type Props = {
-		title: string;
-		data: TocEntry[];
+		items: TocEntry[];
 		active?: string;
 		class?: string;
 	};
 
-	let { title, data, active, class: _class }: Props = $props();
+	let { items, active, class: _class }: Props = $props();
 </script>
 
 <nav class={_class}>
-	<div class="sticky top-8 overflow-y-auto overflow-x-hidden pb-2">
-		<span class="font-semibold text-gray-200">{title}</span>
-		{@render list(data, "mt-2")}
-	</div>
+	{@render list(items)}
 </nav>
 
 {#snippet list(items?: TocEntry[], className?: string)}
