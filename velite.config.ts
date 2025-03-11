@@ -16,7 +16,7 @@ const about = defineCollection({
 
 const solutions = defineCollection({
 	name: "Solution", // collection type name
-	pattern: "solutions/**/*.md", // content files glob pattern
+	pattern: "solutions/**/index.md", // content files glob pattern
 	schema: s
 		.object({
 			title: s.string().max(99),
