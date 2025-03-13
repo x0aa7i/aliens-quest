@@ -27,8 +27,8 @@
 	// });
 </script>
 
-<section class="min-h-150 bg-gray-950 pb-24 pt-12" id="explore">
-	<div class="container mx-auto px-8 pb-8 pt-4">
+<section class="min-h-150 bg-gray-950 pb-12 pt-12 md:pt-20" id="explore">
+	<div class="container mx-auto px-4 pb-8 pt-4 md:px-8">
 		<!-- <div class="mt-10 h-12 bg-gray-950"> -->
 		<!-- 	<input -->
 		<!-- 		type="text" -->
@@ -38,7 +38,7 @@
 		<!-- 	/> -->
 		<!-- </div> -->
 
-		<div class="mt-10 grid grid-cols-1 gap-4 lg:grid-cols-2">
+		<div class="grid grid-cols-1 gap-4 lg:grid-cols-2">
 			{#each posts as post (post.title)}
 				<SolutionCard {...post} />
 			{/each}

@@ -16,7 +16,9 @@
 	};
 </script>
 
-<section class="container mx-auto px-8 py-4 xl:max-w-7xl">
+<section
+	class="container mx-auto h-[calc(100vh-5rem)] overflow-hidden px-4 py-4 md:px-8 xl:max-w-7xl"
+>
 	<!-- Background -->
 	<div class="absolute inset-0 -z-10 h-full w-full overflow-hidden bg-gray-950">
 		<img src="/stars.svg" alt="" class="h-full w-full object-cover" />
@@ -27,12 +29,14 @@
 	</div>
 
 	<div class="grid h-4/5 w-full place-items-center">
-		<div class="w-full space-y-5">
-			<h1 class="font-head max-w-[12ch] text-balance text-6xl font-semibold text-gray-200">
+		<div class="w-full max-w-full space-y-5 overflow-hidden">
+			<h1
+				class="font-head leading-12 sm:leading-16 max-w-[12ch] text-balance text-5xl font-semibold text-gray-200 sm:text-6xl"
+			>
 				So.. Where Is Everybody?
 			</h1>
 
-			<p class="w-full max-w-[36ch] text-balance text-lg text-gray-400">
+			<p class="w-full max-w-[36ch] text-lg text-gray-400 sm:text-balance">
 				Are they hiding, extinct, or just ignoring us? Explore the possibilities and decide for
 				yourself.
 			</p>
@@ -52,11 +56,6 @@
 </section>
 
 <style>
-	section {
-		height: calc(100vh - 5rem);
-		height: calc(100dvh - 5rem);
-	}
-
 	.glow {
 		left: -24rem;
 		top: -12rem;

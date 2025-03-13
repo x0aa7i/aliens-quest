@@ -13,9 +13,9 @@
 	];
 </script>
 
-<header class={["container mx-auto px-4 py-4 lg:px-6 xl:px-8", _class]}>
-	<nav class="mx-auto flex items-center justify-between">
-		<a href="/" class="text-xl font-bold text-gray-50">
+<header class={["container mx-auto px-4 py-4 md:px-8", _class]}>
+	<nav class="mx-auto flex flex-wrap items-center justify-between">
+		<a href="/" class="shrink-0 text-xl font-bold text-gray-50">
 			<img src="/logo.svg" width="87" height="28" alt="logo" class="h-8 w-auto" />
 		</a>
 		<ul class="flex items-center gap-6 text-sm font-medium uppercase text-gray-300 md:gap-8">

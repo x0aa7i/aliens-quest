@@ -13,7 +13,7 @@
 		itemscope
 		itemtype="https://schema.org/BlogPosting"
 		itemprop="blogPost"
-		class="flex h-24 items-center gap-5 px-8 py-3 text-gray-300 group-hover:text-gray-200 md:px-10"
+		class="flex h-20 items-center gap-5 px-4 py-2 text-gray-300 group-hover:text-gray-200 md:h-24 md:px-8"
 	>
 		<!-- bg color -->
 		<div class="glow"></div>
@@ -38,7 +38,9 @@
 		</div>
 
 		<!-- Info -->
-		<h2 class="font-head duration-250 z-10 truncate text-3xl uppercase transition-colors">
+		<h2
+			class="font-head duration-250 z-10 truncate text-2xl uppercase transition-colors md:text-3xl"
+		>
 			{title}
 		</h2>
 	</article>
