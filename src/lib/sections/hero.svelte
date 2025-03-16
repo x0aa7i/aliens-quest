@@ -20,9 +20,15 @@
 	class="container mx-auto h-[calc(100vh-5rem)] overflow-hidden px-4 py-4 md:px-8 xl:max-w-7xl"
 >
 	<!-- Background -->
-	<div class="absolute inset-0 -z-10 h-full w-full overflow-hidden bg-gray-950">
-		<img src="/stars.svg" alt="" class="h-full w-full object-cover" />
-		<div class="glow absolute top-0 aspect-square rounded-full"></div>
+	<div class="absolute inset-0 -z-10 h-full w-full overflow-hidden bg-gray-950" aria-hidden="true">
+		<img
+			src="/stars.svg"
+			alt="background stars"
+			class="fade-in animate-in duration-2000 h-full w-full object-cover"
+		/>
+		<div
+			class="glow fade-in animate-in duration-2000 absolute top-0 aspect-square rounded-full"
+		></div>
 		<div class="container absolute left-1/2 top-1/2 h-full -translate-x-1/2 -translate-y-1/2">
 			<div class="planet"></div>
 		</div>
@@ -71,16 +77,25 @@
 		position: absolute;
 		left: 75%;
 		top: 50%;
-		transform: translate(-50%, -50%);
+		transform: translate3d(-50%, -50%, 0);
+		will-change: transform;
 		width: 500px;
 		aspect-ratio: 1;
 		border-radius: 100%;
 		background-color: var(--color-gray-950);
 		pointer-events: none;
+		animation: planet-slide 2s ease-in forwards reverse;
 
 		box-shadow:
 			inset -40px -16px 40px -16px #4b4f56,
 			inset -20px -8px 10px -18px #fff,
 			48px 26px 60px #adadad15;
+	}
+
+	@keyframes planet-slide {
+		to {
+			box-shadow: none;
+			transform: translate(calc(-50% - 10px), -50%) rotate(25deg);
+		}
 	}
 </style>
