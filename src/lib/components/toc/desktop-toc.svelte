@@ -13,9 +13,7 @@
 	let { class: _class, items, tocState, title = "On this page" }: Props = $props();
 </script>
 
-<aside class="hidden pl-6 pt-4 xl:block">
-	<div class="sticky top-8 overflow-y-auto overflow-x-hidden pb-2">
-		<span class="font-semibold text-gray-200">{title}</span>
-		<TocTree {items} {tocState} class="mt-2" />
-	</div>
-</aside>
+<div class="sticky top-8 overflow-y-auto overflow-x-hidden pb-2">
+	<span class="font-semibold text-gray-200">{title}</span>
+	<TocTree {items} {tocState} class="mt-2" />
+</div>

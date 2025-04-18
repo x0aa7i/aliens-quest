@@ -12,4 +12,4 @@ Thanks for stopping by!
 
 ---
 
-_Disclaimer: The content here isn’t proven fact. If something catches your interest, be sure to explore further with reliable sources._
+**Disclaimer:** _The content here isn’t proven fact. If something catches your interest, be sure to explore further with reliable sources._

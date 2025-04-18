@@ -145,7 +145,7 @@
 	}
 
 	em:where(:not(.not-prose, .not-prose *)) {
-		color: var(--prose-strong-color);
+		color: var(--prose-color);
 		font-style: italic;
 	}
 

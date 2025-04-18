@@ -1,11 +1,9 @@
 <script lang="ts">
-	import { classList } from "$lib/actions/classlist.js";
 	import Danger from "$lib/components/icons/danger.svelte";
 	import Target from "$lib/components/icons/target.svelte";
 	import Sidebar from "$lib/components/sidebar/sidebar.svelte";
 	import Toc from "$lib/components/toc/toc.svelte";
 	import { useToc } from "$lib/hooks/use-toc.svelte.js";
-	import Header from "$lib/sections/header.svelte";
 
 	let { data } = $props();
 
@@ -30,20 +28,15 @@
 	<meta property="og:image" content={metadata.cover.src} />
 </svelte:head>
 
-<!-- update page background color -->
-<svelte:body use:classList={"bg-gray-900"} />
-
-<Header />
-
 <article class="container mx-auto flex min-h-[calc(100vh-220px)] flex-col md:pt-4 lg:px-8">
 	<div
 		class="grid flex-1 auto-rows-fr grid-cols-1 lg:grid-cols-[200px_minmax(0,1fr)] xl:grid-cols-[200px_minmax(0,1fr)_240px]"
 	>
-		<aside class="hidden pr-6 pt-4 lg:block">
+		<aside class="hidden pr-6 pt-5 lg:block">
 			<Sidebar items={data.posts} />
 		</aside>
 
-		<div class="border-t sm:border-l sm:border-r">
+		<main class="border-t sm:border-l sm:border-r">
 			<!-- mobile -->
 			<div class="sticky top-0 border-b bg-gray-900 px-4 md:px-6 xl:hidden xl:px-8">
 				<div class="mx-auto flex h-14 max-w-prose items-center justify-end">
@@ -86,8 +79,10 @@
 					<PageContent />
 				</div>
 			</div>
-		</div>
+		</main>
 
-		<Toc {...tocProps} type="desktop" />
+		<aside class="hidden pl-8 pt-5 xl:block">
+			<Toc {...tocProps} type="desktop" />
+		</aside>
 	</div>
 </article>
