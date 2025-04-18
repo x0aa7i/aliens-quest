@@ -1,96 +1,23 @@
 <script lang="ts">
-	import { onMount } from "svelte";
-	import { MediaQuery } from "svelte/reactivity";
-
-	import { page } from "$app/state";
-
 	import { classList } from "$lib/actions/classlist.js";
 	import Danger from "$lib/components/icons/danger.svelte";
 	import Target from "$lib/components/icons/target.svelte";
-	import SidebarToc from "$lib/components/sidebar-toc.svelte";
-	import Toc from "$lib/components/toc.svelte";
-	import Button from "$lib/components/ui/button/button.svelte";
-	import * as Drawer from "$lib/components/ui/drawer";
-	import * as Popover from "$lib/components/ui/popover";
+	import Sidebar from "$lib/components/sidebar/sidebar.svelte";
+	import Toc from "$lib/components/toc/toc.svelte";
+	import { useToc } from "$lib/hooks/use-toc.svelte.js";
 	import Header from "$lib/sections/header.svelte";
 
 	let { data } = $props();
+
 	const { component, metadata } = $derived(data.post);
 
-	const screen = {
-		lg: new MediaQuery("min-width: 64rem"),
-		xl: new MediaQuery("min-width: 80rem"),
-	};
-
-	let popoverOpen = $state(false);
-	let drawerOpen = $state(false);
-	let PageContent = $derived(component);
-
-	$effect(() => {
-		if (screen.lg.current) drawerOpen = false;
-		if (screen.xl.current) popoverOpen = false;
-	});
+	const PageContent = $derived(component);
+	const tocProps = $derived({ tocState: useToc(metadata.toc), items: metadata.toc });
 
 	const stats = $derived([
 		{ name: "risk", value: metadata.risk, Icon: Danger },
 		{ name: "probability", value: metadata.probability, Icon: Target },
 	]);
-
-	let activeToc: string | null = $state(null);
-
-	function getAbsoluteTop(element: Element): number {
-		let offsetTop = 0;
-		let currentElement: HTMLElement | null = element as HTMLElement;
-
-		while (currentElement && currentElement !== document.body) {
-			offsetTop += currentElement.offsetTop;
-			currentElement = currentElement.offsetParent as HTMLElement | null;
-		}
-
-		return offsetTop;
-	}
-
-	function setActiveLink() {
-		const scrollY = window.scrollY;
-		const innerHeight = window.innerHeight;
-		const offsetHeight = document.body.offsetHeight;
-		const isBottom = Math.abs(scrollY + innerHeight - offsetHeight) < 1;
-
-		const headers = [...document.querySelectorAll("h2[id], h3[id], h4[id]")]
-			.map((el) => ({ id: el.id, top: getAbsoluteTop(el) }))
-			.filter(({ top }) => !Number.isNaN(top))
-			.sort((a, b) => a.top - b.top);
-
-		if (!headers.length) {
-			activeToc = null;
-			return;
-		}
-
-		if (scrollY < 1) {
-			activeToc = null;
-			return;
-		}
-
-		if (isBottom) {
-			activeToc = headers[headers.length - 1].id;
-			return;
-		}
-
-		// Find the closest header to the current scroll position (within 33% of the viewport height)
-		let current: string | null = null;
-		for (const { id, top } of headers) {
-			if (top > scrollY + innerHeight / 4) break;
-			current = id;
-		}
-		activeToc = current;
-	}
-
-	onMount(() => {
-		setActiveLink();
-		window.addEventListener("scroll", setActiveLink, { passive: true });
-
-		return () => window.removeEventListener("scroll", setActiveLink);
-	});
 </script>
 
 <svelte:head>
@@ -112,45 +39,16 @@
 	<div
 		class="grid flex-1 auto-rows-fr grid-cols-1 lg:grid-cols-[200px_minmax(0,1fr)] xl:grid-cols-[200px_minmax(0,1fr)_240px]"
 	>
-		<SidebarToc
-			title="Solutions"
-			items={data.posts}
-			active={page.url.pathname}
-			class="hidden pr-6 pt-4 lg:block"
-		/>
+		<aside class="hidden pr-6 pt-4 lg:block">
+			<Sidebar items={data.posts} />
+		</aside>
 
 		<div class="border-t sm:border-l sm:border-r">
+			<!-- mobile -->
 			<div class="sticky top-0 border-b bg-gray-900 px-4 md:px-6 xl:hidden xl:px-8">
-				<div
-					class="mx-auto flex h-14 max-w-prose items-center justify-end font-medium text-gray-300"
-				>
-					<Drawer.Root direction="left" bind:open={drawerOpen}>
-						<Drawer.Trigger>
-							{#snippet child({ props })}
-								<Button {...props} variant="menu" size="none" class="lg:hidden">Menu</Button>
-							{/snippet}
-						</Drawer.Trigger>
-						<Drawer.Content>
-							<SidebarToc
-								title="Solutions"
-								items={data.posts}
-								active={page.url.pathname}
-								class="h-full overflow-y-auto p-6 pr-12"
-							/>
-						</Drawer.Content>
-					</Drawer.Root>
-
-					<!-- on this page -->
-					<Popover.Root bind:open={popoverOpen}>
-						<Popover.Trigger>
-							{#snippet child({ props })}
-								<Button {...props} variant="menu" size="none" class="ml-auto">On this page</Button>
-							{/snippet}
-						</Popover.Trigger>
-						<Popover.Content align="end" sideOffset={8} alignOffset={-8} class="xl:hidden">
-							<Toc items={metadata.toc} active={`#${activeToc}`} class="px-4" />
-						</Popover.Content>
-					</Popover.Root>
+				<div class="mx-auto flex h-14 max-w-prose items-center justify-end">
+					<Sidebar items={data.posts} type="mobile" />
+					<Toc {...tocProps} type="mobile" />
 				</div>
 			</div>
 
@@ -190,11 +88,6 @@
 			</div>
 		</div>
 
-		<SidebarToc
-			title="On this page"
-			items={metadata.toc}
-			active={`#${activeToc}`}
-			class="hidden pl-6 pt-4 xl:block"
-		/>
+		<Toc {...tocProps} type="desktop" />
 	</div>
 </article>
