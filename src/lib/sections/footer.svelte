@@ -12,7 +12,7 @@
 			&copy; {year} Aliens Quest &mdash; Made by
 			<a
 				class="font-medium text-gray-100 hover:underline"
-				href="https://github.com/x0aa7i/"
+				href="https://achak.dev"
 				target="_blank"
 				rel="noopener noreferrer">ABDO</a
 			>

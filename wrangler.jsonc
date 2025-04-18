@@ -11,7 +11,7 @@
     "enabled": true
   },
   "vars": {
-    "NODE_VERSION": "20.18.3"
+    "NODE_VERSION": "22.14.0"
   }
   /**
 	 * Smart Placement

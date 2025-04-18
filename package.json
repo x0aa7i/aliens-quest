@@ -53,8 +53,8 @@
     "wrangler": "^4.12.0"
   },
   "engines": {
-    "node": ">= 21.0.0",
-    "pnpm": ">= 10.0.0"
+    "node": ">= 20.0.0",
+    "pnpm": ">= 8.0.0"
   },
   "pnpm": {
     "onlyBuiltDependencies": [
