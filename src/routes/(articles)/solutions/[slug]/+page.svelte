@@ -1,6 +1,7 @@
 <script lang="ts">
 	import Danger from "$lib/components/icons/danger.svelte";
 	import Target from "$lib/components/icons/target.svelte";
+	import Metadata, { defaultMeta } from "$lib/components/metadata.svelte";
 	import Sidebar from "$lib/components/sidebar/sidebar.svelte";
 	import Toc from "$lib/components/toc/toc.svelte";
 	import { useToc } from "$lib/hooks/use-toc.svelte.js";
@@ -16,17 +17,19 @@
 		{ name: "risk", value: metadata.risk, Icon: Danger },
 		{ name: "probability", value: metadata.probability, Icon: Target },
 	]);
+
+	const meta = $derived({
+		title: `${metadata.title} - ${defaultMeta.name}`,
+		type: "article",
+		orImage: {
+			url: defaultMeta.url + metadata.cover.src,
+			width: metadata.cover.width.toString(),
+			height: metadata.cover.height.toString(),
+		},
+	});
 </script>
 
-<svelte:head>
-	<title>{metadata.title}</title>
-	<meta property="og:title" content={metadata.title} />
-	<meta property="og:type" content="article" />
-	<meta property="og:description" content={metadata.excerpt} />
-	<meta name="description" content={metadata.excerpt} />
-	<!-- <meta property="og:url" content={post.url} /> -->
-	<meta property="og:image" content={metadata.cover.src} />
-</svelte:head>
+<Metadata {...meta} />
 
 <article class="container mx-auto flex min-h-[calc(100vh-220px)] flex-col md:pt-4 lg:px-8">
 	<div
