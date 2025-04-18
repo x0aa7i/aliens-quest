@@ -15,7 +15,7 @@
 	import Header from "$lib/sections/header.svelte";
 
 	let { data } = $props();
-	const post = $derived(data.post);
+	const { component, metadata } = $derived(data.post);
 
 	const screen = {
 		lg: new MediaQuery("min-width: 64rem"),
@@ -24,6 +24,7 @@
 
 	let popoverOpen = $state(false);
 	let drawerOpen = $state(false);
+	let PageContent = $derived(component);
 
 	$effect(() => {
 		if (screen.lg.current) drawerOpen = false;
@@ -31,8 +32,8 @@
 	});
 
 	const stats = $derived([
-		{ name: "risk", value: data.post.risk, Icon: Danger },
-		{ name: "probability", value: data.post.probability, Icon: Target },
+		{ name: "risk", value: metadata.risk, Icon: Danger },
+		{ name: "probability", value: metadata.probability, Icon: Target },
 	]);
 
 	let activeToc: string | null = $state(null);
@@ -93,13 +94,13 @@
 </script>
 
 <svelte:head>
-	<title>{post.title}</title>
-	<meta property="og:title" content={post.title} />
+	<title>{metadata.title}</title>
+	<meta property="og:title" content={metadata.title} />
 	<meta property="og:type" content="article" />
-	<meta property="og:description" content={post.excerpt} />
-	<meta name="description" content={post.excerpt} />
+	<meta property="og:description" content={metadata.excerpt} />
+	<meta name="description" content={metadata.excerpt} />
 	<!-- <meta property="og:url" content={post.url} /> -->
-	<meta property="og:image" content={post.cover.src} />
+	<meta property="og:image" content={metadata.cover.src} />
 </svelte:head>
 
 <!-- update page background color -->
@@ -147,7 +148,7 @@
 							{/snippet}
 						</Popover.Trigger>
 						<Popover.Content align="end" sideOffset={8} alignOffset={-8} class="xl:hidden">
-							<Toc items={post.toc} active={`#${activeToc}`} class="px-4" />
+							<Toc items={metadata.toc} active={`#${activeToc}`} class="px-4" />
 						</Popover.Content>
 					</Popover.Root>
 				</div>
@@ -156,8 +157,8 @@
 			<div class="space-y-2 px-4 py-8 md:px-6 xl:px-8">
 				<div class="mx-auto flex max-w-prose flex-wrap items-center gap-3">
 					<!-- eslint-disable-next-line svelte/no-at-html-tags -->
-					{@html post.logo}
-					<h1 class="not-prose font-head text-3xl font-semibold">{post.title}</h1>
+					{@html metadata.logo}
+					<h1 class="not-prose font-head text-3xl font-semibold">{metadata.title}</h1>
 				</div>
 
 				<div class="mx-auto flex max-w-prose flex-wrap gap-x-4 text-gray-400">
@@ -175,24 +176,23 @@
 			<div class="w-full space-y-8 border-t px-4 pb-24 pt-6 md:px-6 xl:px-8 xl:pt-8">
 				<div class="mx-auto h-44 w-full max-w-prose overflow-hidden bg-cover">
 					<img
-						src={post.cover.src}
-						width={post.cover.width}
-						height={post.cover.height}
+						src={metadata.cover.src}
+						width={metadata.cover.width}
+						height={metadata.cover.height}
 						alt="cover"
 						class="h-full w-full object-cover"
 					/>
 				</div>
 
 				<div class="prose mx-auto max-w-prose text-pretty">
-					<!-- eslint-disable-next-line svelte/no-at-html-tags -->
-					{@html post.content}
+					<PageContent />
 				</div>
 			</div>
 		</div>
 
 		<SidebarToc
 			title="On this page"
-			items={post.toc}
+			items={metadata.toc}
 			active={`#${activeToc}`}
 			class="hidden pl-6 pt-4 xl:block"
 		/>

@@ -1,12 +1,6 @@
-import { error } from "@sveltejs/kit";
-
-import { solutions } from "$content/index";
+import { getSolution } from "$lib/utils.js";
 
 export async function load({ params }) {
-	const post = solutions.find(({ slug }) => slug === params.slug);
-	if (!post) {
-		throw error(404, "Post not found");
-	}
-
+	const post = await getSolution(params.slug);
 	return { post };
 }

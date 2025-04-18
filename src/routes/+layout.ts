@@ -1,14 +1,8 @@
-import { solutions } from "$content/index";
+import { getAllSolutions } from "$lib/utils";
 
 export const prerender = true;
 
 export async function load() {
-	const posts = solutions.map((post) => ({
-		title: post.title,
-		url: post.url,
-		cover: post.cover,
-		logo: post.logo,
-	}));
-
+	const posts = getAllSolutions();
 	return { posts };
 }
