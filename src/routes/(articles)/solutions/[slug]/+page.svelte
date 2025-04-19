@@ -2,6 +2,7 @@
 	import Danger from "$lib/components/icons/danger.svelte";
 	import Target from "$lib/components/icons/target.svelte";
 	import Metadata, { defaultMeta } from "$lib/components/metadata.svelte";
+	import Sentinel from "$lib/components/sentinel.svelte";
 	import Sidebar from "$lib/components/sidebar/sidebar.svelte";
 	import Toc from "$lib/components/toc/toc.svelte";
 	import { useToc } from "$lib/hooks/use-toc.svelte.js";
@@ -30,6 +31,8 @@
 </script>
 
 <Metadata {...meta} />
+
+<Sentinel id="page-top-sentinel" />
 
 <article class="container mx-auto flex min-h-[calc(100vh-220px)] flex-col md:pt-4 lg:px-8">
 	<div
@@ -89,3 +92,5 @@
 		</aside>
 	</div>
 </article>
+
+<Sentinel id="page-bottom-sentinel" />

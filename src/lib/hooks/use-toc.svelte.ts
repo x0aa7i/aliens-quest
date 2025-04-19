@@ -1,89 +1,151 @@
-import { untrack } from "svelte";
-
-import { page } from "$app/state";
-
 export type TocEntry = {
 	title: string;
 	url: string;
 	items?: TocEntry[];
 };
 
-export type TableOfContents = {
-	items?: TocEntry[];
-};
+export type TocState = ReturnType<typeof useToc>;
 
 function getAbsoluteTop(element: Element): number {
-	let offsetTop = 0;
-	let currentElement: HTMLElement | null = element as HTMLElement;
-
-	while (currentElement && currentElement !== document.body) {
-		offsetTop += currentElement.offsetTop;
-		currentElement = currentElement.offsetParent as HTMLElement | null;
-	}
-
-	return offsetTop;
+	const rect = element.getBoundingClientRect();
+	return rect.top + window.scrollY;
 }
 
-export function useToc(tocItems: TocEntry[]) {
+function getTocIds(items: TocEntry[]): string[] {
+	if (!items?.length) return [];
+
+	const result: string[] = [];
+
+	for (const item of items) {
+		const id = item.url.substring(1);
+		if (id) result.push(id);
+		if (item.items) result.push(...getTocIds(item.items));
+	}
+
+	return result;
+}
+
+type useTocOptions = {
+	topSentinelId?: string;
+	bottomSentinelId?: string;
+};
+
+export function useToc(
+	tocItems: TocEntry[],
+	opts: useTocOptions = {
+		topSentinelId: "page-top-sentinel",
+		bottomSentinelId: "page-bottom-sentinel",
+	}
+) {
 	let activeId = $state<string | null>(null);
-	const urlHash = $derived(page.url.hash);
-	const itemIds = $derived(
-		tocItems.flatMap((item) => [item.url, ...(item.items?.map((i) => i.url) ?? [])]).filter(Boolean)
-	);
+	let intersectingId = $state<string | null>(null);
+	let tocObserver: IntersectionObserver | null = null;
+	let sentinelsObserver: IntersectionObserver | null = null;
 
-	function isActive(item: TocEntry) {
-		return (
-			(item.url === urlHash && `#${activeId}` === urlHash) ||
-			isParentOfActiveItem(item) ||
-			item.url === `#${activeId}`
-		);
-	}
+	let isAtTop = $state(false);
+	let isAtBottom = $state(false);
 
-	function isParentOfActiveItem(item: TocEntry) {
-		return Boolean(item.items?.some((item) => item.url === `#${activeId}`));
-	}
-
-	function setActiveId() {
-		const scrollY = window.scrollY;
-		const innerHeight = window.innerHeight;
-		const offsetHeight = document.body.offsetHeight;
-		const isBottom = Math.abs(scrollY + innerHeight - offsetHeight) < 1;
-
-		const nodes = [...document.querySelectorAll(itemIds.join(","))]
-			.map((el) => ({ id: el.id, top: getAbsoluteTop(el) }))
-			.filter(({ top }) => !Number.isNaN(top))
-			.sort((a, b) => a.top - b.top);
-
-		if (!nodes.length) {
-			activeId = null;
-			return;
-		}
-
-		if (scrollY < 1) {
-			activeId = null;
-			return;
-		}
-
-		if (isBottom) {
-			activeId = nodes[nodes.length - 1].id;
-			return;
-		}
-
-		// Find the closest header to the current scroll position (within 33% of the viewport height)
-		let current: string | null = null;
-		for (const { id, top } of nodes) {
-			if (top > scrollY + innerHeight / 4) break;
-			current = id;
-		}
-
-		activeId = current;
-	}
+	const itemIds = $derived(getTocIds(tocItems));
+	const tocElements = new Map<string, HTMLElement>();
 
 	$effect(() => {
-		untrack(() => setActiveId()); // run once on mount
-		window.addEventListener("scroll", setActiveId, { passive: true });
-		return () => window.removeEventListener("scroll", setActiveId);
+		const sentinels = [
+			opts.topSentinelId && document.getElementById(opts.topSentinelId),
+			opts.bottomSentinelId && document.getElementById(opts.bottomSentinelId),
+		].filter(Boolean) as HTMLElement[];
+
+		if (sentinels.length === 0) return;
+
+		// Disconnect previous observer
+		sentinelsObserver?.disconnect();
+
+		const observerCallback: IntersectionObserverCallback = (entries) => {
+			for (const entry of entries) {
+				if (entry.target.id === opts.topSentinelId) {
+					isAtTop = entry.isIntersecting;
+				} else if (entry.target.id === opts.bottomSentinelId) {
+					isAtBottom = entry.isIntersecting;
+				}
+			}
+		};
+
+		sentinelsObserver = new IntersectionObserver(observerCallback, {
+			rootMargin: "0px 0px 0px 0px",
+			threshold: 0,
+		});
+
+		for (const sentinel of sentinels) {
+			sentinelsObserver.observe(sentinel);
+		}
+
+		return () => {
+			sentinelsObserver?.disconnect();
+		};
 	});
+
+	$effect(() => {
+		if (itemIds.length === 0) return;
+
+		// Disconnect previous observer
+		tocObserver?.disconnect();
+
+		for (const id of itemIds) {
+			const el = document.getElementById(id);
+			if (el) tocElements.set(id, el);
+		}
+
+		if (tocElements.size === 0) return;
+
+		// Track elements currently intersecting
+		const intersectingElements = new Map<string, IntersectionObserverEntry>();
+
+		const observerCallback: IntersectionObserverCallback = (entries) => {
+			for (const entry of entries) {
+				if (entry.isIntersecting) {
+					intersectingElements.set(entry.target.id, entry);
+				} else {
+					intersectingElements.delete(entry.target.id);
+				}
+			}
+
+			const bottomMostId = Array.from(intersectingElements.values())
+				.sort((a, b) => getAbsoluteTop(a.target) - getAbsoluteTop(b.target))
+				.at(-1)?.target.id;
+
+			intersectingId = bottomMostId ?? null;
+		};
+
+		tocObserver = new IntersectionObserver(observerCallback, {
+			rootMargin: "0px 0px -70% 0px", // Activate when item enters top 30% of viewport
+			threshold: 0,
+		});
+
+		for (const el of tocElements.values()) {
+			tocObserver.observe(el);
+		}
+
+		return () => {
+			tocObserver?.disconnect();
+		};
+	});
+
+	$effect(() => {
+		if (isAtTop && !intersectingId) {
+			activeId = null;
+		} else if (isAtBottom) {
+			activeId = Array.from(tocElements.values()).at(-1)?.id ?? null;
+		} else if (intersectingId) {
+			activeId = intersectingId;
+		}
+	});
+
+	// determine if a specific TOC item is active or contains the active item
+	function isActive(item: TocEntry): boolean {
+		if (!activeId) return false;
+		const currentHash = `#${activeId}`;
+		return item.url === currentHash || !!item.items?.some((child) => child.url === currentHash);
+		// !!item.items.some(child => isActive(child)); // for deeper nesting:
+	}
 
 	return {
 		get activeId() {
@@ -92,5 +154,3 @@ export function useToc(tocItems: TocEntry[]) {
 		isActive,
 	};
 }
-
-export type TocState = ReturnType<typeof useToc>;
