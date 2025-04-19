@@ -4,9 +4,10 @@
 	type Props = {
 		items: { title: string; url: string }[];
 		class?: string;
+		onItemClick?: () => void;
 	};
 
-	let { items, class: _class }: Props = $props();
+	let { class: _class, items, onItemClick }: Props = $props();
 </script>
 
 <nav>
@@ -20,7 +21,9 @@
 					page.url.pathname === item.url && "text-gray-50",
 				]}
 			>
-				<a href={item.url} class="block truncate py-1.5"> {item.title} </a>
+				<a href={item.url} class="block truncate py-1.5" onclick={() => onItemClick?.()}>
+					{item.title}
+				</a>
 			</li>
 		{/each}
 	</ul>

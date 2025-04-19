@@ -1,7 +1,5 @@
 <script lang="ts">
-	import type { TocEntry } from "./toc-tree.svelte";
-
-	import { type TocState } from "$lib/hooks/use-toc.svelte";
+	import type { TocEntry, TocState } from "$lib/hooks/use-toc.svelte";
 
 	import DesktopToc from "./desktop-toc.svelte";
 	import MobileToc from "./mobile-toc.svelte";

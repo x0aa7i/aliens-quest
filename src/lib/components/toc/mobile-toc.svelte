@@ -1,6 +1,5 @@
 <script lang="ts">
-	import type { TocEntry } from "$lib/components/toc/toc-tree.svelte";
-	import type { TocState } from "$lib/hooks/use-toc.svelte";
+	import type { TocEntry, TocState } from "$lib/hooks/use-toc.svelte";
 
 	import { MediaQuery } from "svelte/reactivity";
 
@@ -32,6 +31,6 @@
 		{/snippet}
 	</Popover.Trigger>
 	<Popover.Content align="end" sideOffset={8} alignOffset={-8} class="xl:hidden">
-		<TocTree {items} {tocState} class="px-4" />
+		<TocTree {items} {tocState} class="px-4" onItemClick={() => (popoverOpen = false)} />
 	</Popover.Content>
 </Popover.Root>
