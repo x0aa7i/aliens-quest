@@ -1,7 +1,6 @@
 import { readFile } from "fs/promises";
 import { dirname, join } from "path";
 import { fileURLToPath } from "url";
-// import rehypeSlug from "rehype-slug";
 import { defineCollection, defineConfig, s } from "velite";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
@@ -17,7 +16,7 @@ async function readSvgFile(filePath: string): Promise<string> {
 	}
 }
 
-export function getScale(value?: number): string | undefined {
+function getScale(value?: number): string | undefined {
 	if (!value) return undefined;
 
 	const scale = ["low", "medium", "high"] as const;
@@ -65,8 +64,8 @@ export default defineConfig({
 		assets: "./static/assets",
 		base: "/assets/",
 	},
-	// markdown: {
-	// 	rehypePlugins: [rehypeSlug],
-	// },
+	markdown: {
+		rehypePlugins: [],
+	},
 	collections: { solutions, about },
 });

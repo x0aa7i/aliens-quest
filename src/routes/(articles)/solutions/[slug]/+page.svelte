@@ -44,14 +44,14 @@
 
 		<main class="border-t sm:border-l sm:border-r">
 			<!-- mobile -->
-			<div class="sticky top-0 border-b bg-gray-900 px-4 md:px-6 xl:hidden xl:px-8">
+			<div class="sticky top-0 border-b bg-gray-900 px-4 sm:px-6 xl:hidden xl:px-8">
 				<div class="mx-auto flex h-14 max-w-prose items-center justify-end">
 					<Sidebar items={data.posts} type="mobile" />
 					<Toc {...tocProps} type="mobile" />
 				</div>
 			</div>
 
-			<div class="space-y-2 px-4 py-8 md:px-6 xl:px-8">
+			<div class="space-y-2 px-4 py-8 sm:px-6 xl:px-8">
 				<div class="mx-auto flex max-w-prose flex-wrap items-center gap-3">
 					<!-- eslint-disable-next-line svelte/no-at-html-tags -->
 					{@html metadata.logo}
@@ -70,7 +70,7 @@
 				</div>
 			</div>
 
-			<div class="w-full space-y-8 border-t px-4 pb-24 pt-6 md:px-6 xl:px-8 xl:pt-8">
+			<div class="w-full space-y-8 border-t px-4 pb-24 pt-6 sm:px-6 xl:px-8 xl:pt-8">
 				<div class="mx-auto h-44 w-full max-w-prose overflow-hidden bg-cover">
 					<img
 						src={metadata.cover.src}

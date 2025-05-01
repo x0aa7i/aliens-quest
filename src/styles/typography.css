@@ -18,7 +18,8 @@
 		--prose-link-color: var(--color-white);
 		--prose-code-color: var(--color-white);
 		--prose-marker-color: color-mix(in oklab, var(--color-gray-300) 35%, transparent);
-		--prose-link-underline-color: var(--color-sky-400);
+		--prose-link-anchor-color: var(--color-gray-500);
+		--prose-link-underline-color: var(--color-gray-300);
 		--prose-th-borders: var(--color-gray-600);
 		--prose-td-borders: var(--color-gray-700);
 		--prose-hr-color: color-mix(in oklab, var(--color-white) 10%, transparent);
@@ -284,6 +285,39 @@
 
 	:last-child:where(:not(.not-prose, .not-prose *)) {
 		margin-bottom: 0;
+	}
+
+	/* Anchor links */
+	h1,
+	h2,
+	h3,
+	h4,
+	h5,
+	h6 {
+		&:hover .anchor {
+			opacity: 1;
+		}
+
+		& .anchor {
+			position: absolute;
+			margin-left: 0.25em;
+			padding-inline: 0.25em;
+			color: var(--prose-link-anchor-color);
+			opacity: 0;
+			transition-property: opacity, color;
+			transition-duration: 0.1s;
+			transition-timing-function: ease-in-out;
+
+			&:hover {
+				color: var(--prose-color);
+				text-decoration: underline 2px solid var(--prose-color);
+				text-underline-offset: 3px;
+			}
+
+			& .icon-link::after {
+				content: "#";
+			}
+		}
 	}
 }
 
