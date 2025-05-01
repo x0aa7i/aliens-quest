@@ -36,8 +36,8 @@ importers:
         specifier: ^4.1.4
         version: 4.1.4(vite@6.3.2(@types/node@22.13.9)(jiti@2.4.2)(lightningcss@1.29.2)(terser@5.39.0)(yaml@2.7.1))
       bits-ui:
-        specifier: ^1.3.19
-        version: 1.3.19(svelte@5.28.1)
+        specifier: ^1.4.3
+        version: 1.4.3(svelte@5.28.1)
       clsx:
         specifier: ^2.1.1
         version: 2.1.1
@@ -1105,8 +1105,8 @@ packages:
   balanced-match@1.0.2:
     resolution: {integrity: sha512-3oSeUO0TMV67hN1AmbXsK4yaqU7tjiHlbxRDZOpH0KW9+CeX4bRAaX0Anxt0tx2MrpRpWwQaPwIlISEJhYU5Pw==}
 
-  bits-ui@1.3.19:
-    resolution: {integrity: sha512-2blb6dkgedHUsDXqCjvmtUi4Advgd9MhaJDT8r7bEWDzHI8HGsOoYsLeh8CxpEWWEYPrlGN+7k+kpxRhIDdFrQ==}
+  bits-ui@1.4.3:
+    resolution: {integrity: sha512-7D85ZBbUgf/ihL2to5McGs0oGZo0T274NX2Aejak+Ycj69jSqAvGPyTEFkKdf0NMZIxuo5Fz4c4jrljPvpUpMg==}
     engines: {node: '>=18', pnpm: '>=8.7.0'}
     peerDependencies:
       svelte: ^5.11.0
@@ -3187,7 +3187,7 @@ snapshots:
 
   balanced-match@1.0.2: {}
 
-  bits-ui@1.3.19(svelte@5.28.1):
+  bits-ui@1.4.3(svelte@5.28.1):
     dependencies:
       '@floating-ui/core': 1.6.9
       '@floating-ui/dom': 1.6.13
