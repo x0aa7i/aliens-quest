@@ -11,7 +11,7 @@
 </script>
 
 <nav>
-	<span class="font-semibold text-gray-200">Solutions</span>
+	<span class="font-semibold text-gray-200">All Solutions</span>
 
 	<ul class="mt-2 text-gray-400">
 		{#each items as item (item.title)}

@@ -31,7 +31,7 @@
 				<Button {...props} variant="menu" size="none">Menu</Button>
 			{/snippet}
 		</Drawer.Trigger>
-		<Drawer.Content class="h-full overflow-y-auto p-6 pr-12">
+		<Drawer.Content class="h-full min-w-[220px] overflow-y-auto p-6 pr-12">
 			<SidebarItems {items} onItemClick={() => (drawerOpen = false)} />
 		</Drawer.Content>
 	</Drawer.Root>

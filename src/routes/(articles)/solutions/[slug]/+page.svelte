@@ -1,4 +1,5 @@
 <script lang="ts">
+	import ArticleNav from "$lib/components/article-nav.svelte";
 	import Danger from "$lib/components/icons/danger.svelte";
 	import Target from "$lib/components/icons/target.svelte";
 	import Metadata, { defaultMeta } from "$lib/components/metadata.svelte";
@@ -70,7 +71,7 @@
 				</div>
 			</div>
 
-			<div class="w-full space-y-8 border-t px-4 pb-24 pt-6 sm:px-6 xl:px-8 xl:pt-8">
+			<div class="w-full space-y-8 border-t px-4 pb-12 pt-6 sm:px-6 xl:px-8 xl:pt-8">
 				<div class="mx-auto h-44 w-full max-w-prose overflow-hidden bg-cover">
 					<img
 						src={metadata.cover.src}
@@ -83,6 +84,7 @@
 
 				<div class="prose mx-auto max-w-prose text-pretty">
 					<PageContent />
+					<ArticleNav posts={data.posts} current={metadata.slug} />
 				</div>
 			</div>
 		</main>

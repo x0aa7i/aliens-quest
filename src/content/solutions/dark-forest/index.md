@@ -22,7 +22,7 @@ The hypothesis relies heavily on game theory, particularly the concept of mutual
 
 ### The Fermi Paradox Connection
 
-If all civilizations follow this logic, it explains why we haven’t detected any signals or encountered other intelligent life. They are all hiding, just like us. The universe isn’t empty—it’s full of civilizations too afraid to speak.
+If all civilizations follow this logic, it explains why we haven’t detected any signals or encountered other intelligent life. They are all hiding. The universe isn’t empty—it’s full of civilizations too afraid to speak.
 
 ### The "Strike First" Principle
 

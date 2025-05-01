@@ -15,7 +15,7 @@
 		--prose-color: var(--color-gray-300);
 		--prose-heading-color: var(--color-gray-200);
 		--prose-strong-color: var(--color-white);
-		--prose-link-color: var(--color-white);
+		--prose-link-color: var(--color-gray-300);
 		--prose-code-color: var(--color-white);
 		--prose-marker-color: color-mix(in oklab, var(--color-gray-300) 35%, transparent);
 		--prose-link-anchor-color: var(--color-gray-500);
@@ -31,7 +31,7 @@
 			--prose-color: var(--color-gray-300);
 			--prose-heading-color: var(--color-gray-200);
 			--prose-strong-color: var(--color-white);
-			--prose-link-color: var(--color-white);
+			--prose-link-color: var(--color-gray-300);
 			--prose-code-color: var(--color-white);
 			--prose-marker-color: color-mix(in oklab, var(--color-gray-300) 35%, transparent);
 			--prose-link-underline-color: var(--color-sky-400);
@@ -126,7 +126,7 @@
 
 	a:not(:where(:is(h2, h3, h4) *)):where(:not(.not-prose, .not-prose *, sup *)) {
 		color: var(--prose-link-color);
-		font-weight: var(--font-weight-semibold);
+		font-weight: var(--font-weight-medium);
 		text-decoration: underline;
 		text-underline-offset: 3px;
 		text-decoration-color: var(--prose-link-underline-color);
@@ -137,6 +137,7 @@
 	}
 
 	a:hover:where(:not(.not-prose, .not-prose *)) {
+		color: var(--prose-color);
 		text-decoration-thickness: 2px;
 	}
 
