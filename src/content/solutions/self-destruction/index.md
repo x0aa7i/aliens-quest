@@ -1,7 +1,7 @@
 ---
 title: Self-Destruction
-risk: 3
-probability: 1
+risk: 4
+probability: 3
 ---
 
 The Self-Destruction Hypothesis is one of the most sobering solutions to the Fermi Paradox. It suggests that intelligent civilizations inevitably destroy themselves before they can achieve interstellar communication or colonization. This idea posits that the development of advanced technology, while enabling progress, also introduces existential risks—such as nuclear war, environmental collapse, or runaway artificial intelligence—that civilizations are unable to overcome. Could the silence of the cosmos be a grim testament to the fragility of intelligent life?

@@ -1,7 +1,7 @@
 ---
 title: The Zoo
-risk: 1
-probability: 1
+risk: 2
+probability: 2
 ---
 
 The Zoo Hypothesis offers a fascinating and somewhat unsettling solution to the Fermi Paradox: what if advanced extraterrestrial civilizations are aware of our existence but deliberately avoid contact, treating Earth as a kind of "zoo" or "wildlife preserve"? This idea suggests that humanity is being observed from a distance, much like animals in a zoo, and that our cosmic isolation is a deliberate choice by alien civilizations. Could the silence of the cosmos be a result of a galactic policy of non-interference?

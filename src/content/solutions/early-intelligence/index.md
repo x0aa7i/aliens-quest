@@ -1,7 +1,7 @@
 ---
 title: Early Intelligence
 risk: 1
-probability: 2
+probability: 3
 ---
 
 The Early Intelligence Hypothesis offers a provocative explanation for the Fermi Paradox: perhaps intelligent life is exceedingly rare because it emerged unusually early in the universe’s history. This idea flips the script on our assumptions about cosmic timelines, suggesting that humanity might be among the first—if not _the_ first—intelligent species to arise in the universe. Could we be the pioneers of cosmic civilization, destined to pave the way for others?

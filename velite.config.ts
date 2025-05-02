@@ -16,11 +16,14 @@ async function readSvgFile(filePath: string): Promise<string> {
 	}
 }
 
-function getScale(value?: number): string | undefined {
-	if (!value) return undefined;
+const SCALES = {
+	risk: ["trivial", "marginal", "significant", "catastrophic", "existential"] as const,
+	probability: ["extremely unlikely", "unlikely", "plausible", "likely", "highly likely"] as const,
+};
 
-	const scale = ["low", "medium", "high"] as const;
-	return scale[value - 1] ?? (value > 3 ? "high" : "low");
+function getScale(value: number | undefined, type: "risk" | "probability"): string | undefined {
+	if (!value || value < 1 || value > 5) return undefined;
+	return SCALES[type][value - 1];
 }
 
 const about = defineCollection({
@@ -53,8 +56,8 @@ const solutions = defineCollection({
 			slug: data.slug.replace(/^.*\//, ""),
 			url: `/${data.slug}`,
 			logo: await readSvgFile("../src/content/" + data.slug + "/logo.svg"),
-			risk: getScale(data.risk),
-			probability: getScale(data.probability),
+			risk: getScale(data.risk, "risk"),
+			probability: getScale(data.probability, "probability"),
 		})),
 });
 

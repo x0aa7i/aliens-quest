@@ -2,7 +2,7 @@
 title: Incomprehensibility
 image: https://picsum.photos/id/29/400/400
 risk: 1
-probability: 1
+probability: 2
 ---
 
 What if intelligent alien civilizations exist, but their ways of thinking, communicating, and existing are so radically different from ours that we cannot recognize or understand them? This idea challenges our anthropocentric assumptions about intelligence and suggests that the universe might be teeming with life that operates on principles beyond human comprehension. Could the cosmos be filled with civilizations so alien that they are, for all intents and purposes, invisible to us?

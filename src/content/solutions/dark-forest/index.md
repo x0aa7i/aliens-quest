@@ -1,7 +1,7 @@
 ---
 title: The Dark Forest
-risk: 3
-probability: 2
+risk: 5
+probability: 3
 ---
 
 The Dark Forest Hypothesis is one of the most chilling solutions to the Fermi Paradox. It suggests that the universe is silent not because extraterrestrial civilizations are rare, but because they are intentionally hiding—out of fear. Imagine a dark forest where every civilization is a hunter, staying silent to avoid being hunted. This idea paints a universe where contact is not a handshake but a trigger.

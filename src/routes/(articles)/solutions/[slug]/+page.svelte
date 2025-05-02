@@ -18,7 +18,7 @@
 
 	const stats = $derived([
 		{ name: "risk", value: metadata.risk, Icon: Danger },
-		{ name: "probability", value: metadata.probability, Icon: Target },
+		{ name: "scenario", value: metadata.probability, Icon: Target },
 	]);
 
 	const meta = $derived({
@@ -66,7 +66,7 @@
 						{#if value}
 							<div class="inline-flex items-center justify-center gap-1">
 								<Icon width="16" height="16" class="shrink-0" aria-hidden="true" />
-								<span class="text-sm"> {value} {name} </span>
+								<span class="text-sm capitalize"> {value} {name} </span>
 							</div>
 						{/if}
 					{/each}

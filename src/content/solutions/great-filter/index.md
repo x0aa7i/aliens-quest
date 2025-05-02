@@ -1,7 +1,7 @@
 ---
 title: The Great Filter
-risk: 2
-probability: 2
+risk: 3
+probability: 3
 ---
 
 The Great Filter Hypothesis is one of the most unsettling yet compelling solutions to the Fermi Paradox. It suggests that there is some kind of barrier—a "Great Filter"—that prevents intelligent life from reaching a stage where it can colonize the galaxy or communicate across interstellar distances. This barrier could lie in our past, meaning we’ve already overcome it, or in our future, implying that extinction-level challenges await us. Either way, the Great Filter forces us to confront the fragility of intelligent life and the potential obstacles to becoming a galactic civilization.

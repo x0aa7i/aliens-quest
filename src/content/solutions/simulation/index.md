@@ -1,7 +1,7 @@
 ---
 title: The Simulation
-risk: 1
-probability: 2
+risk: 2
+probability: 3
 ---
 
 The Simulation Hypothesis offers a radical and mind-bending solution to the Fermi Paradox: what if we are living in a simulated reality, and the reason we don’t see evidence of extraterrestrial civilizations is because they don’t exist within our simulation? This idea suggests that our universe, and everything in it, might be an artificial construct created by an advanced civilization—perhaps as an experiment, a form of entertainment, or even a historical re-creation. Could the silence of the cosmos be a clue that we are living in a digital illusion?
