@@ -30,7 +30,7 @@
 	{/if}
 {/snippet}
 
-<div class="not-prose mt-4 flex items-center justify-between gap-3">
+<div class="flex items-center justify-between gap-3">
 	{@render PostNavigation(prev, "Previous")}
 	{@render PostNavigation(next, "Next")}
 </div>

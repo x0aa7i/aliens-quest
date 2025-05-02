@@ -1,5 +1,6 @@
 <script lang="ts">
 	import ArticleNav from "$lib/components/article-nav.svelte";
+	import EditLink from "$lib/components/edit-link.svelte";
 	import Danger from "$lib/components/icons/danger.svelte";
 	import Target from "$lib/components/icons/target.svelte";
 	import Metadata, { defaultMeta } from "$lib/components/metadata.svelte";
@@ -85,6 +86,10 @@
 
 				<div class="prose mx-auto max-w-prose text-pretty">
 					<PageContent />
+				</div>
+
+				<div class="mx-auto mt-10 max-w-prose space-y-5">
+					<EditLink slug={metadata.slug} />
 					<ArticleNav posts={data.posts} current={metadata.slug} />
 				</div>
 			</div>
