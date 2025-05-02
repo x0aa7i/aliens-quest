@@ -25,18 +25,24 @@ function getTocIds(items: TocEntry[]): string[] {
 	return result;
 }
 
-type useTocOptions = {
+function createSentinel(sentinelId: string): HTMLElement {
+	const sentinel = document.createElement("div");
+
+	sentinel.id = sentinelId;
+	sentinel.style.opacity = "0";
+	sentinel.style.marginTop = "-1px";
+	sentinel.style.height = "1px";
+	sentinel.style.pointerEvents = "none";
+
+	return sentinel;
+}
+
+type UseTocOptions = {
 	topSentinelId?: string;
 	bottomSentinelId?: string;
 };
 
-export function useToc(
-	tocItems: TocEntry[],
-	opts: useTocOptions = {
-		topSentinelId: "page-top-sentinel",
-		bottomSentinelId: "page-bottom-sentinel",
-	}
-) {
+export function useToc(tocItems: TocEntry[], article?: HTMLElement | null, opts?: UseTocOptions) {
 	let activeId = $state<string | null>(null);
 	let intersectingId = $state<string | null>(null);
 	let tocObserver: IntersectionObserver | null = null;
@@ -49,21 +55,25 @@ export function useToc(
 	const tocElements = new Map<string, HTMLElement>();
 
 	$effect(() => {
-		const sentinels = [
-			opts.topSentinelId && document.getElementById(opts.topSentinelId),
-			opts.bottomSentinelId && document.getElementById(opts.bottomSentinelId),
-		].filter(Boolean) as HTMLElement[];
+		if (!article) return;
 
-		if (sentinels.length === 0) return;
+		const topSentinelId = opts?.topSentinelId ?? "page-top-sentinel";
+		const bottomSentinelId = opts?.bottomSentinelId ?? "page-bottom-sentinel";
+
+		const topSentinel = createSentinel(topSentinelId);
+		article.insertBefore(topSentinel, article.firstChild);
+
+		const bottomSentinel = createSentinel(bottomSentinelId);
+		article.appendChild(bottomSentinel);
 
 		// Disconnect previous observer
 		sentinelsObserver?.disconnect();
 
 		const observerCallback: IntersectionObserverCallback = (entries) => {
 			for (const entry of entries) {
-				if (entry.target.id === opts.topSentinelId) {
+				if (entry.target.id === topSentinelId) {
 					isAtTop = entry.isIntersecting;
-				} else if (entry.target.id === opts.bottomSentinelId) {
+				} else if (entry.target.id === bottomSentinelId) {
 					isAtBottom = entry.isIntersecting;
 				}
 			}
@@ -74,12 +84,16 @@ export function useToc(
 			threshold: 0,
 		});
 
-		for (const sentinel of sentinels) {
+		for (const sentinel of [topSentinel, bottomSentinel]) {
 			sentinelsObserver.observe(sentinel);
 		}
 
 		return () => {
 			sentinelsObserver?.disconnect();
+			if (article) {
+				article.querySelector(`#${topSentinelId}`)?.remove();
+				article.querySelector(`#${bottomSentinelId}`)?.remove();
+			}
 		};
 	});
 
@@ -143,7 +157,8 @@ export function useToc(
 	function isActive(item: TocEntry): boolean {
 		if (!activeId) return false;
 		const currentHash = `#${activeId}`;
-		return item.url === currentHash || !!item.items?.some((child) => child.url === currentHash);
+		return item.url === currentHash;
+		// return item.url === currentHash || !!item.items?.some((child) => child.url === currentHash);
 		// !!item.items.some(child => isActive(child)); // for deeper nesting:
 	}
 

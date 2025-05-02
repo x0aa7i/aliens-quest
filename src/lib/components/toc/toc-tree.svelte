@@ -15,11 +15,18 @@
 </script>
 
 {#if items?.length && level < 3}
-	<ul class={["text-gray-400", level !== 1 && "pl-5", _class]}>
+	<ul class={["text-sm text-gray-400", level !== 1 && "pl-5", _class]}>
 		{#each items as item (item.title)}
 			{@const active = tocState.isActive(item)}
-			<li class={["text-sm transition-colors hover:text-gray-50", active && "text-gray-50"]}>
-				<a href={item.url} class="block truncate py-1.5" onclick={() => onItemClick?.()}>
+			<li>
+				<a
+					href={item.url}
+					class={[
+						"block truncate py-1.5 transition-colors hover:text-gray-50",
+						active && "text-gray-50",
+					]}
+					onclick={() => onItemClick?.()}
+				>
 					{item.title}
 				</a>
 
