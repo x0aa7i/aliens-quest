@@ -4,7 +4,7 @@
   "version": "0.0.1",
   "type": "module",
   "scripts": {
-    "dev": "vite dev",
+    "dev": "velite dev & vite dev",
     "build": "velite && vite build",
     "preview": "pnpm run build && wrangler pages dev",
     "prepare": "svelte-kit sync || echo ''",
