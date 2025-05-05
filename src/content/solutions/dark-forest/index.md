@@ -1,7 +1,7 @@
 ---
 title: The Dark Forest
 risk: 5
-probability: 3
+probability: 2
 ---
 
 The Dark Forest Hypothesis is one of the most chilling solutions to the Fermi Paradox. It suggests that the universe is silent not because extraterrestrial civilizations are rare, but because they are intentionally hiding—out of fear. Imagine a dark forest where every civilization is a hunter, staying silent to avoid being hunted. This idea paints a universe where contact is not a handshake but a trigger.
@@ -32,15 +32,11 @@ A key component of the Dark Forest Hypothesis is the idea that civilizations may
 
 ### Overly Pessimistic Assumptions
 
-Critics argue that the Dark Forest Hypothesis assumes the worst about all civilizations. It presumes that cooperation is impossible and that every civilization will prioritize survival at all costs. However, some argue that advanced civilizations might develop ethical frameworks or cooperative strategies that make preemptive strikes unnecessary.
+The Dark Forest Theory assumes all civilizations are hostile or paranoid, focused solely on survival. Critics argue this is overly pessimistic and overlooks the possibility that advanced societies might evolve cooperative or ethical behaviors, choosing communication and peaceful coexistence over conflict.
 
-### The Challenge of Detection
+### Survival as a Counterargument
 
-Another critique is that the hypothesis assumes civilizations can easily detect and destroy each other. In reality, the vastness of space and the limitations of technology might make such actions impractical. A civilization might not even know where to aim its weapons, let alone have the means to deliver them.
-
-### The Role of Altruism
-
-The hypothesis largely dismisses the possibility of altruistic or cooperative behavior. Critics suggest that advanced civilizations might transcend competitive instincts, focusing instead on mutual growth and exploration. This could create a universe where civilizations actively seek to communicate rather than hide.
+If the logic of the Dark Forest holds, our continued existence is hard to explain. A civilization capable of acting on such a theory would likely detect and sterilize life-bearing planets long before intelligence arises. Early elimination is more efficient and less risky, and the fact that Earth has survived suggests either such civilizations don’t exist, or the theory itself is flawed.
 
 ## What This Means for Us
 
