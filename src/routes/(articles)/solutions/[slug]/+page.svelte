@@ -55,13 +55,13 @@
 			</div>
 
 			<div class="space-y-2 px-4 py-8 sm:px-6 xl:px-8">
-				<div class="mx-auto flex max-w-prose flex-wrap items-center gap-3">
+				<div class="text-primary mx-auto flex max-w-prose flex-wrap items-center gap-3">
 					<!-- eslint-disable-next-line svelte/no-at-html-tags -->
 					{@html metadata.logo}
 					<h1 class="not-prose font-head text-3xl font-semibold">{metadata.title}</h1>
 				</div>
 
-				<div class="mx-auto flex max-w-prose flex-wrap gap-x-4 text-gray-400">
+				<div class="text-quaternary mx-auto flex max-w-prose flex-wrap gap-x-4">
 					{#each stats as { name, value, Icon } (name)}
 						{#if value}
 							<div class="inline-flex items-center justify-center gap-1">
@@ -85,7 +85,7 @@
 				</div>
 
 				<div class="prose mx-auto max-w-prose text-pretty">
-					<PageContent />
+					<PageContent media={metadata.media} />
 				</div>
 
 				<div class="mx-auto mt-10 max-w-prose space-y-5">

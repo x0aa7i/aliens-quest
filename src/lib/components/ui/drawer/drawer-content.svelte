@@ -21,7 +21,7 @@
 	<DrawerPrimitive.Content
 		bind:ref
 		class={cn(
-			"bg-background max-w-4/5 fixed inset-y-0 left-0 z-50 flex h-full flex-col border",
+			"bg-surface max-w-4/5 fixed inset-y-0 left-0 z-50 flex h-full flex-col border",
 			className
 		)}
 		{...restProps}

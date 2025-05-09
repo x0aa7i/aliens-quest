@@ -12,6 +12,6 @@
 
 <DrawerPrimitive.Description
 	bind:ref
-	class={cn("text-muted-foreground text-sm", className)}
+	class={cn("text-tertiary text-sm", className)}
 	{...restProps}
 />

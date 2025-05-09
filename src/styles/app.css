@@ -6,16 +6,20 @@
 	::before,
 	::backdrop,
 	::file-selector-button {
-		border-color: var(--color-gray-700, currentColor);
+		border-color: var(--border-color-base, currentColor);
 	}
 
 	:root {
 		block-size: 100%;
-		text-rendering: optimizeLegibility;
 		-webkit-tap-highlight-color: transparent; /* remove tap highlight on mobile */
 
-		background: var(--color-background);
-		color: var(--color-foreground);
+		color: var(--color-gray-100);
+		background-color: var(--color-gray-950);
+
+		font-synthesis: none;
+		text-rendering: optimizeLegibility;
+		-webkit-font-smoothing: antialiased;
+		-moz-osx-font-smoothing: grayscale;
 
 		/* @media (prefers-reduced-motion: no-preference) { */
 		/* scroll-behavior: smooth; */
@@ -89,35 +93,76 @@
 	--color-gray-900: hsl(236, 12%, 8%);
 	--color-gray-950: hsl(240, 14%, 5%);
 
-	/* shadcn-svelte */
-	--color-background: var(--color-gray-950);
-	--color-foreground: var(--color-gray-50);
-	--color-muted: hsl(240, 3.7%, 15.9%);
-	--color-muted-foreground: hsl(240, 5%, 64.9%);
-	--color-popover: hsl(240, 10%, 3.9%);
-	--color-popover-foreground: hsl(0, 0%, 98%);
-	--color-card: hsl(240, 10%, 3.9%);
-	--color-card-foreground: hsl(0, 0%, 98%);
-	--color-border: hsl(240, 3.7%, 15.9%);
-	--color-input: hsl(240, 3.7%, 15.9%);
-	--color-primary: hsl(0, 0%, 98%);
-	--color-primary-foreground: hsl(240, 5.9%, 10%);
-	--color-secondary: hsl(240, 3.7%, 15.9%);
-	--color-secondary-foreground: hsl(0, 0%, 98%);
-	--color-accent: hsl(240, 3.7%, 15.9%);
-	--color-accent-foreground: hsl(0, 0%, 98%);
-	--color-danger: hsl(0, 62.8%, 30.6%);
-	--color-danger-foreground: hsl(0, 0%, 98%);
-	--color-ring: hsl(240, 4.9%, 83.9%);
+	--color-gray-50: hsl(210 12% 98%);
+	--color-gray-100: hsl(212 11.5% 95%);
+	--color-gray-200: hsl(215 10% 88%);
+	--color-gray-300: hsl(218 10% 75%);
+	--color-gray-400: hsl(222 9% 67%);
+	--color-gray-500: hsl(225 9% 52%);
+	--color-gray-600: hsl(228 8% 38%);
+	--color-gray-700: hsl(232 9% 25%);
+	--color-gray-800: hsl(235 9% 15%);
+	--color-gray-900: hsl(238 10% 7.5%);
+	--color-gray-950: hsl(240 12% 5%);
 
-	--color-sidebar-background: hsl(240, 5.9%, 10%);
-	--color-sidebar-foreground: hsl(240, 4.8%, 95.9%);
-	--color-sidebar-primary: hsl(224.3, 76.3%, 48%);
-	--color-sidebar-primary-foreground: hsl(0, 0%, 100%);
-	--color-sidebar-accent: hsl(240, 3.7%, 15.9%);
-	--color-sidebar-accent-foreground: hsl(240, 4.8%, 95.9%);
-	--color-sidebar-border: hsl(240, 3.7%, 15.9%);
-	--color-sidebar-ring: hsl(217.2, 91.2%, 59.8%);
+	/* Surface Tokens  */
+	--color-surface-sunken: var(--color-black);
+	--color-surface: var(--color-gray-950);
+	--color-surface-raised: var(--color-gray-900);
+	--color-surface-overlay: var(--color-gray-950);
+
+	--color-surface-sunken-hover: var(--color-gray-900);
+	--color-surface-hover: var(--color-gray-800);
+	--color-surface-raised-hover: var(--color-gray-700);
+	--color-surface-overlay-hover: var(--color-gray-900);
+
+	/* Text Colors */
+	--text-color-primary: var(--color-gray-100);
+	--text-color-secondary: var(--color-gray-200);
+	--text-color-tertiary: var(--color-gray-300);
+	--text-color-quaternary: var(--color-gray-500);
+	--text-color-disabled: var(--color-gray-600);
+
+	--text-color-placeholder: var(--color-gray-500);
+	--text-color-link: var(--color-blue-500);
+	--text-color-inverse: var(--color-white);
+
+	/* Border Colors */
+	--border-color-weak: var(--color-gray-900);
+	--border-color-base: var(--color-gray-800);
+	--border-color-strong: color-mix(in hsl, var(--color-gray-700), transparent 10%);
+
+	--color-ring: var(--color-gray-400);
+
+	/* shadcn-svelte */
+	/* --color-background: var(--color-gray-950); */
+	/* --color-foreground: var(--color-gray-50); */
+	/* --color-muted: hsl(240, 3.7%, 15.9%); */
+	/* --color-muted-foreground: hsl(240, 5%, 64.9%); */
+	/* --color-popover: hsl(240, 10%, 3.9%); */
+	/* --color-popover-foreground: hsl(0, 0%, 98%); */
+	/* --color-card: hsl(240, 10%, 3.9%); */
+	/* --color-card-foreground: hsl(0, 0%, 98%); */
+	/* --color-border: hsl(240, 3.7%, 15.9%); */
+	/* --color-input: hsl(240, 3.7%, 15.9%); */
+	/* --color-primary: hsl(0, 0%, 98%); */
+	/* --color-primary-foreground: hsl(240, 5.9%, 10%); */
+	/* --color-secondary: hsl(240, 3.7%, 15.9%); */
+	/* --color-secondary-foreground: hsl(0, 0%, 98%); */
+	/* --color-accent: hsl(240, 3.7%, 15.9%); */
+	/* --color-accent-foreground: hsl(0, 0%, 98%); */
+	/* --color-danger: hsl(0, 62.8%, 30.6%); */
+	/* --color-danger-foreground: hsl(0, 0%, 98%); */
+	/* --color-ring: hsl(240, 4.9%, 83.9%); */
+
+	/* --color-sidebar-background: hsl(240, 5.9%, 10%); */
+	/* --color-sidebar-foreground: hsl(240, 4.8%, 95.9%); */
+	/* --color-sidebar-primary: hsl(224.3, 76.3%, 48%); */
+	/* --color-sidebar-primary-foreground: hsl(0, 0%, 100%); */
+	/* --color-sidebar-accent: hsl(240, 3.7%, 15.9%); */
+	/* --color-sidebar-accent-foreground: hsl(240, 4.8%, 95.9%); */
+	/* --color-sidebar-border: hsl(240, 3.7%, 15.9%); */
+	/* --color-sidebar-ring: hsl(217.2, 91.2%, 59.8%); */
 
 	--radius: 0.5rem;
 	--radius-sm: calc(var(--radius) - 4px);
@@ -202,6 +247,10 @@
 @utility h-dvh {
 	height: 100vh;
 	height: 100dvh;
+}
+
+@utility debug {
+	outline: 1px solid red;
 }
 
 @import "./animate.css";
