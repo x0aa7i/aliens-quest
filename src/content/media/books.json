@@ -1,0 +1,97 @@
+{
+  "bySlug": {
+    "simulacron-3": "9782290007785",
+    "the-last-question": "9781884214493",
+    "diaspora": "9783453161818",
+    "berserker": "9780441054954",
+    "the-forge-of-god": "9780575096837",
+    "remembrance-of-earths-past": "9781786699749",
+    "solaris": "9780156027601",
+    "blindsight": "9780765319647",
+    "pushing-ice": "9780441014019",
+    "the-road": "9780307265432"
+  },
+  "entries": {
+    "9782290007785": {
+      "title": "Simulacron 3",
+      "authors": [
+        "Daniel F. Galouye"
+      ],
+      "year": 1964,
+      "cover": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1226816768i/807801.jpg"
+    },
+    "9783453161818": {
+      "title": "Diaspora.",
+      "authors": [
+        "Greg Egan"
+      ],
+      "year": 1997,
+      "cover": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1172264162i/156785.jpg"
+    },
+    "9781884214493": {
+      "title": "The Last Question",
+      "authors": [
+        "Isaac Asimov"
+      ],
+      "year": 1956,
+      "cover": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1274107046i/4808763.jpg"
+    },
+    "9780575096837": {
+      "title": "Forge of God",
+      "authors": [
+        "Greg Bear"
+      ],
+      "year": 1987,
+      "cover": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1433019266i/9637736.jpg"
+    },
+    "9780441054954": {
+      "title": "Berserker",
+      "authors": [
+        "Fred Saberhagen"
+      ],
+      "year": 1967,
+      "cover": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1297459688i/582675.jpg"
+    },
+    "9781786699749": {
+      "title": "Remembrance of Earth's Past",
+      "authors": [
+        "Liu Cixin"
+      ],
+      "year": 2012,
+      "cover": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1680411011i/110565414.jpg"
+    },
+    "9780156027601": {
+      "title": "Solaris",
+      "authors": [
+        "Stanisław Lem"
+      ],
+      "year": 1961,
+      "cover": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1498631519i/95558.jpg"
+    },
+    "9780765319647": {
+      "title": "Blindsight",
+      "authors": [
+        "Peter Watts"
+      ],
+      "year": 2006,
+      "cover": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1561707069i/2542808.jpg"
+    },
+    "9780441014019": {
+      "title": "Pushing Ice",
+      "authors": [
+        "Alastair Reynolds"
+      ],
+      "year": 2005,
+      "cover": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1309197028i/89186.jpg"
+    },
+    "9780307265432": {
+      "title": "The Road",
+      "authors": [
+        "Cormac McCarthy"
+      ],
+      "year": 2006,
+      "cover": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1600241424i/6288.jpg"
+    }
+  }
+}
+

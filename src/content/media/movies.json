@@ -1,0 +1,37 @@
+{
+  "603-the-matrix": {
+    "title": "The Matrix",
+    "year": 1999,
+    "runtime": "2h 16m",
+    "poster": "https://image.tmdb.org/t/p/w500/dXNAPwY7VrqMAo51EKhhCJfaGb5.jpg",
+    "overview": "A groundbreaking film that explores the idea of a simulated reality and humanity’s struggle to break free from it."
+  },
+  "27205-inception": {
+    "title": "Inception",
+    "year": 2010,
+    "runtime": "2h 28m",
+    "poster": "https://image.tmdb.org/t/p/w500/ljsZTbVsrQSqZgWeep2B1QiDKuh.jpg",
+    "overview": "A film that explores layered realities and the nature of perception, though not explicitly about simulations."
+  },
+  "218-the-terminator": {
+    "poster": "https://image.tmdb.org/t/p/w500//hzXSE66v6KthZ8nPoLZmsi2G05j.jpg",
+    "title": "The Terminator",
+    "year": "1984",
+    "runtime": "1h 48min",
+    "overview": "In the post-apocalyptic future, reigning tyrannical supercomputers teleport a cyborg assassin known as the \"Terminator\" back to 1984 to kill Sarah Connor, whose unborn son is destined to lead insurgents against 21st century mechanical hegemony. Meanwhile, the human-resistance movement dispatches a lone warrior to safeguard Sarah. Can he stop the virtually indestructible killing machine?"
+  },
+  "157336-interstellar": {
+    "poster": "https://image.tmdb.org/t/p/w500//gEU2QniE6E77NI6lCU6MxlNBvIx.jpg",
+    "title": "Interstellar",
+    "year": "2014",
+    "runtime": "2h 49min",
+    "overview": "The adventures of a group of explorers who make use of a newly discovered wormhole to surpass the limitations on human space travel and conquer the vast distances involved in an interstellar voyage."
+  },
+  "329865-arrival": {
+    "poster": "https://image.tmdb.org/t/p/w500//x2FJsf1ElAgr63Y3PNPtJrcmpoe.jpg",
+    "title": "Arrival",
+    "year": "2016",
+    "runtime": "1h 56min",
+    "overview": "Taking place after alien crafts land around the world, an expert linguist is recruited by the military to determine whether they come in peace or are a threat."
+  }
+}

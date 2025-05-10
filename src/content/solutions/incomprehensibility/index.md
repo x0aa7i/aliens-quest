@@ -3,7 +3,22 @@ title: Incomprehensibility
 image: https://picsum.photos/id/29/400/400
 risk: 1
 probability: 2
+media:
+  - type: "movie"
+    id: "329865-arrival"
+    overview: "A film depicting humanity's attempt to communicate with aliens with a radically different perception of time and language."
+  - type: "book"
+    id: "solaris"
+    overview: "A novel exploring humanity's encounter with a sentient ocean."
+  - type: "book"
+    id: "blindsight"
+    overview: "A novel exploring non-conscious intelligence and the challenges of communicating with beings that think differently."
 ---
+
+<script>
+  import MediaGrid from "$lib/components/media/media-grid.svelte";
+  let { media } = $props();
+</script>
 
 What if intelligent alien civilizations exist, but their ways of thinking, communicating, and existing are so radically different from ours that we cannot recognize or understand them? This idea challenges our anthropocentric assumptions about intelligence and suggests that the universe might be teeming with life that operates on principles beyond human comprehension. Could the cosmos be filled with civilizations so alien that they are, for all intents and purposes, invisible to us?
 
@@ -53,9 +68,7 @@ The idea of incomprehensible alien intelligence has been a recurring theme in sc
 
 ### Recommended Reading/Watching
 
-- **"Solaris" by Stanisław Lem**: This novel explores humanity’s encounter with a sentient ocean that is utterly alien and incomprehensible.
-- **"Arrival" (2016)**: Based on Ted Chiang’s short story "Story of Your Life," this film depicts humanity’s attempt to communicate with aliens whose perception of time and language is radically different from our own.
-- **"Blindsight" by Peter Watts**: This novel delves into the concept of non-conscious intelligence and the challenges of communicating with beings that think in entirely different ways.
+<MediaGrid media={media} />
 
 ## Conclusion
 

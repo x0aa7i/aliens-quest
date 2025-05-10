@@ -2,7 +2,22 @@
 title: The Simulation
 risk: 2
 probability: 3
+media:
+  - type: "movie"
+    id: "603-the-matrix"
+    overview: "A groundbreaking film that explores the idea of a simulated reality and humanity’s struggle to break free from it."
+  - type: "movie"
+    id: "27205-inception"
+    overview: "A film that explores layered realities and the nature of perception, though not explicitly about simulations."
+  - type: "book"
+    id: "simulacron-3"
+    overview: "An early work exploring simulated worlds and questioning the nature of reality."
 ---
+
+<script>
+  import MediaGrid from "$lib/components/media/media-grid.svelte";
+  let { media } = $props();
+</script>
 
 The Simulation Hypothesis offers a radical and mind-bending solution to the Fermi Paradox: what if we are living in a simulated reality, and the reason we don’t see evidence of extraterrestrial civilizations is because they don’t exist within our simulation? This idea suggests that our universe, and everything in it, might be an artificial construct created by an advanced civilization—perhaps as an experiment, a form of entertainment, or even a historical re-creation. Could the silence of the cosmos be a clue that we are living in a digital illusion?
 
@@ -62,10 +77,7 @@ The Simulation Hypothesis has been a popular theme in science fiction, often exp
 
 ### Recommended Reading/Watching
 
-- **"The Matrix" (1999)**: A groundbreaking film that explores the idea of a simulated reality and humanity’s struggle to break free from it.
-- **"Simulacron-3" by Daniel F. Galouye**: A novel that delves into the concept of simulated worlds and the nature of reality.
-- **"Westworld" (TV series)**: While primarily about artificial intelligence, the show touches on themes of simulated realities and the blurring of lines between real and artificial.
-- **"Inception" (2010)**: A film that explores layered realities and the nature of perception, though not explicitly about simulations.
+<MediaGrid media={media} />
 
 ## Conclusion
 

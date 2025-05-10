@@ -2,7 +2,19 @@
 title: The Aestivation
 risk: 1
 probability: 1
+media:
+  - type: "book"
+    id: "the-last-question"
+    overview: "A short story exploring humanity’s quest to overcome entropy, touching on themes related to the Aestivation Hypothesis."
+  - type: "book"
+    id: "diaspora"
+    overview: "A far-future novel examining post-human civilizations and their strategies for enduring a changing universe."
 ---
+
+<script>
+  import MediaGrid from "$lib/components/media/media-grid.svelte";
+  let { media } = $props();
+</script>
 
 What if advanced civilizations aren’t missing—they’re just waiting? The Aestivation Hypothesis offers a fascinating and counterintuitive solution to the Fermi Paradox: perhaps intelligent life is not absent from the universe but is instead in a state of cosmic hibernation, biding its time until the universe becomes more hospitable to their needs. This idea challenges our assumptions about the behavior of advanced civilizations and suggests that the silence we hear might not be a sign of absence, but of patience.
 
@@ -44,8 +56,7 @@ While the Aestivation Hypothesis is a relatively new idea, its themes of cosmic 
 
 ### Recommended Reading/Watching
 
-- **"The Last Question" by Isaac Asimov**: This short story explores humanity’s efforts to overcome entropy, a theme closely related to the Aestivation Hypothesis.
-- **"Diaspora" by Greg Egan**: This novel delves into the far future of post-human civilizations and their strategies for surviving in a changing universe.
+<MediaGrid media={media} />
 
 ## Conclusion
 

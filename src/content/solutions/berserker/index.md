@@ -2,7 +2,22 @@
 title: The Berserker
 risk: 3
 probability: 2
+media:
+  - type: "book"
+    id: "berserker"
+    overview: "A series of science fiction novels exploring the theme of AI and humanity."
+  - type: "book"
+    id: "the-forge-of-god"
+    overview: "A novel that explores the origins and fate of the Earth and humanity."
+  - type: "movie"
+    id: "218-the-terminator"
+    overview: "A film series exploring the theme of hostile AI and humanity's struggle for survival."
 ---
+
+<script>
+  import MediaGrid from "$lib/components/media/media-grid.svelte";
+  let { media } = $props();
+</script>
 
 The Berserker Hypothesis offers a chilling explanation for the Fermi Paradox: intelligent civilizations might be silent because they are being systematically destroyed by self-replicating, hostile machines. Imagine a galaxy where ancient, autonomous weapons roam the stars, hunting down any emerging intelligence before it can spread. This hypothesis suggests that the universe is not just empty—it’s a battlefield.
 
@@ -48,10 +63,7 @@ The Berserker Hypothesis has inspired numerous works of science fiction, explori
 
 ### Recommended Reading/Watching
 
-- _Berserker_ series by Fred Saberhagen
-- _The Forge of God_ by Greg Bear
-- _The Expanse_ series by James S.A. Corey
-- _Terminator_ film series (for its exploration of hostile AI)
+<MediaGrid media={media} />
 
 ## Conclusion
 

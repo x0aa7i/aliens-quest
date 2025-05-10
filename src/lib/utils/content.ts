@@ -30,6 +30,7 @@ export async function getSolution(slug: string) {
 			break;
 		}
 	}
+
 	const doc = await match?.resolver?.();
 	const metadata = getSolutionMetadata(slug);
 

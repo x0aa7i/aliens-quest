@@ -2,7 +2,22 @@
 title: The Dark Forest
 risk: 5
 probability: 2
+media:
+  - type: "book"
+    id: "remembrance-of-earths-past"
+    overview: "A book series by Liu Cixin."
+  - type: "tv"
+    id: "108545-3-body-problem"
+    overview: "A Netflix adaptation of Liu Cixin's book series."
+  - type: "tv"
+    id: "204541-three-body"
+    overview: "A Chinese TV series based on Liu Cixin's book series."
 ---
+
+<script>
+  import MediaGrid from "$lib/components/media/media-grid.svelte";
+  let { media } = $props();
+</script>
 
 The Dark Forest Hypothesis is one of the most chilling solutions to the Fermi Paradox. It suggests that the universe is silent not because extraterrestrial civilizations are rare, but because they are intentionally hiding—out of fear. Imagine a dark forest where every civilization is a hunter, staying silent to avoid being hunted. This idea paints a universe where contact is not a handshake but a trigger.
 
@@ -48,9 +63,7 @@ The Dark Forest Hypothesis has been explored extensively in science fiction, mos
 
 ### Recommended Reading/Watching
 
-- _The Remembrance of Earth's Past_ by Liu Cixin (Book series)
-- _3 Body Problem_ (TV series) - A Netflix adaptation of Liu Cixin's book series
-- _Three-Body_ (Tv series) - A Chinese TV series based on Liu Cixin's book series
+<MediaGrid media={media} />
 
 ## Conclusion
 

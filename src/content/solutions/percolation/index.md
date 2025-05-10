@@ -2,7 +2,22 @@
 title: Percolation Theory
 risk: 1
 probability: 3
+media:
+  - type: "book"
+    id: "pushing-ice"
+    overview: "A novel delving into the difficulties of interstellar travel and the isolation that can result from vast distances."
+  - type: "tv"
+    id: "63639-the-expanse"
+    overview: "A series exploring humanity's spread across the solar system, highlighting the challenges of colonization and resource limitations."
+  - type: "movie"
+    id: "157336-interstellar"
+    overview: "While not explicitly about Percolation Theory, this film deals with the challenges of traveling between star systems and the fragility of human colonization efforts."
 ---
+
+<script>
+  import MediaGrid from "$lib/components/media/media-grid.svelte";
+  let { media } = $props();
+</script>
 
 Percolation Theory offers a unique and mathematically grounded solution to the Fermi Paradox. It suggests that interstellar colonization might not be a uniform or inevitable process but rather a patchy and incomplete one, constrained by the vast distances between stars and the limitations of resources and time. Just as water percolates unevenly through soil, filling some pores while bypassing others, intelligent civilizations might spread through the galaxy in a similarly uneven manner, leaving large regions untouched and explaining why we haven’t encountered them. Could the silence of the cosmos be a result of cosmic "gaps" in the spread of intelligent life?
 
@@ -52,9 +67,7 @@ While Percolation Theory itself is not a common theme in popular culture, the id
 
 ### Recommended Reading/Watching
 
-- **"The Expanse" series by James S.A. Corey**: This series explores humanity’s spread across the solar system, highlighting the challenges of colonization and resource limitations.
-- **"Pushing Ice" by Alastair Reynolds**: This novel delves into the difficulties of interstellar travel and the isolation that can result from vast distances.
-- **"Interstellar" (2014)**: While not explicitly about Percolation Theory, this film deals with the challenges of traveling between star systems and the fragility of human colonization efforts.
+<MediaGrid media={media} />
 
 ## Conclusion
 

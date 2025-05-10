@@ -2,7 +2,25 @@
 title: Self-Destruction
 risk: 4
 probability: 3
+media:
+  - type: "tv"
+    id: "125988-silo"
+    overview: "A dystopian series set in an underground society, unraveling the secrets that keep its people confined."
+  - type: "tv"
+    id: "106379-fallout"
+    overview: "A darkly satirical look at life after nuclear war, where survival and morality are constantly tested."
+  - type: "tv"
+    id: "245927-paradise"
+    overview: "A tense post-apocalyptic thriller set in an underground bunker, exploring power, survival, and hidden agendas in a fractured society."
+  - type: "book"
+    id: "the-road"
+    overview: "A bleak post-apocalyptic tale that explores the bond between father and son amid the collapse of civilization."
 ---
+
+<script>
+  import MediaGrid from "$lib/components/media/media-grid.svelte";
+  let { media } = $props();
+</script>
 
 The Self-Destruction Hypothesis is one of the most sobering solutions to the Fermi Paradox. It suggests that intelligent civilizations inevitably destroy themselves before they can achieve interstellar communication or colonization. This idea posits that the development of advanced technology, while enabling progress, also introduces existential risks—such as nuclear war, environmental collapse, or runaway artificial intelligence—that civilizations are unable to overcome. Could the silence of the cosmos be a grim testament to the fragility of intelligent life?
 
@@ -63,11 +81,7 @@ The Self-Destruction Hypothesis has been a recurring theme in science fiction, o
 
 ### Recommended Reading/Watching
 
-- **"Dr. Strangelove or: How I Learned to Stop Worrying and Love the Bomb" (1964)**: A dark comedy that satirizes the risks of nuclear war and the potential for self-destruction.
-- **"The Road" by Cormac McCarthy**: A novel that depicts the aftermath of an unspecified global catastrophe, highlighting the fragility of civilization.
-- **"The Terminator" franchise**: A series of films that explore the dangers of artificial intelligence and its potential to lead to humanity’s downfall.
-- **"Fallout" (video game series)**: A post-apocalyptic world shaped by nuclear war, offering a grim look at the consequences of self-destruction.
-- **"Interstellar" (2014)**: This film explores humanity’s search for a new home in a universe that appears hostile to complex life.
+<MediaGrid media={media} />
 
 ## Conclusion
 

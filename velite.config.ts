@@ -1,9 +1,12 @@
 import { readFile } from "fs/promises";
 import { dirname, join } from "path";
 import { fileURLToPath } from "url";
-import { defineCollection, defineConfig, s } from "velite";
+import { defineCollection, defineConfig, s, z } from "velite";
 
-const __dirname = dirname(fileURLToPath(import.meta.url));
+import { getBook, getMovie, getTv } from "./src/lib/utils/media";
+
+const currentDir = dirname(fileURLToPath(import.meta.url));
+const __dirname = join(currentDir, "..");
 
 async function readSvgFile(filePath: string): Promise<string> {
 	try {
@@ -14,6 +17,28 @@ async function readSvgFile(filePath: string): Promise<string> {
 		console.error("Error reading SVG file:", error);
 		throw error;
 	}
+}
+
+type MediaType = "movie" | "tv" | "book";
+
+async function loadMedia(media?: MediaObject[]) {
+	if (!media?.length) return [];
+
+	// eslint-disable-next-line @typescript-eslint/no-explicit-any
+	const fetcherMap: Record<MediaType, (id: string) => Promise<any>> = {
+		movie: getMovie,
+		tv: getTv,
+		book: getBook,
+	};
+
+	const fetchMedia = async (obj: MediaObject) => {
+		if (!obj) return;
+		const fetcher = fetcherMap[obj.type];
+		if (!fetcher) return;
+		return { ...(await fetcher(obj.id)), ...obj };
+	};
+
+	return Promise.all(media.map(fetchMedia));
 }
 
 const SCALES = {
@@ -36,6 +61,14 @@ const about = defineCollection({
 	}),
 });
 
+const mediaObject = s.object({
+	type: s.enum(["movie", "tv", "book"]),
+	id: s.string(),
+	overview: s.string().optional(),
+});
+
+type MediaObject = z.infer<typeof mediaObject>;
+
 const solutions = defineCollection({
 	name: "Solution", // collection type name
 	pattern: "solutions/**/index.md", // content files glob pattern
@@ -49,15 +82,17 @@ const solutions = defineCollection({
 			toc: s.toc(),
 			risk: s.number().min(1).max(5).optional(), // risk of the solution
 			probability: s.number().min(1).max(5).optional(), // probability of the solution
+			media: mediaObject.array().optional(),
 		})
 		// more additional fields (computed fields)
 		.transform(async (data) => ({
 			...data,
 			slug: data.slug.replace(/^.*\//, ""),
 			url: `/${data.slug}`,
-			logo: await readSvgFile("../src/content/" + data.slug + "/logo.svg"),
+			logo: await readSvgFile("./src/content/" + data.slug + "/logo.svg"),
 			risk: getScale(data.risk, "risk"),
 			probability: getScale(data.probability, "probability"),
+			media: await loadMedia(data.media),
 		})),
 });
 

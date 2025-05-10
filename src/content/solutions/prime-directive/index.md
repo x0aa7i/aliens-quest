@@ -2,7 +2,16 @@
 title: The Prime Directive
 risk: 2
 probability: 2
+media:
+  - type: "tv"
+    id: "253-star-trek"
+    overview: "A franchise exploring the Prime Directive as a recurring theme, often presenting moral quandaries for the crew of the starship Enterprise."
 ---
+
+<script>
+  import MediaGrid from "$lib/components/media/media-grid.svelte";
+  let { media } = $props();
+</script>
 
 The Prime Directive Hypothesis offers a cultural and ethical explanation for the Fermi Paradox: advanced alien civilizations might be intentionally avoiding contact with humanity to allow us to develop naturally, free from external interference. Inspired by the fictional "Prime Directive" from _Star Trek_, this hypothesis suggests that extraterrestrial societies could be following a universal ethical code that prioritizes the autonomy and self-determination of emerging civilizations. Could the silence of the cosmos be a sign of respect rather than absence?
 
@@ -52,9 +61,7 @@ The Prime Directive Hypothesis is deeply rooted in science fiction, particularly
 
 ### Recommended Reading/Watching
 
-- **"Star Trek" franchise**: The Prime Directive is a recurring theme in _Star Trek_, explored in numerous episodes and films. It often serves as a moral quandary for the crew of the starship _Enterprise_.
-- **"Childhood’s End" by Arthur C. Clarke**: This novel explores the consequences of alien contact with humanity, though it takes a very different approach from the Prime Directive.
-- **"Contact" by Carl Sagan**: While not explicitly about the Prime Directive, this book and its film adaptation delve into the ethical and philosophical implications of first contact with extraterrestrial intelligence.
+<MediaGrid media={media} />
 
 ## Conclusion
 
