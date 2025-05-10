@@ -12,5 +12,5 @@ export type CardProps = {
 	poster: string;
 	metadata: Metadata[];
 	overview?: string;
-	type: "movie" | "tv" | "book";
+	badges: string[];
 };

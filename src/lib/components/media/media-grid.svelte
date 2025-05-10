@@ -8,7 +8,7 @@
 
 	import MediaCard from "./media-card.svelte";
 
-	type Media = (Movie & { type: "movie" }) | (Tv & { type: "tv" }) | (Book & { type: "book" });
+	type Media = Movie | Tv | Book;
 
 	interface Props {
 		media: Media[];
@@ -24,6 +24,7 @@
 			title: data.title,
 			poster: "poster" in data ? data.poster : data.cover,
 			overview: data.overview,
+			badges: data.badges,
 		};
 
 		switch (data.type) {
@@ -34,22 +35,19 @@
 						{ Icon: Calendar, value: data.year, label: "Year" },
 						{ Icon: Timer, value: data.runtime, label: "Runtime" },
 					],
-					type: "movie",
 				};
 			case "tv":
 				return {
 					...commonProps,
 					metadata: [{ Icon: Calendar, value: data.year, label: "Year" }],
-					type: "tv",
 				};
 			case "book":
 				return {
 					...commonProps,
 					metadata: [
-						{ Icon: User, value: data.authors?.join(", "), label: "Authors" },
 						{ Icon: Calendar, value: data.year, label: "First Published" },
+						{ Icon: User, value: data.authors?.join(", "), label: "Authors" },
 					],
-					type: "book",
 				};
 			default:
 				throw new Error(`Unsupported media type: ${type}`);

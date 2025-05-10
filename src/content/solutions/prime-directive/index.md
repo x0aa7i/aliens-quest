@@ -4,6 +4,7 @@ risk: 2
 probability: 2
 media:
   - type: "tv"
+    badges: ["TV Series", "Movies"]
     id: "253-star-trek"
     overview: "A franchise exploring the Prime Directive as a recurring theme, often presenting moral quandaries for the crew of the starship Enterprise."
 ---

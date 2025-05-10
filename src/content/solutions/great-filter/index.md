@@ -7,6 +7,7 @@ media:
     id: "157336-interstellar"
     overview: "A film dealing with humanity's struggle for survival in the face of environmental collapse."
   - type: "tv"
+    badges: ["TV Series", "Video Game"]
     id: "100088-the-last-of-us"
     overview: "A TV series (Video Game adaptation) examining the collapse of civilization due to a pandemic."
 ---

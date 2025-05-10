@@ -1,7 +1,7 @@
 <script lang="ts">
 	import type { CardProps } from ".";
 
-	let { title, poster, metadata, overview, type }: CardProps = $props();
+	let { title, poster, metadata, overview, badges }: CardProps = $props();
 </script>
 
 <div class="not-prose flex gap-4 border p-4">
@@ -10,10 +10,14 @@
 	</div>
 
 	<div class="text-tertiary flex flex-col items-start">
-		<!-- type -->
-		<span class="bg-surface-raised block border px-2 text-xs tracking-wide">
-			{type === "movie" ? "Movie" : type === "tv" ? "TV Series" : "Book"}
-		</span>
+		<!-- badges -->
+		<div class="flex flex-wrap gap-1.5">
+			{#each badges as badge (badge)}
+				<span class="bg-surface-raised border px-1.5 text-xs capitalize tracking-wide">
+					{badge}
+				</span>
+			{/each}
+		</div>
 		<!-- title -->
 		<h2 class="text-primary mt-1 text-xl font-semibold">{title}</h2>
 		<!-- metadata -->

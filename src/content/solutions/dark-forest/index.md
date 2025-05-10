@@ -4,14 +4,15 @@ risk: 5
 probability: 2
 media:
   - type: "book"
+    badges: ["Novel Series"]
     id: "remembrance-of-earths-past"
-    overview: "A book series by Liu Cixin."
+    overview: "A landmark sci-fi trilogy by Liu Cixin that formalizes the Dark Forest hypothesis as a framework for cosmic sociology."
   - type: "tv"
     id: "108545-3-body-problem"
-    overview: "A Netflix adaptation of Liu Cixin's book series."
+    overview: "A Netflix adaptation emphasizing the series’ core ideas about existential risk, technological disparity, and cosmic silence."
   - type: "tv"
     id: "204541-three-body"
-    overview: "A Chinese TV series based on Liu Cixin's book series."
+    overview: "A Chinese adaptation that closely follows the novels, with a slower pace and greater focus on the characters' struggles and internal conflicts."
 ---
 
 <script>

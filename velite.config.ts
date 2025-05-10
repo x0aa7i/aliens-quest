@@ -1,3 +1,5 @@
+import type { Book, Movie, Tv } from "./src/lib/utils/media";
+
 import { readFile } from "fs/promises";
 import { dirname, join } from "path";
 import { fileURLToPath } from "url";
@@ -19,26 +21,28 @@ async function readSvgFile(filePath: string): Promise<string> {
 	}
 }
 
-type MediaType = "movie" | "tv" | "book";
+const fetcherMap = {
+	movie: getMovie,
+	tv: getTv,
+	book: getBook,
+};
 
-async function loadMedia(media?: MediaObject[]) {
+const formatBadges = ({ badges, type }: MediaObject): string[] => {
+	return badges ?? [type === "tv" ? "TV Series" : type === "book" ? "Novel" : type];
+};
+
+async function loadMedia(media?: MediaObject[]): Promise<(Movie | Tv | Book)[]> {
 	if (!media?.length) return [];
-
-	// eslint-disable-next-line @typescript-eslint/no-explicit-any
-	const fetcherMap: Record<MediaType, (id: string) => Promise<any>> = {
-		movie: getMovie,
-		tv: getTv,
-		book: getBook,
-	};
 
 	const fetchMedia = async (obj: MediaObject) => {
 		if (!obj) return;
 		const fetcher = fetcherMap[obj.type];
 		if (!fetcher) return;
-		return { ...(await fetcher(obj.id)), ...obj };
+		return { ...(await fetcher(obj.id)), ...obj, badges: formatBadges(obj) };
 	};
 
-	return Promise.all(media.map(fetchMedia));
+	const result = await Promise.all(media.map(fetchMedia));
+	return result.filter((item): item is Movie | Tv | Book => !!item);
 }
 
 const SCALES = {
@@ -65,13 +69,14 @@ const mediaObject = s.object({
 	type: s.enum(["movie", "tv", "book"]),
 	id: s.string(),
 	overview: s.string().optional(),
+	badges: s.string().array().optional(),
 });
 
 type MediaObject = z.infer<typeof mediaObject>;
 
 const solutions = defineCollection({
-	name: "Solution", // collection type name
-	pattern: "solutions/**/index.md", // content files glob pattern
+	name: "Solution",
+	pattern: "solutions/**/index.md",
 	schema: s
 		.object({
 			title: s.string().max(99),

@@ -7,12 +7,14 @@ media:
     id: "125988-silo"
     overview: "A dystopian series set in an underground society, unraveling the secrets that keep its people confined."
   - type: "tv"
+    badges: ["TV Series", "Video Game"]
     id: "106379-fallout"
     overview: "A darkly satirical look at life after nuclear war, where survival and morality are constantly tested."
   - type: "tv"
     id: "245927-paradise"
     overview: "A tense post-apocalyptic thriller set in an underground bunker, exploring power, survival, and hidden agendas in a fractured society."
   - type: "book"
+    badges: ["Novel", "Movie"]
     id: "the-road"
     overview: "A bleak post-apocalyptic tale that explores the bond between father and son amid the collapse of civilization."
 ---

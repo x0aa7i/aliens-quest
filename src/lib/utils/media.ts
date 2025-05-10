@@ -6,30 +6,41 @@ import booksJson from "../../content/media/books.json";
 import moviesJson from "../../content/media/movies.json";
 import tvJson from "../../content/media/tv.json";
 
-interface Media {
-	id: string;
+interface MediaResponse {
 	title: string;
 	year?: number | string;
 	overview?: string;
 }
 
-export interface Movie extends Media {
+interface MovieResponse extends MediaResponse {
 	poster: string;
 	runtime: string;
 }
 
-export interface Tv extends Media {
+interface TvResponse extends MediaResponse {
 	poster: string;
 }
 
-export interface Book extends Media {
+interface BookResponse extends MediaResponse {
 	authors: string[];
 	cover: string;
 }
 
-type MovieJson = Omit<Movie, "id">;
-type TvJson = Omit<Tv, "id">;
-type BookJson = Omit<Book, "id">;
+type MediaType = "movie" | "tv" | "book";
+
+interface MediaFrontmatter {
+	id: string;
+	type: MediaType;
+	badges: string[];
+}
+
+export type Movie = MovieResponse & MediaFrontmatter & { type: "movie" };
+export type Tv = TvResponse & MediaFrontmatter & { type: "tv" };
+export type Book = BookResponse & MediaFrontmatter & { type: "book" };
+
+type MovieJson = Omit<MovieResponse, "id">;
+type TvJson = Omit<TvResponse, "id">;
+type BookJson = Omit<BookResponse, "id">;
 
 interface TmdbResponse {
 	poster_path: string;
@@ -92,19 +103,19 @@ async function cacheMedia<T>(
 	cache: { [id: string]: T },
 	filePath: string,
 	fetcher: (id: string) => Promise<T | null>
-): Promise<(T & { id: string }) | null> {
+): Promise<T | null> {
 	if (!id) {
 		throw new Error("ID is required");
 	}
 
-	if (cache[id]) return { ...cache[id], id };
+	if (cache[id]) return cache[id];
 
 	const data = await fetcher(id);
 	if (data) {
 		cache[id] = data;
 		await fs.writeFile(filePath, JSON.stringify(cache, null, 2));
 	}
-	return data ? { ...data, id } : null;
+	return data;
 }
 
 async function cacheBook(
@@ -112,13 +123,13 @@ async function cacheBook(
 	cache: BookData,
 	filePath: string,
 	fetcher: (id: string) => Promise<BookJson | null>
-): Promise<Book | null> {
+): Promise<BookResponse | null> {
 	if (!slug) {
 		throw new Error("Slug is required");
 	}
 
 	const id = cache.bySlug[slug];
-	if (cache.entries[id]) return { ...cache.entries[id], id };
+	if (cache.entries[id]) return cache.entries[id];
 
 	const data = await fetcher(id);
 	if (data) {
@@ -126,10 +137,10 @@ async function cacheBook(
 		console.dir(filePath);
 		await fs.writeFile(filePath, JSON.stringify(cache, null, 2));
 	}
-	return data ? { ...data, id } : null;
+	return data;
 }
 
-export async function getMovie(id: string): Promise<Movie | null> {
+export async function getMovie(id: string): Promise<MovieResponse | null> {
 	return cacheMedia(id, cachedData.movies, dataPaths.movies, fetchMovie);
 }
 
@@ -149,7 +160,7 @@ async function fetchMovie(id: string): Promise<MovieJson | null> {
 	}
 }
 
-export async function getTv(id: string): Promise<Tv | null> {
+export async function getTv(id: string): Promise<TvResponse | null> {
 	return cacheMedia(id, cachedData.tv, dataPaths.tv, fetchTv);
 }
 
@@ -168,7 +179,7 @@ async function fetchTv(id: string): Promise<TvJson | null> {
 	}
 }
 
-export async function getBook(slug: string): Promise<Book | null> {
+export async function getBook(slug: string): Promise<BookResponse | null> {
 	return cacheBook(slug, cachedData.books, dataPaths.books, fetchBook);
 }
 
