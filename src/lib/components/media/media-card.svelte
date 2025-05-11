@@ -19,7 +19,7 @@
 			{/each}
 		</div>
 		<!-- title -->
-		<h2 class="text-primary mt-1 text-xl font-semibold">{title}</h2>
+		<h2 class="text-primary text-md mt-1 font-semibold">{title}</h2>
 		<!-- metadata -->
 		<div class="mt-0.5 flex flex-wrap gap-x-4 gap-y-1 text-sm">
 			{#each metadata as { Icon, value, label } (label)}
