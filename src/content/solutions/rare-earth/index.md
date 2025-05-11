@@ -1,5 +1,6 @@
 ---
 title: Rare Earth
+overview: "Complex life is extremely rare due to a unique set of astronomical and geological conditions found only on Earth."
 risk: 1
 probability: 3
 ---

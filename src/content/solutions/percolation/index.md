@@ -1,5 +1,6 @@
 ---
 title: Percolation Theory
+overview: "Civilizations may expand unevenly, forming isolated bubbles that never reach each other."
 risk: 1
 probability: 3
 media:

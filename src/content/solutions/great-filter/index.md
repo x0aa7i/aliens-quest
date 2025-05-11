@@ -1,5 +1,6 @@
 ---
 title: The Great Filter
+overview: "There's a barrier — biological, technological, or sociological — that prevents life from advancing to interstellar stages."
 risk: 3
 probability: 4
 media:

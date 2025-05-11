@@ -1,5 +1,6 @@
 ---
 title: Early Intelligence
+overview: "Humanity may be among the first intelligent species to emerge in the universe."
 risk: 1
 probability: 3
 ---

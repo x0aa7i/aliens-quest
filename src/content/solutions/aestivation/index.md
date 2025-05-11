@@ -1,5 +1,6 @@
 ---
 title: The Aestivation
+overview: "Advanced civilizations are waiting for a cooler universe to compute more efficiently before becoming active."
 risk: 1
 probability: 1
 media:
