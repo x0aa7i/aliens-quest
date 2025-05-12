@@ -1,4 +1,6 @@
 @import "tailwindcss";
+@import "tw-animate-css";
+@import "./typography.css";
 
 @layer base {
 	*,
@@ -208,6 +210,3 @@
 @utility debug {
 	outline: 1px solid red;
 }
-
-@import "./animate.css";
-@import "./typography.css";

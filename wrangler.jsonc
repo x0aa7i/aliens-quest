@@ -7,6 +7,9 @@
   "name": "aliens-quest",
   "compatibility_date": "2025-02-24",
   "pages_build_output_dir": ".svelte-kit/cloudflare",
+  "compatibility_flags": [
+    "nodejs_compat"
+  ],
   "observability": {
     "enabled": true
   },
