@@ -37,12 +37,20 @@
 	<div class="grid h-4/5 w-full place-items-center">
 		<div class="w-full max-w-full space-y-5 overflow-hidden">
 			<h1
-				class="font-head leading-12 sm:leading-16 max-w-[12ch] text-balance text-5xl font-semibold text-gray-200 sm:text-6xl"
+				class={[
+					"font-head leading-12 sm:leading-16 max-w-[12ch] text-balance text-5xl font-semibold text-gray-200 sm:text-6xl",
+					"animate-in fade-in fill-mode-both duration-1700 ease-in-out-cubic",
+				]}
 			>
 				So.. Where Is Everybody?
 			</h1>
 
-			<p class="w-full max-w-[36ch] text-lg text-gray-400 sm:text-balance">
+			<p
+				class={[
+					"w-full max-w-[36ch] text-lg text-gray-400 sm:text-balance",
+					"animate-in fade-in duration-1700 fill-mode-both ease-in-out-cubic delay-100",
+				]}
+			>
 				Are they hiding, extinct, or just ignoring us? Explore the possibilities and decide for
 				yourself.
 			</p>
@@ -53,7 +61,10 @@
 		<a
 			on:click={onClick}
 			href="#explore"
-			class="inline-flex cursor-pointer items-center gap-2 rounded-md px-4 py-2 text-gray-400 transition-colors hover:text-gray-200"
+			class={[
+				"inline-flex cursor-pointer items-center gap-2 rounded-md px-4 py-2 text-gray-400 transition-colors hover:text-gray-200",
+				"animate-in fade-in slide-in-from-top-5 fill-mode-both ease-in-out-cubic delay-300 duration-1000",
+			]}
 		>
 			<ChevronsDown class="h-5 w-5" />
 			Explore

@@ -47,7 +47,7 @@ async function loadMedia(media?: MediaObject[]): Promise<(Movie | Tv | Book)[]> 
 
 const SCALES = {
 	risk: ["trivial", "marginal", "significant", "catastrophic", "existential"] as const,
-	probability: ["extremely unlikely", "unlikely", "plausible", "likely", "highly likely"] as const,
+	probability: ["very unlikely", "unlikely", "plausible", "likely", "highly likely"] as const,
 };
 
 function getScale(value: number | undefined, type: "risk" | "probability"): string | undefined {

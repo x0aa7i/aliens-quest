@@ -66,7 +66,7 @@
 						{#if value}
 							<div class="inline-flex items-center justify-center gap-1">
 								<Icon width="16" height="16" class="shrink-0" aria-hidden="true" />
-								<span class="text-sm capitalize"> {value} {name} </span>
+								<span class="text-tertiary text-sm capitalize"> {value} {name} </span>
 							</div>
 						{/if}
 					{/each}
