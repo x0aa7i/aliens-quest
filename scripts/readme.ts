@@ -22,7 +22,7 @@ async function getSolutions(): Promise<Solution[]> {
 				if (!data.title) return null;
 				return {
 					title: data.title,
-					overview: data.overview?.replace(/\n/g, " ").slice(0, 100) || "",
+					overview: data.overview?.replace(/\n/g, " ") || "",
 					slug,
 				};
 			} catch {
