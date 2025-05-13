@@ -96,7 +96,7 @@
 				</div>
 
 				<!-- Article Footer: Edit Link and Navigation  -->
-				<footer class="mx-auto mt-10 max-w-prose space-y-5">
+				<footer class="@container mx-auto mt-10 max-w-prose space-y-5">
 					<EditLink slug={metadata.slug} />
 					<ArticleNav posts={data.posts} current={metadata.slug} />
 				</footer>
