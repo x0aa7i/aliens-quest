@@ -5,14 +5,14 @@
 <script lang="ts">
 	import type { Solution } from "$content/index";
 
-	let { title, url, logo: Logo, cover }: SolutionCardProps = $props();
+	let { title, logo, cover, url }: SolutionCardProps = $props();
 </script>
 
 <a href={url} class="group relative block w-full overflow-hidden border">
 	<article
 		itemscope
-		itemtype="https://schema.org/BlogPosting"
 		itemprop="blogPost"
+		itemtype="https://schema.org/BlogPosting"
 		class="flex h-20 items-center gap-5 px-4 py-2 text-gray-300 group-hover:text-gray-200 md:h-24 md:px-8"
 	>
 		<!-- bg color -->
@@ -22,6 +22,7 @@
 		{#if cover.src}
 			<div class="image">
 				<img
+					itemprop="image"
 					src={cover.src}
 					width={cover.width}
 					height={cover.height}
@@ -32,14 +33,17 @@
 			</div>
 		{/if}
 
-		<div class={["duration-250 z-10 shrink-0 transition-colors", !Logo && "hidden"]}>
-			<!-- eslint-disable-next-line svelte/no-at-html-tags -->
-			{@html Logo}
-		</div>
+		{#if logo}
+			<div class="duration-250 card-logo z-10 shrink-0 transition-colors">
+				<!-- eslint-disable-next-line svelte/no-at-html-tags -->
+				{@html logo}
+			</div>
+		{/if}
 
-		<!-- Info -->
+		<!-- title -->
 		<h2
-			class="font-head duration-250 z-10 truncate text-2xl uppercase transition-colors md:text-3xl"
+			itemprop="headline"
+			class="font-head duration-250 card-title z-10 truncate text-2xl uppercase transition-colors md:text-3xl"
 		>
 			{title}
 		</h2>
@@ -49,16 +53,14 @@
 <style>
 	.group {
 		transition: border-color 0.25s ease-in-out;
+	}
 
-		&:hover {
-			.glow {
-				opacity: 1;
-			}
+	.group:hover .glow {
+		opacity: 1;
+	}
 
-			.image {
-				filter: grayscale(0.3) brightness(1);
-			}
-		}
+	.group:hover .image {
+		filter: grayscale(0.3) brightness(1);
 	}
 
 	.image {

@@ -1,5 +1,8 @@
 <script lang="ts">
-	type Post = { title: string; url: string };
+	import type { Solution } from "$content/index";
+
+	type Post = Pick<Solution, "title" | "slug" | "url">;
+
 	type Props = {
 		posts: Post[];
 		current: string;
@@ -8,7 +11,7 @@
 	let { posts, current }: Props = $props();
 
 	const [prev, next] = $derived.by(() => {
-		const currentIndex = posts.findIndex((post) => post.url.replace("/solutions/", "") === current);
+		const currentIndex = posts.findIndex((post) => post.slug === current);
 		return currentIndex >= 0 ? [posts[currentIndex - 1], posts[currentIndex + 1]] : [];
 	});
 </script>
@@ -30,7 +33,7 @@
 	{/if}
 {/snippet}
 
-<div class="flex items-center justify-between gap-3">
+<div class="flex items-stretch justify-between gap-3">
 	{@render PostNavigation(prev, "Previous")}
 	{@render PostNavigation(next, "Next")}
 </div>

@@ -16,7 +16,7 @@ export function getSolutionMetadata(slug: string) {
 }
 
 export function getAllSolutions() {
-	return solutions.map(({ title, url, cover, logo }) => ({ title, url, cover, logo }));
+	return solutions.map(({ title, url, cover, logo, slug }) => ({ title, url, cover, logo, slug }));
 }
 
 export async function getSolution(slug: string) {

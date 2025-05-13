@@ -5,7 +5,7 @@
 	let { children } = $props();
 </script>
 
-<div class="bg-gray-900">
+<div class="bg-surface-raised">
 	<Header />
 	{@render children()}
 	<Footer />

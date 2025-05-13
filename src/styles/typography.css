@@ -275,9 +275,9 @@
 			padding-inline: 0.25em;
 			color: var(--prose-link-anchor-color);
 			opacity: 0;
-			transition-property: opacity, color;
-			transition-duration: 0.1s;
-			transition-timing-function: ease-in-out;
+			transition:
+				opacity 0.1s ease-in-out,
+				color 0.1s ease-in-out;
 
 			&:hover {
 				color: var(--prose-color);
@@ -286,7 +286,11 @@
 			}
 
 			& .icon-link::after {
-				content: "#";
+				content: "";
+
+				@media (min-width: 768px) {
+					content: "#";
+				}
 			}
 		}
 	}

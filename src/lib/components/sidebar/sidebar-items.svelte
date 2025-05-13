@@ -1,8 +1,10 @@
 <script lang="ts">
+	import type { Solution } from "$content/index";
+
 	import { page } from "$app/state";
 
 	type Props = {
-		items: { title: string; url: string }[];
+		items: Pick<Solution, "title" | "url">[];
 		class?: string;
 		onItemClick?: () => void;
 	};

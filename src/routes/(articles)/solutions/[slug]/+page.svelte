@@ -10,10 +10,10 @@
 
 	let { data } = $props();
 
-	const { component, metadata } = $derived(data.post);
+	const metadata = $derived(data.post.metadata);
+	const ContentComponent = $derived(data.post.component);
 
 	let articleRef: HTMLElement | null = $state(null);
-	const PageContent = $derived(component);
 	const tocProps = $derived({ tocState: useToc(metadata.toc, articleRef), items: metadata.toc });
 
 	const stats = $derived([
@@ -34,19 +34,17 @@
 
 <Metadata {...meta} />
 
-<article
-	class="container mx-auto flex min-h-[calc(100vh-220px)] flex-col md:pt-4 lg:px-8"
-	bind:this={articleRef}
->
+<main class="container mx-auto min-h-[calc(100vh-220px)] md:pt-4 lg:px-8" bind:this={articleRef}>
 	<div
-		class="grid flex-1 auto-rows-fr grid-cols-1 lg:grid-cols-[200px_minmax(0,1fr)] xl:grid-cols-[200px_minmax(0,1fr)_240px]"
+		class="grid auto-rows-fr grid-cols-1 lg:grid-cols-[200px_minmax(0,1fr)] xl:grid-cols-[200px_minmax(0,1fr)_240px]"
 	>
+		<!-- Desktop Sidebar -->
 		<aside class="hidden pr-6 pt-5 lg:block">
 			<Sidebar items={data.posts} />
 		</aside>
 
-		<main class="border-t sm:border-l sm:border-r">
-			<!-- mobile -->
+		<article class="border-t sm:border-l sm:border-r">
+			<!-- Mobile Header with Navigation -->
 			<div class="sticky top-0 border-b bg-gray-900 px-4 sm:px-6 xl:hidden xl:px-8">
 				<div class="mx-auto flex h-14 max-w-prose items-center justify-end">
 					<Sidebar items={data.posts} type="mobile" />
@@ -54,11 +52,16 @@
 				</div>
 			</div>
 
-			<div class="space-y-2 px-4 py-8 sm:px-6 xl:px-8">
+			<!-- Article Header -->
+			<header class="space-y-2 px-4 py-8 sm:px-6 xl:px-8">
 				<div class="text-primary mx-auto flex max-w-prose flex-wrap items-center gap-3">
-					<!-- eslint-disable-next-line svelte/no-at-html-tags -->
-					{@html metadata.logo}
-					<h1 class="not-prose font-head text-3xl font-semibold">{metadata.title}</h1>
+					{#if metadata.logo}
+						<!-- eslint-disable-next-line svelte/no-at-html-tags -->
+						{@html metadata.logo}
+					{/if}
+					<h1 itemprop="headline" class="font-head text-3xl font-semibold">
+						{metadata.title}
+					</h1>
 				</div>
 
 				<div class="text-quaternary mx-auto flex max-w-prose flex-wrap gap-x-4">
@@ -71,32 +74,38 @@
 						{/if}
 					{/each}
 				</div>
-			</div>
+			</header>
 
+			<!-- Article Body -->
 			<div class="w-full space-y-8 border-t px-4 pb-12 pt-6 sm:px-6 xl:px-8 xl:pt-8">
-				<div class="mx-auto h-44 w-full max-w-prose overflow-hidden bg-cover">
-					<img
-						src={metadata.cover.src}
-						width={metadata.cover.width}
-						height={metadata.cover.height}
-						alt="cover"
-						class="h-full w-full object-cover"
-					/>
-				</div>
+				{#if metadata.cover && metadata.cover.src}
+					<figure class="mx-auto h-44 w-full max-w-prose overflow-hidden bg-cover">
+						<img
+							src={metadata.cover.src}
+							width={metadata.cover.width}
+							height={metadata.cover.height}
+							alt="Cover for {metadata.title}"
+							class="h-full w-full object-cover"
+							loading="lazy"
+						/>
+					</figure>
+				{/if}
 
 				<div class="prose mx-auto max-w-prose text-pretty">
-					<PageContent media={metadata.media} />
+					<ContentComponent media={metadata.media} />
 				</div>
 
-				<div class="mx-auto mt-10 max-w-prose space-y-5">
+				<!-- Article Footer: Edit Link and Navigation  -->
+				<footer class="mx-auto mt-10 max-w-prose space-y-5">
 					<EditLink slug={metadata.slug} />
 					<ArticleNav posts={data.posts} current={metadata.slug} />
-				</div>
+				</footer>
 			</div>
-		</main>
+		</article>
 
+		<!-- Desktop Table of Contents -->
 		<aside class="hidden pl-8 pt-5 xl:block">
 			<Toc {...tocProps} type="desktop" />
 		</aside>
 	</div>
-</article>
+</main>
