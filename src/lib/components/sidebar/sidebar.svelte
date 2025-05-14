@@ -1,4 +1,6 @@
 <script lang="ts">
+	import type { SidebarItem } from ".";
+
 	import { MediaQuery } from "svelte/reactivity";
 
 	import Button from "$lib/components/ui/button/button.svelte";
@@ -7,7 +9,7 @@
 	import SidebarItems from "./sidebar-items.svelte";
 
 	type Props = {
-		items: { title: string; url: string }[];
+		items: SidebarItem[];
 		type?: "desktop" | "mobile";
 	};
 

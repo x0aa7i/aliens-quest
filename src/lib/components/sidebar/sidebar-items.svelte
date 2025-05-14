@@ -1,10 +1,10 @@
 <script lang="ts">
-	import type { Solution } from "$content/index";
+	import type { SidebarItem } from ".";
 
 	import { page } from "$app/state";
 
 	type Props = {
-		items: Pick<Solution, "title" | "url">[];
+		items: SidebarItem[];
 		class?: string;
 		onItemClick?: () => void;
 	};
@@ -23,8 +23,17 @@
 					page.url.pathname === item.url && "text-gray-50",
 				]}
 			>
-				<a href={item.url} class="block truncate py-1.5" onclick={() => onItemClick?.()}>
-					{item.title}
+				<a
+					href={item.url}
+					class="flex items-center gap-2 truncate py-1.5"
+					onclick={() => onItemClick?.()}
+				>
+					<div class="[&>svg]:h-6 [&>svg]:w-6 [&>svg]:stroke-2">
+						<!-- eslint-disable-next-line svelte/no-at-html-tags -->
+						{@html item.logo}
+					</div>
+
+					<span> {item.title} </span>
 				</a>
 			</li>
 		{/each}
