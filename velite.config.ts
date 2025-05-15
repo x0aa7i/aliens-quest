@@ -1,11 +1,11 @@
-import type { Book, Movie, Tv } from "./src/lib/utils/media";
+import type { Book, Movie, Tv } from "./src/lib/data/media";
 
 import { readFile } from "fs/promises";
 import { dirname, join } from "path";
 import { fileURLToPath } from "url";
 import { defineCollection, defineConfig, s, z } from "velite";
 
-import { getBook, getMovie, getTv } from "./src/lib/utils/media";
+import { getBook, getMovie, getTv } from "./src/lib/data/media";
 
 const currentDir = dirname(fileURLToPath(import.meta.url));
 const __dirname = join(currentDir, "..");

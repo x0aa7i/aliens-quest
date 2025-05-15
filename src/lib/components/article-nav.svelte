@@ -21,7 +21,7 @@
 		<a
 			href={post.url}
 			class={[
-				"text-quaternary flex flex-1 flex-col border px-4 py-2 first:items-start last:items-end last:text-right",
+				"text-quaternary flex flex-1 flex-col border px-4 py-3 first:items-start last:items-end last:text-right",
 				"hover:text-tertiary transition-colors duration-300 hover:border-gray-700",
 			]}
 		>

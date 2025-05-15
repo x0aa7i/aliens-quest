@@ -1,4 +1,4 @@
-import { getAllSolutions } from "$lib/utils/content";
+import { getAllSolutions } from "$lib/data/content";
 
 export const prerender = true;
 
