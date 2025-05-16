@@ -13,7 +13,7 @@ media:
     overview: "A darkly satirical look at life after nuclear war, where survival and morality are constantly tested."
   - type: "tv"
     id: "245927-paradise"
-    overview: "A tense post-apocalyptic thriller set in an underground bunker, exploring power, survival, and hidden agendas in a fractured society."
+    overview: "A tense post-apocalyptic thriller that explores power struggles, survival, and hidden agendas in a fractured society."
   - type: "book"
     badges: ["Novel", "Movie"]
     id: "the-road"
