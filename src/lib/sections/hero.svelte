@@ -3,16 +3,12 @@
 
 	import ChevronsDown from "lucide-svelte/icons/chevrons-down";
 
-	const onClick: EventHandler<MouseEvent, HTMLAnchorElement> = (e) => {
+	const scrollToTarget: EventHandler<MouseEvent, HTMLAnchorElement> = (e) => {
 		e.preventDefault();
 
-		const targetId = e.currentTarget.getAttribute("href")?.substring(1);
-		if (!targetId) return;
-
-		const target = document.getElementById(targetId);
-		if (!target) return;
-
-		target.scrollIntoView({ behavior: "smooth", block: "start" });
+		const targetId = e.currentTarget.getAttribute("href")?.split("#").pop();
+		const target = document.getElementById(targetId!);
+		target?.scrollIntoView({ behavior: "smooth", block: "start" });
 	};
 </script>
 
@@ -25,7 +21,7 @@
 		<img
 			src="/stars.svg"
 			alt="background stars"
-			class="fade-in animate-in duration-2000 h-full w-full object-cover opacity-75"
+			class="fade-in animate-in duration-2000 fill-mode-both h-full w-full object-cover opacity-75 transition-none"
 		/>
 		<div
 			class="glow fade-in animate-in duration-2000 absolute top-0 aspect-square rounded-full"
@@ -40,7 +36,7 @@
 			<h1
 				class={[
 					"font-head leading-12 sm:leading-16 max-w-[12ch] text-balance text-5xl font-semibold text-gray-200 sm:text-6xl",
-					"animate-in fade-in fill-mode-both duration-1700 ease-in-out-cubic",
+					"animate-in fade-in fill-mode-both duration-1700 ease-in-out-cubic transition-none",
 				]}
 			>
 				So.. Where Is Everybody?
@@ -49,7 +45,7 @@
 			<p
 				class={[
 					"w-full max-w-[36ch] text-lg text-gray-400 sm:text-balance",
-					"animate-in fade-in duration-1700 fill-mode-both ease-in-out-cubic delay-100",
+					"animate-in fade-in duration-1700 fill-mode-both ease-in-out-cubic transition-none delay-100",
 				]}
 			>
 				Are they hiding, extinct, or just ignoring us? Explore the possibilities and decide for
@@ -60,7 +56,7 @@
 
 	<div class="absolute bottom-5 left-1/2 -translate-x-1/2">
 		<a
-			on:click={onClick}
+			on:click={scrollToTarget}
 			href="#explore"
 			class={[
 				"inline-flex cursor-pointer items-center gap-2 rounded-md px-4 py-2 text-gray-400 transition-colors hover:text-gray-200",
