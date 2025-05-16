@@ -1,88 +1,50 @@
 // code used to generate the stars background
-//
+
 import { random, setRandomSeed } from "$lib/utils/random";
 
-function resizeCanvas(canvas: HTMLCanvasElement) {
-	if (!canvas || !window.innerWidth || !window.innerHeight) return;
-	canvas.width = window.innerWidth;
-	canvas.height = window.innerHeight;
-}
+const SVG_NAMESPACE = "http://www.w3.org/2000/svg";
+const DEFAULT_STAR_COUNT = 60;
+const RANDOM_SEED = 54; // 54
 
-function render(ctx: CanvasRenderingContext2D, canvas: HTMLCanvasElement) {
-	if (!canvas || !ctx) return;
-	resizeCanvas(canvas);
+const WIDTH = 1600;
+const HEIGHT = 900;
 
-	setRandomSeed(8);
+// Function to generate stars SVG
+export function generateStars(svg?: SVGSVGElement | undefined) {
+	svg = svg || document.createElementNS(SVG_NAMESPACE, "svg");
+	svg.setAttribute("width", WIDTH.toString());
+	svg.setAttribute("height", HEIGHT.toString());
+	svg.setAttribute("viewBox", `0 0 ${WIDTH} ${HEIGHT}`);
 
-	function drawStars(count: number) {
-		for (let i = 0; i < count; i++) {
-			const x = random() * canvas.width;
-			const y = random() * canvas.height;
-			const size = random() * 1.5;
-			ctx.fillStyle = `rgba(255, 255, 255, ${random()})`;
-			ctx.beginPath();
-			ctx.arc(x, y, size, 0, Math.PI * 2);
-			ctx.fill();
+	setRandomSeed(RANDOM_SEED);
 
-			// Removed for svg export
-			// Add a small glow effect to the stars
-			// if (Math.random() < 0.2) {
-			// 	ctx.globalAlpha = 0.3;
-			// 	ctx.beginPath();
-			// 	ctx.arc(x, y, size * 2, 0, Math.PI * 2);
-			// 	ctx.fill();
-			// 	ctx.globalAlpha = 1.0;
-			// }
-		}
+	for (let i = 0; i < DEFAULT_STAR_COUNT; i++) {
+		const x = random() * WIDTH;
+		const y = random() * HEIGHT;
+		const size = random() * 1.4;
+		const opacity = random();
+
+		const circle = document.createElementNS(SVG_NAMESPACE, "circle");
+		circle.setAttribute("cx", Math.round(x).toString());
+		circle.setAttribute("cy", Math.round(y).toString());
+		circle.setAttribute("r", size.toFixed(2));
+		circle.setAttribute("fill", `rgba(255,255,255,${opacity.toFixed(2)})`);
+
+		svg.appendChild(circle);
 	}
-
-	ctx.clearRect(0, 0, canvas.width, canvas.height);
-	drawStars(100);
 }
 
-export function renderCanvas(canvas: HTMLCanvasElement) {
-	if (!canvas) return;
-	const ctx = canvas.getContext("2d");
-	if (!ctx) return;
-
-	resizeCanvas(canvas);
-	render(ctx, canvas);
-
-	window.addEventListener("resize", () => {
-		render(ctx, canvas);
-	});
-
-	return () => {
-		window.removeEventListener("resize", () => {
-			render(ctx, canvas);
-		});
-	};
-}
-
-export function canvasToSvg(canvas: HTMLCanvasElement) {
-	console.log("click");
-	const dataUrl = canvas.toDataURL("image/png");
-	const img = new Image();
-	img.src = dataUrl;
-	img.onload = () => {
-		const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
-		svg.setAttribute("width", canvas.width.toString());
-		svg.setAttribute("height", canvas.height.toString());
-		const foreignObject = document.createElementNS("http://www.w3.org/2000/svg", "foreignObject");
-		foreignObject.setAttribute("width", "100%");
-		foreignObject.setAttribute("height", "100%");
-		foreignObject.innerHTML = `<img src="${dataUrl}" />`;
-		svg.appendChild(foreignObject);
-		const serializer = new XMLSerializer();
-		const svgString = serializer.serializeToString(svg);
-		const blob = new Blob([svgString], { type: "image/svg+xml" });
-		const url = URL.createObjectURL(blob);
-		const a = document.createElement("a");
-		a.href = url;
-		a.download = "canvas.svg";
-		document.body.appendChild(a);
-		a.click();
-		document.body.removeChild(a);
-		URL.revokeObjectURL(url);
-	};
+// Function to download the generated SVG
+export function saveSvgToFile(svg: SVGSVGElement) {
+	const serializer = new XMLSerializer();
+	const svgString = serializer.serializeToString(svg);
+	const blob = new Blob([svgString], { type: "image/svg+xml" });
+	const url = URL.createObjectURL(blob);
+	const a = document.createElement("a");
+	a.href = url;
+	a.download = "stars.svg";
+	document.body.appendChild(a);
+	a.click();
+	document.body.removeChild(a);
+	URL.revokeObjectURL(url);
 }
