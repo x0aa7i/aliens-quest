@@ -8,7 +8,7 @@
 		"prettier-plugin-tailwindcss",
 		"@ianvs/prettier-plugin-sort-imports"
 	],
-	"tailwindStylesheet": "./src/app.css",
+	"tailwindStylesheet": "./src/styles/app.css",
 	"tailwindPreserveDuplicates": true,
 	"importOrder": [
 		"<TYPES>",
