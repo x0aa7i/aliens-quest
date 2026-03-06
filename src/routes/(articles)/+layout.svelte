@@ -1,5 +1,5 @@
 <script lang="ts">
-	import Footer from "$lib/sections/footer.svelte";
+	// import Footer from "$lib/sections/footer.svelte";
 	import Header from "$lib/sections/header.svelte";
 
 	let { children } = $props();
@@ -8,5 +8,5 @@
 <div class="bg-surface-raised">
 	<Header />
 	{@render children()}
-	<Footer />
+	<!-- <Footer /> -->
 </div>

@@ -17,7 +17,6 @@
 >
 	<!-- Background -->
 	<div class="absolute inset-0 -z-10 h-full w-full overflow-hidden bg-gray-950" aria-hidden="true">
-		<!-- <svg bind:this={svg} class="absolute left-1/2 -translate-x-1/2 object-cover opacity-75"></svg> -->
 		<img
 			src="/stars.svg"
 			alt="background stars"
