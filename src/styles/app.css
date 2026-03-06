@@ -2,6 +2,11 @@
 @import "tw-animate-css";
 @import "./typography.css";
 
+@import "@fontsource/chakra-petch/400.css";
+@import "@fontsource/chakra-petch/500.css";
+@import "@fontsource/chakra-petch/600.css";
+@import "@fontsource-variable/ibm-plex-sans";
+
 @layer base {
 	*,
 	::after,
@@ -41,7 +46,7 @@
 }
 
 @theme {
-	--font-sans: "Saira", "system-ui", "sans-serif";
+	--font-sans: "IBM Plex Sans Variable", "system-ui", "sans-serif";
 	--font-head: "Chakra Petch", "system-ui", "sans-serif";
 
 	--text-xs: 0.75rem;

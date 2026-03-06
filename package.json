@@ -68,5 +68,9 @@
 			"esbuild",
 			"workerd"
 		]
+	},
+	"dependencies": {
+		"@fontsource-variable/ibm-plex-sans": "^5.2.8",
+		"@fontsource/chakra-petch": "^5.2.7"
 	}
 }
