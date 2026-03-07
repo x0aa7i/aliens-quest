@@ -1,5 +1,5 @@
 <script lang="ts">
-	import Edit from "lucide-svelte/icons/pencil-line";
+	import Edit from "@lucide/svelte/icons/pencil-line";
 
 	type Props = {
 		slug: string;
