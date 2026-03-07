@@ -10,16 +10,14 @@ interface MediaResponse {
 	title: string;
 	year?: number | string;
 	overview?: string;
+	cover: string;
 }
 
 interface MovieResponse extends MediaResponse {
-	poster: string;
 	runtime: string;
 }
 
-interface TvResponse extends MediaResponse {
-	poster: string;
-}
+interface TvResponse extends MediaResponse {}
 
 interface BookResponse extends MediaResponse {
 	authors: string[];
@@ -148,7 +146,7 @@ async function fetchMovie(id: string): Promise<MovieJson | null> {
 	try {
 		const data = await fetchTmdbData<TmdbMovieResponse>(`movie/${id}`);
 		return {
-			poster: `${TMDB_POSTER_BASE_URL}/${data.poster_path}`,
+			cover: `${TMDB_POSTER_BASE_URL}/${data.poster_path}`,
 			title: data.title,
 			year: data.release_date.slice(0, 4),
 			runtime: formatRuntime(data.runtime),
@@ -168,7 +166,7 @@ async function fetchTv(id: string): Promise<TvJson | null> {
 	try {
 		const data = await fetchTmdbData<TmdbTvResponse>(`tv/${id}`);
 		return {
-			poster: `${TMDB_POSTER_BASE_URL}/${data.poster_path}`,
+			cover: `${TMDB_POSTER_BASE_URL}/${data.poster_path}`,
 			title: data.name,
 			year: data.first_air_date.slice(0, 4),
 			overview: data.overview,

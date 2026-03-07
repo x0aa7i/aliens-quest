@@ -1,6 +1,6 @@
 <script lang="ts">
-	import type { CardProps } from ".";
-	import type { Book, Movie, Tv } from "$lib/utils/media";
+	import type { CardProps } from "./index.js";
+	import type { Book, Movie, Tv } from "$lib/data/media";
 
 	import Calendar from "~icons/ri/calendar-line";
 	import Timer from "~icons/ri/timer-line";
@@ -22,7 +22,7 @@
 		const type = data.type;
 		const commonProps = {
 			title: data.title,
-			poster: "poster" in data ? data.poster : data.cover,
+			cover: data.cover,
 			overview: data.overview,
 			badges: data.badges,
 		};

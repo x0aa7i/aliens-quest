@@ -9,7 +9,7 @@ export type Metadata = {
 
 export type CardProps = {
 	title: string;
-	poster: string;
+	cover: string;
 	metadata: Metadata[];
 	overview?: string;
 	badges: string[];
