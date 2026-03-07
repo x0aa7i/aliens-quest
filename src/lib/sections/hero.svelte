@@ -1,108 +1,172 @@
 <script lang="ts">
-	import type { EventHandler } from "svelte/elements";
+	import type { SolutionCardProps } from "$lib/components/solution-card.svelte";
+	import type { CarouselAPI } from "$lib/components/ui/carousel/context.js";
 
-	import ChevronsDown from "lucide-svelte/icons/chevrons-down";
+	import ChevronLeft from "@lucide/svelte/icons/chevron-left";
+	import ChevronRight from "@lucide/svelte/icons/chevron-right";
 
-	const scrollToTarget: EventHandler<MouseEvent, HTMLAnchorElement> = (e) => {
-		e.preventDefault();
+	import * as Carousel from "$lib/components/ui/carousel/index.js";
+	import StatsFooter from "$lib/sections/stats-footer.svelte";
 
-		const targetId = e.currentTarget.getAttribute("href")?.split("#").pop();
-		const target = document.getElementById(targetId!);
-		target?.scrollIntoView({ behavior: "smooth", block: "start" });
+	type Props = {
+		cards: SolutionCardProps[];
 	};
+
+	let { cards }: Props = $props();
+
+	let emblaApi = $state<CarouselAPI>();
+
+	function scrollLeft() {
+		emblaApi?.scrollPrev();
+	}
+
+	function scrollRight() {
+		emblaApi?.scrollNext();
+	}
 </script>
 
 <section
-	class="container mx-auto h-[calc(100vh-5rem)] overflow-hidden px-4 py-4 md:px-8 xl:max-w-7xl"
+	class="relative flex h-[calc(100dvh-5rem)] max-h-275 w-full flex-col overflow-hidden bg-surface pt-6 pb-6 md:pt-10 md:pb-8"
 >
 	<!-- Background -->
-	<div class="absolute inset-0 -z-10 h-full w-full overflow-hidden bg-gray-950" aria-hidden="true">
+	<div class="pointer-events-none absolute inset-0">
+		<!-- <div class="absolute inset-0 bg-linear-to-t from-black via-[#0a0a0a]/80 to-[#101010]/90"></div> -->
 		<img
 			src="/stars.svg"
 			alt="background stars"
-			class="fade-in animate-in duration-2000 fill-mode-both h-full w-full object-cover opacity-75 transition-none"
+			class="absolute inset-0 h-full w-full object-cover opacity-30 mix-blend-screen"
 		/>
+	</div>
+
+	<!-- Main Container -->
+	<div
+		class="z-10 container mx-auto flex h-full w-full flex-col gap-6 overflow-hidden px-4 md:gap-8 md:px-8 lg:px-12"
+	>
+		<!-- Row 1: Title Area & Nav Controls -->
 		<div
-			class="glow fade-in animate-in duration-2000 absolute top-0 aspect-square rounded-full"
-		></div>
-		<div class="container absolute left-1/2 top-1/2 h-full -translate-x-1/2 -translate-y-1/2">
-			<div class="planet"></div>
-		</div>
-	</div>
-
-	<div class="grid h-4/5 w-full place-items-center">
-		<div class="w-full max-w-full space-y-5 overflow-hidden">
-			<h1
-				class={[
-					"font-head leading-12 sm:leading-16 max-w-[12ch] text-balance text-5xl font-semibold text-gray-200 sm:text-6xl",
-					"animate-in fade-in fill-mode-both duration-1700 ease-in-out-cubic transition-none",
-				]}
-			>
-				So.. Where Is Everybody?
-			</h1>
-
-			<p
-				class={[
-					"w-full max-w-[36ch] text-lg text-gray-400 sm:text-balance",
-					"animate-in fade-in duration-1700 fill-mode-both ease-in-out-cubic transition-none delay-100",
-				]}
-			>
-				Are they hiding, extinct, or just ignoring us? Explore the possibilities and decide for
-				yourself.
-			</p>
-		</div>
-	</div>
-
-	<div class="absolute bottom-5 left-1/2 -translate-x-1/2">
-		<a
-			on:click={scrollToTarget}
-			href="#explore"
-			class={[
-				"inline-flex cursor-pointer items-center gap-2 rounded-md px-4 py-2 text-gray-400 transition-colors hover:text-gray-200",
-				"animate-in fade-in slide-in-from-top-5 fill-mode-both ease-in-out-cubic delay-300 duration-1000",
-			]}
+			class="z-10 flex w-full shrink-0 flex-col items-start justify-between gap-4 md:flex-row md:items-end"
 		>
-			<ChevronsDown class="h-5 w-5" />
-			Explore
-		</a>
+			<div class="flex flex-col border-l-[3px] border-white pl-6 text-left font-head">
+				<h2 class="text-sm font-medium tracking-wider text-tertiary uppercase md:text-base">
+					If the universe is so vast
+				</h2>
+				<h1
+					class="text-3xl leading-none font-medium tracking-wide text-white uppercase md:text-4xl lg:text-5xl"
+				>
+					Where is everybody?
+				</h1>
+			</div>
+
+			<div class="hidden shrink-0 gap-2 md:flex">
+				<button
+					onclick={scrollLeft}
+					aria-label="Scroll left"
+					class="flex h-10 w-10 cursor-pointer items-center justify-center border bg-surface-raised text-secondary transition-colors hover:bg-surface-raised-hover hover:text-primary"
+				>
+					<ChevronLeft class="h-6 w-6" />
+				</button>
+				<button
+					onclick={scrollRight}
+					aria-label="Scroll right"
+					class="flex h-10 w-10 cursor-pointer items-center justify-center border bg-surface-raised text-secondary transition-colors hover:bg-surface-raised-hover hover:text-primary"
+				>
+					<ChevronRight class="h-6 w-6" />
+				</button>
+			</div>
+		</div>
+
+		<!-- Row 2: Carousel Track -->
+		<Carousel.Root
+			class="relative flex min-h-50 w-full flex-1 flex-col overflow-hidden"
+			opts={{
+				loop: true,
+				align: "start",
+				slidesToScroll: 3,
+				breakpoints: { "(max-width: 767px)": { active: false } },
+			}}
+			setApi={(api) => (emblaApi = api)}
+		>
+			<!-- Embla container needs to hold the track flex items -->
+			<Carousel.Content class="flex h-full w-full flex-col md:flex-row">
+				{#each cards as card, id}
+					<Carousel.Item
+						class="h-full shrink-0 basis-full pb-4 md:basis-[calc(33%+0.49rem)] md:pb-0 md:pl-4 xl:basis-[calc(25%+0.25rem)]"
+					>
+						<a
+							class="group relative flex h-full min-h-[55vh] w-full flex-col justify-end overflow-hidden border bg-surface md:min-h-0"
+							href={card.url}
+						>
+							<!-- Background Image -->
+							<img
+								src={card.cover.src}
+								alt={card.title}
+								width={card.cover.width}
+								height={card.cover.height}
+								class="absolute inset-0 h-full w-full object-cover opacity-60 mix-blend-screen transition-opacity duration-300 group-hover:opacity-80"
+							/>
+
+							<!-- Card Header / Footer -->
+							<div
+								class="relative flex w-full flex-col border-t bg-surface-raised/90 px-6 py-5 backdrop-blur-md"
+							>
+								<div class="flex items-center justify-between gap-2 md:gap-4">
+									<div class="**:stroke-[1.5] [&_svg]:h-10 [&_svg]:w-10">
+										<!-- eslint-disable-next-line svelte/no-at-html-tags -->
+										{@html card.logo}
+									</div>
+
+									<span class="font-head text-lg font-medium text-quaternary">
+										#{id + 1}
+									</span>
+								</div>
+
+								<h3
+									class="truncate font-head text-xl font-normal text-primary md:text-lg lg:text-xl lg:tracking-wide"
+								>
+									{card.title}
+								</h3>
+							</div>
+						</a>
+					</Carousel.Item>
+				{/each}
+			</Carousel.Content>
+		</Carousel.Root>
+
+		<!-- Row 3: Stats Footer (Desktop Only) -->
+		<StatsFooter />
 	</div>
 </section>
 
 <style>
-	.glow {
-		left: -24rem;
-		top: -12rem;
-		width: 36rem;
-		height: 36rem;
-		background: var(--color-gray-400);
-		opacity: 0.1;
-		filter: blur(130px);
-		pointer-events: none;
+	/* Shadcn Carousel Component Structural Overrides */
+	:global([data-slot="carousel-content"]) {
+		flex: 1;
+		min-height: 0;
+	}
+	:global([data-embla-container]) {
+		height: 100%;
 	}
 
-	.planet {
-		position: absolute;
-		left: 75%;
-		top: 50%;
-		transform: translate3d(-50%, -50%, 0);
-		will-change: transform;
-		width: 500px;
-		aspect-ratio: 1;
-		border-radius: 100%;
-		background-color: var(--color-gray-950);
-		pointer-events: none;
-		animation: planet-slide 2s ease-in forwards reverse;
-
-		box-shadow:
-			inset -40px -16px 40px -16px #4b4f56,
-			inset -20px -8px 10px -18px #fff,
-			48px 26px 60px #adadad15;
-	}
-
-	@keyframes planet-slide {
-		to {
-			box-shadow: none;
-			transform: translate(calc(-50% - 10px), -50%) rotate(25deg);
+	/* Mobile overrides for Shadcn Carousel to allow native vertical scrolling */
+	@media (max-width: 767px) {
+		:global([data-slot="carousel-content"]) {
+			overflow-y: auto !important;
+			overflow-x: hidden !important;
+			scroll-snap-type: y mandatory;
+			-ms-overflow-style: none;
+			scrollbar-width: none;
+		}
+		:global([data-slot="carousel-content"]::-webkit-scrollbar) {
+			display: none;
+		}
+		:global([data-embla-container]) {
+			flex-direction: column !important;
+			margin-left: 0 !important;
+		}
+		:global([data-embla-slide]) {
+			padding-left: 0 !important;
+			scroll-snap-align: start;
+			scroll-snap-stop: always;
 		}
 	}
 </style>

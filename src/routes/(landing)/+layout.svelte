@@ -5,8 +5,8 @@
 	let { children } = $props();
 </script>
 
-<div class="flex min-h-svh flex-col justify-between">
-	<Header class="xl:max-w-7xl" />
+<div class="min-h-svh">
+	<Header />
 	{@render children()}
 	<!-- <Footer class="bg-gray-900" /> -->
 </div>
