@@ -1,5 +1,5 @@
 <script lang="ts">
-	const bars = Array.from({ length: 48 }, () => Math.floor(Math.random() * 80) + 10);
+	import Wave from "$lib/components/wave.svelte";
 
 	type Stats = { label: string; value: string };
 
@@ -24,7 +24,10 @@
 	];
 </script>
 
-<div class="hidden min-h-35 w-full shrink-0 grid-cols-4 gap-4 font-head md:grid" aria-hidden="true">
+<div
+	class="hidden min-h-35 w-full shrink-0 grid-cols-4 gap-4 font-head select-none md:grid"
+	aria-hidden="true"
+>
 	<!-- Left Stats Window -->
 	{@render stats(leftStats)}
 
@@ -48,24 +51,20 @@
 
 		<div class="flex flex-1 items-center justify-between gap-3 px-4 py-3">
 			<div class="flex h-full gap-1 py-1">
-				<div class="flex w-1 flex-col justify-end bg-surface-overlay">
+				<div class="flex w-1 flex-col justify-end bg-zinc-800">
 					<div class="h-1.5 bg-white/90"></div>
 				</div>
 
 				<div
 					class="flex flex-col justify-between text-xs leading-2 font-medium tracking-wider text-quaternary"
 				>
-					<span> 100% </span>
-					<span> 0% </span>
+					<span> 10 </span>
+					<span> 0 </span>
 				</div>
 			</div>
 
 			<!-- Animated Bar Chart -->
-			<div class="flex h-full flex-row items-center justify-center gap-1">
-				{#each bars as barHeight}
-					<div class="w-0.5 bg-white/40" style="height: {barHeight}%;"></div>
-				{/each}
-			</div>
+			<Wave />
 
 			<div class="flex flex-col justify-center gap-0">
 				{#each loc as { label, value, unit }}
