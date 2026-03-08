@@ -1,8 +1,8 @@
 ---
 title: Self-Destruction
 overview: "Civilizations tend to destroy themselves before achieving the ability to communicate or explore space."
-risk: 4
-probability: 3
+risk: 3
+probability: 2
 media:
   - type: "tv"
     id: "125988-silo"
@@ -20,12 +20,9 @@ media:
     overview: "A bleak post-apocalyptic tale that explores the bond between father and son amid the collapse of civilization."
 ---
 
-<script>
-  import MediaGrid from "$lib/components/media/media-grid.svelte";
-  let { media } = $props();
-</script>
-
 The Self-Destruction Hypothesis is one of the most sobering solutions to the Fermi Paradox. It suggests that intelligent civilizations inevitably destroy themselves before they can achieve interstellar communication or colonization. This idea posits that the development of advanced technology, while enabling progress, also introduces existential risks—such as nuclear war, environmental collapse, or runaway artificial intelligence—that civilizations are unable to overcome. Could the silence of the cosmos be a grim testament to the fragility of intelligent life?
+
+::metadata
 
 ## Origins
 
@@ -77,14 +74,6 @@ The Self-Destruction Hypothesis serves as a stark warning for humanity. If self-
 - Investing in long-term thinking and planetary stewardship to ensure the survival of our species.
 
 The hypothesis underscores the importance of learning from our mistakes and working together to build a sustainable future.
-
-## Pop Culture
-
-The Self-Destruction Hypothesis has been a recurring theme in science fiction, often exploring the consequences of humanity’s technological hubris.
-
-### Recommended Reading/Watching
-
-<MediaGrid media={media} />
 
 ## Conclusion
 

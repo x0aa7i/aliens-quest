@@ -7,6 +7,8 @@ probability: 3
 
 The Rare Earth Hypothesis offers a compelling explanation for the Fermi Paradox: complex life, and by extension intelligent life, might be extraordinarily rare in the universe. This idea challenges the optimistic assumption that the cosmos is teeming with life, suggesting instead that the specific conditions required for complex life to arise and thrive are so unique that Earth might be one of the very few—or even the only—planet where such life exists. Could humanity be alone not because life is fleeting or civilizations are hiding, but because the universe is inherently inhospitable to complex life?
 
+::metadata
+
 ## Origins
 
 The Rare Earth Hypothesis was popularized by paleontologist Peter Ward and astronomer Donald Brownlee in their 2000 book _Rare Earth: Why Complex Life Is Uncommon in the Universe_. The hypothesis builds on the idea that while microbial life might be widespread, the emergence of complex, multicellular organisms—let alone intelligent life—requires an exceptionally rare combination of astrophysical, geological, and biological factors. This perspective counters the Copernican Principle, which assumes that Earth is not special or unique in the cosmos.

@@ -3,7 +3,10 @@ import type { Book, Movie, Tv } from "./src/lib/data/media";
 import { readFile } from "fs/promises";
 import { dirname, join } from "path";
 import { fileURLToPath } from "url";
+import remarkDirective from "remark-directive";
 import { defineCollection, defineConfig, s, z } from "velite";
+
+import { remarkDirectivePlaceholders } from "$lib/utils/remark";
 
 import { getBook, getMovie, getTv } from "./src/lib/data/media";
 
@@ -45,14 +48,15 @@ async function loadMedia(media?: MediaObject[]): Promise<(Movie | Tv | Book)[]> 
 	return result.filter((item): item is Movie | Tv | Book => !!item);
 }
 
-const SCALES = {
-	risk: ["trivial", "marginal", "significant", "catastrophic", "existential"] as const,
-	probability: ["very unlikely", "unlikely", "plausible", "likely", "highly likely"] as const,
-};
+const SCALES = ["low", "moderate", "high"];
 
-function getScale(value: number | undefined, type: "risk" | "probability"): string | undefined {
-	if (!value || value < 1 || value > 5) return undefined;
-	return SCALES[type][value - 1];
+function getScale(value: number | string | undefined): string | undefined {
+	if (typeof value !== "number" || !Number.isFinite(value)) {
+		return typeof value === "string" ? value : undefined;
+	}
+
+	const clamped = Math.max(1, Math.min(3, value)); // native in newer environments
+	return SCALES[clamped - 1];
 }
 
 const about = defineCollection({
@@ -82,8 +86,8 @@ const solutions = defineCollection({
 			title: s.string().max(99),
 			slug: s.path(), // auto generate slug from file path
 			cover: s.image().optional().default("./cover.webp"), // input image relative path, output image object with blurImage.
-			// content: s.markdown(), // transform markdown to html
-			excerpt: s.excerpt(), // used in meta description
+			content: s.markdown(), // transform markdown to html
+			// excerpt: s.excerpt(), // used in meta description
 			toc: s.toc(),
 			risk: s.number().min(1).max(5).optional(), // risk of the solution
 			probability: s.number().min(1).max(5).optional(), // probability of the solution
@@ -95,8 +99,8 @@ const solutions = defineCollection({
 			slug: data.slug.replace(/^.*\//, ""),
 			url: `/${data.slug}`,
 			logo: await readSvgFile("./src/content/" + data.slug + "/logo.svg"),
-			risk: getScale(data.risk, "risk"),
-			probability: getScale(data.probability, "probability"),
+			risk: getScale(data.risk),
+			probability: getScale(data.probability),
 			media: await loadMedia(data.media),
 		})),
 });
@@ -109,6 +113,7 @@ export default defineConfig({
 	},
 	markdown: {
 		rehypePlugins: [],
+		remarkPlugins: [remarkDirective, remarkDirectivePlaceholders],
 	},
 	collections: { solutions, about },
 });

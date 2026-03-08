@@ -1,7 +1,7 @@
 ---
 title: The Prime Directive
 overview: "Advanced civilizations intentionally avoid contact with less advanced ones, as a form of ethical non-interference."
-risk: 2
+risk: 1
 probability: 2
 media:
   - type: "tv"
@@ -10,12 +10,9 @@ media:
     overview: "A franchise exploring the Prime Directive as a recurring theme, often presenting moral quandaries for the crew of the starship Enterprise."
 ---
 
-<script>
-  import MediaGrid from "$lib/components/media/media-grid.svelte";
-  let { media } = $props();
-</script>
-
 The Prime Directive Hypothesis offers a cultural and ethical explanation for the Fermi Paradox: advanced alien civilizations might be intentionally avoiding contact with humanity to allow us to develop naturally, free from external interference. Inspired by the fictional "Prime Directive" from _Star Trek_, this hypothesis suggests that extraterrestrial societies could be following a universal ethical code that prioritizes the autonomy and self-determination of emerging civilizations. Could the silence of the cosmos be a sign of respect rather than absence?
+
+::metadata
 
 ## Origins
 
@@ -56,14 +53,6 @@ While the hypothesis explains the absence of contact, it does not provide a way 
 ## What This Means for Us
 
 The Prime Directive Hypothesis challenges us to consider the ethical implications of our own actions as we explore the cosmos. If we were to encounter a less-developed civilization in the future, how would we handle it? The hypothesis encourages us to think carefully about the potential consequences of interference and to prioritize the autonomy of other species. It also raises questions about our readiness for contact with extraterrestrial intelligence and whether we are prepared to handle such an encounter responsibly.
-
-## Pop Culture
-
-The Prime Directive Hypothesis is deeply rooted in science fiction, particularly in the _Star Trek_ franchise, where it serves as a central ethical dilemma.
-
-### Recommended Reading/Watching
-
-<MediaGrid media={media} />
 
 ## Conclusion
 

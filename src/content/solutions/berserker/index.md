@@ -2,7 +2,7 @@
 title: The Berserker
 overview: "Rogue AIs or ancient probes may be silently wiping out intelligent life as it arises."
 risk: 3
-probability: 2
+probability: 1
 media:
   - type: "book"
     id: "berserker"
@@ -15,12 +15,9 @@ media:
     overview: "A film series exploring the theme of hostile AI and humanity's struggle for survival."
 ---
 
-<script>
-  import MediaGrid from "$lib/components/media/media-grid.svelte";
-  let { media } = $props();
-</script>
-
 The Berserker Hypothesis offers a chilling explanation for the Fermi Paradox: intelligent civilizations might be silent because they are being systematically destroyed by self-replicating, hostile machines. Imagine a galaxy where ancient, autonomous weapons roam the stars, hunting down any emerging intelligence before it can spread. This hypothesis suggests that the universe is not just empty—it’s a battlefield.
+
+::metadata
 
 ## Origins
 
@@ -57,14 +54,6 @@ Another critique is the assumption that an advanced civilization would create su
 ## What This Means for Us
 
 The Berserker Hypothesis serves as a cautionary tale for humanity. As we develop advanced technologies, including artificial intelligence and self-replicating machines, we must consider the potential consequences. If berserkers exist, our efforts to broadcast our presence into the cosmos could be incredibly risky. On the other hand, if we can avoid creating such destructive technologies, we might have a chance to survive and thrive in a potentially dangerous universe.
-
-## Pop Culture
-
-The Berserker Hypothesis has inspired numerous works of science fiction, exploring the terrifying implications of self-replicating war machines. Fred Saberhagen’s _Berserker_ series is the most direct exploration of the concept, but other works, such as _The Forge of God_ by Greg Bear and _The Expanse_ series by James S.A. Corey, also touch on similar themes. The idea of hostile machines hunting down life has become a staple of the genre, reflecting our fears of technology gone awry.
-
-### Recommended Reading/Watching
-
-<MediaGrid media={media} />
 
 ## Conclusion
 

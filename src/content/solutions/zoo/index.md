@@ -7,6 +7,8 @@ probability: 2
 
 The Zoo Hypothesis offers a fascinating and somewhat unsettling solution to the Fermi Paradox: what if advanced extraterrestrial civilizations are aware of our existence but deliberately avoid contact, treating Earth as a kind of "zoo" or "wildlife preserve"? This idea suggests that humanity is being observed from a distance, much like animals in a zoo, and that our cosmic isolation is a deliberate choice by alien civilizations. Could the silence of the cosmos be a result of a galactic policy of non-interference?
 
+::metadata
+
 ## Origins
 
 The Zoo Hypothesis was first proposed in the 1970s by radio astronomer John A. Ball, who sought to explain the Fermi Paradox without resorting to the idea that intelligent life is rare or self-destructive. Ball argued that advanced civilizations might have ethical or scientific reasons for avoiding contact with less-developed species like humanity. The hypothesis draws parallels to humanity’s own efforts to protect isolated indigenous tribes or preserve natural ecosystems, suggesting that alien civilizations might follow similar principles on a cosmic scale.
@@ -46,10 +48,6 @@ While the hypothesis explains the absence of contact, it does not provide a way 
 ## What This Means for Us
 
 The Zoo Hypothesis challenges us to consider the ethical implications of our own actions as we explore the cosmos. If we were to encounter a less-developed civilization in the future, how would we handle it? The hypothesis encourages us to think carefully about the potential consequences of interference and to prioritize the autonomy of other species. It also raises questions about our readiness for contact with extraterrestrial intelligence and whether we are prepared to handle such an encounter responsibly.
-
-## Pop Culture
-
-The Zoo Hypothesis has been a recurring theme in science fiction, often exploring the idea of humanity being observed or controlled by advanced alien civilizations.
 
 ## Conclusion
 

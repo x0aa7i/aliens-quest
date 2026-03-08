@@ -2,7 +2,7 @@
 title: Percolation Theory
 overview: "Civilizations may expand unevenly, forming isolated bubbles that never reach each other."
 risk: 1
-probability: 3
+probability: 2
 media:
   - type: "book"
     id: "pushing-ice"
@@ -15,12 +15,9 @@ media:
     overview: "While not explicitly about Percolation Theory, this film deals with the challenges of traveling between star systems and the fragility of human colonization efforts."
 ---
 
-<script>
-  import MediaGrid from "$lib/components/media/media-grid.svelte";
-  let { media } = $props();
-</script>
-
 Percolation Theory offers a unique and mathematically grounded solution to the Fermi Paradox. It suggests that interstellar colonization might not be a uniform or inevitable process but rather a patchy and incomplete one, constrained by the vast distances between stars and the limitations of resources and time. Just as water percolates unevenly through soil, filling some pores while bypassing others, intelligent civilizations might spread through the galaxy in a similarly uneven manner, leaving large regions untouched and explaining why we haven’t encountered them. Could the silence of the cosmos be a result of cosmic "gaps" in the spread of intelligent life?
+
+::metadata
 
 ## Origins
 
@@ -61,14 +58,6 @@ Some argue that Percolation Theory relies on the assumption that Earth is in an 
 ## What This Means for Us
 
 Percolation Theory suggests that humanity’s future in the galaxy might be shaped by the same constraints that have limited other civilizations. If the theory is correct, our ability to colonize other star systems will depend on our ability to overcome the challenges of distance, resource limitations, and time. It also implies that we might be alone in our corner of the galaxy, at least for the foreseeable future, giving us a unique opportunity to explore and expand without competition.
-
-## Pop Culture
-
-While Percolation Theory itself is not a common theme in popular culture, the idea of uneven or incomplete colonization has been explored in various science fiction works.
-
-### Recommended Reading/Watching
-
-<MediaGrid media={media} />
 
 ## Conclusion
 

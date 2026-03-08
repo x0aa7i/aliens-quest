@@ -1,8 +1,8 @@
 ---
 title: The Dark Forest
 overview: "Civilizations remain silent out of fear that revealing themselves will lead to their destruction."
-risk: 5
-probability: 2
+risk: 3
+probability: 1
 media:
   - type: "book"
     badges: ["Novel Series"]
@@ -10,18 +10,19 @@ media:
     overview: "A landmark sci-fi trilogy by Liu Cixin that formalizes the Dark Forest hypothesis as a framework for cosmic sociology."
   - type: "tv"
     id: "108545-3-body-problem"
-    overview: "A Netflix adaptation emphasizing the series’ core ideas about existential risk, technological disparity, and cosmic silence."
+    overview: "A Netflix adaptation emphasizing the series' core ideas about existential risk, technological disparity, and cosmic silence."
   - type: "tv"
     id: "204541-three-body"
     overview: "A Chinese adaptation that closely follows the novels, with a slower pace and greater focus on the characters' struggles and internal conflicts."
 ---
 
-<script>
-  import MediaGrid from "$lib/components/media/media-grid.svelte";
-  let { media } = $props();
-</script>
+:::maxim
+Transmit nothing. Observe everything.
+:::
 
-The Dark Forest Hypothesis is one of the most chilling solutions to the Fermi Paradox. It suggests that the universe is silent not because extraterrestrial civilizations are rare, but because they are intentionally hiding—out of fear. Imagine a dark forest where every civilization is a hunter, staying silent to avoid being hunted. This idea paints a universe where contact is not a handshake but a trigger.
+The Dark Forest Hypothesis proposes that advanced civilizations stay silent because the universe is dangerous. To avoid being destroyed by others, everyone hides instead of reaching out, which could explain why we have not detected alien life.
+
+::metadata
 
 ## Origins
 
@@ -62,10 +63,6 @@ The Dark Forest Hypothesis has profound implications for humanity’s future. If
 ## Pop Culture
 
 The Dark Forest Hypothesis has been explored extensively in science fiction, most notably in Liu Cixin’s _The Dark Forest_. The book delves deeply into the logic of the hypothesis and its implications for interstellar diplomacy. Other works, such as _The Three-Body Problem_ (the first book in Liu’s trilogy), also touch on similar themes of cosmic distrust and survival.
-
-### Recommended Reading/Watching
-
-<MediaGrid media={media} />
 
 ## Conclusion
 

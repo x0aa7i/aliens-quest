@@ -15,12 +15,9 @@ media:
     overview: "A novel exploring non-conscious intelligence and the challenges of communicating with beings that think differently."
 ---
 
-<script>
-  import MediaGrid from "$lib/components/media/media-grid.svelte";
-  let { media } = $props();
-</script>
-
 What if intelligent alien civilizations exist, but their ways of thinking, communicating, and existing are so radically different from ours that we cannot recognize or understand them? This idea challenges our anthropocentric assumptions about intelligence and suggests that the universe might be teeming with life that operates on principles beyond human comprehension. Could the cosmos be filled with civilizations so alien that they are, for all intents and purposes, invisible to us?
+
+::metadata
 
 ## Origins
 
@@ -61,14 +58,6 @@ Some argue that even if alien civilizations are incomprehensible, we should stil
 ## What This Means for Us
 
 The Incomprehensibility Hypothesis challenges us to expand our thinking and develop new ways of exploring the universe. It encourages us to move beyond anthropocentric assumptions and consider the vast diversity of potential life forms. This perspective could drive innovation in fields like astrobiology, artificial intelligence, and communication technology, as we seek to bridge the gap between human and alien minds.
-
-## Pop Culture
-
-The idea of incomprehensible alien intelligence has been a recurring theme in science fiction, often used to evoke a sense of awe and existential unease.
-
-### Recommended Reading/Watching
-
-<MediaGrid media={media} />
 
 ## Conclusion
 

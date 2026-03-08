@@ -1,8 +1,8 @@
 ---
 title: The Great Filter
 overview: "There's a barrier — biological, technological, or sociological — that prevents life from advancing to interstellar stages."
-risk: 3
-probability: 4
+risk: 2
+probability: 3
 media:
   - type: "movie"
     id: "157336-interstellar"
@@ -13,12 +13,9 @@ media:
     overview: "A TV series (Video Game adaptation) examining the collapse of civilization due to a pandemic."
 ---
 
-<script>
-  import MediaGrid from "$lib/components/media/media-grid.svelte";
-  let { media } = $props();
-</script>
-
 The Great Filter Hypothesis is one of the most unsettling yet compelling solutions to the Fermi Paradox. It suggests that there is some kind of barrier—a "Great Filter"—that prevents intelligent life from reaching a stage where it can colonize the galaxy or communicate across interstellar distances. This barrier could lie in our past, meaning we’ve already overcome it, or in our future, implying that extinction-level challenges await us. Either way, the Great Filter forces us to confront the fragility of intelligent life and the potential obstacles to becoming a galactic civilization.
+
+::metadata
 
 ## Origins
 
@@ -69,10 +66,6 @@ The Great Filter Hypothesis has profound implications for humanity’s future. I
 ## Pop Culture
 
 The Great Filter Hypothesis has inspired numerous works of science fiction, often exploring themes of existential risk and the fragility of civilization.
-
-### Recommended Reading/Watching
-
-<MediaGrid media={media} />
 
 ## Conclusion
 

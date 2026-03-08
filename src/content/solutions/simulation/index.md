@@ -2,7 +2,7 @@
 title: The Simulation
 overview: "We may be living in a simulation, and the absence of aliens is simply part of the programmed environment."
 risk: 2
-probability: 3
+probability: 2
 media:
   - type: "movie"
     id: "603-the-matrix"
@@ -15,12 +15,9 @@ media:
     overview: "An early work exploring simulated worlds and questioning the nature of reality."
 ---
 
-<script>
-  import MediaGrid from "$lib/components/media/media-grid.svelte";
-  let { media } = $props();
-</script>
-
 The Simulation Hypothesis offers a radical and mind-bending solution to the Fermi Paradox: what if we are living in a simulated reality, and the reason we don’t see evidence of extraterrestrial civilizations is because they don’t exist within our simulation? This idea suggests that our universe, and everything in it, might be an artificial construct created by an advanced civilization—perhaps as an experiment, a form of entertainment, or even a historical re-creation. Could the silence of the cosmos be a clue that we are living in a digital illusion?
+
+::metadata
 
 ## Origins
 
@@ -71,14 +68,6 @@ While the Simulation Hypothesis explains the absence of extraterrestrial civiliz
 ## What This Means for Us
 
 If the Simulation Hypothesis is true, it fundamentally changes our understanding of reality. It challenges us to reconsider the nature of existence, consciousness, and the universe itself. While the idea might seem unsettling, it also opens up fascinating possibilities for exploration and discovery. For example, if we are in a simulation, could we find ways to "hack" or interact with the underlying code? Could we communicate with the creators of the simulation? These questions push the boundaries of science, philosophy, and technology.
-
-## Pop Culture
-
-The Simulation Hypothesis has been a popular theme in science fiction, often exploring the implications of living in a simulated reality.
-
-### Recommended Reading/Watching
-
-<MediaGrid media={media} />
 
 ## Conclusion
 
