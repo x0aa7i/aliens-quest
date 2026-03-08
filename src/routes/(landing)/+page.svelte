@@ -5,6 +5,6 @@
 	let { data } = $props();
 </script>
 
-<Metadata title="Aliens Quest – Explore the Fermi Paradox Solutions" />
+<Metadata title="Aliens Quest — Explore the Fermi Paradox Solutions" />
 
 <Hero cards={data.posts} />
