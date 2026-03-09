@@ -40,7 +40,7 @@
 
 <Metadata {...seo} />
 
-<main class="relative min-h-screen" bind:this={articleRef}>
+<main class="relative min-h-screen">
 	<header class="relative border-b pt-24">
 		<!-- Cover image as background -->
 		{#if metadata.cover?.src}
@@ -151,7 +151,7 @@
 		</div>
 
 		<!-- ── CENTER: Main article content ── -->
-		<article class="min-w-0 border-x lg:border-none">
+		<article class="min-w-0 border-x lg:border-none" bind:this={articleRef}>
 			<!-- Prose body -->
 			<div class="w-full space-y-8 px-4 pt-6 pb-16 sm:px-6 xl:px-8 xl:pt-8">
 				<div class="prose mx-auto max-w-prose text-pretty">
