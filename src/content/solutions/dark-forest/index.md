@@ -16,6 +16,8 @@ media:
     overview: "A Chinese adaptation that closely follows the novels, with a slower pace and greater focus on the characters' struggles and internal conflicts."
 ---
 
+## Overview
+
 :::maxim
 Transmit nothing. Observe everything.
 :::
@@ -63,10 +65,6 @@ If the logic of the Dark Forest holds, our continued existence is hard to explai
 ## What This Means for Us
 
 The Dark Forest Hypothesis has profound implications for humanity’s future. If the hypothesis is correct, our efforts to broadcast our presence—such as the Arecibo message or the Voyager Golden Record—could be incredibly dangerous. It suggests that we should prioritize listening over speaking and approach the search for extraterrestrial intelligence with caution. It also raises ethical questions about how we might interact with other civilizations if we ever detect them.
-
-## Pop Culture
-
-The Dark Forest Hypothesis has been explored extensively in science fiction, most notably in Liu Cixin’s _The Dark Forest_. The book delves deeply into the logic of the hypothesis and its implications for interstellar diplomacy. Other works, such as _The Three-Body Problem_ (the first book in Liu’s trilogy), also touch on similar themes of cosmic distrust and survival.
 
 ## Conclusion
 

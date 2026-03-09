@@ -12,6 +12,8 @@ media:
     overview: "A far-future novel examining post-human civilizations and their strategies for enduring a changing universe."
 ---
 
+## Overview
+
 What if advanced civilizations aren’t missing—they’re just waiting? The Aestivation Hypothesis offers a fascinating and counterintuitive solution to the Fermi Paradox: perhaps intelligent life is not absent from the universe but is instead in a state of cosmic hibernation, biding its time until the universe becomes more hospitable to their needs. This idea challenges our assumptions about the behavior of advanced civilizations and suggests that the silence we hear might not be a sign of absence, but of patience.
 
 ::metadata
@@ -47,10 +49,6 @@ The theory has been disputed by a subsequent paper by Charles H. Bennett, Robin 
 ## What This Means for Us
 
 If the Aestivation Hypothesis is correct, it suggests that humanity’s future might involve similar long-term planning. As we advance technologically, we may face similar thermodynamic constraints, forcing us to consider whether we, too, should "aestivate" and wait for a cooler universe. This idea challenges us to think beyond immediate goals and consider the cosmic scale of our existence.
-
-## Pop Culture
-
-While the Aestivation Hypothesis is a relatively new idea, its themes of cosmic patience and long-term planning resonate with several works of science fiction.
 
 ## Conclusion
 

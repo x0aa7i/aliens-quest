@@ -15,6 +15,8 @@ media:
     overview: "A film series exploring the theme of hostile AI and humanity's struggle for survival."
 ---
 
+## Overview
+
 The Berserker Hypothesis offers a chilling explanation for the Fermi Paradox: intelligent civilizations might be silent because they are being systematically destroyed by self-replicating, hostile machines. Imagine a galaxy where ancient, autonomous weapons roam the stars, hunting down any emerging intelligence before it can spread. This hypothesis suggests that the universe is not just empty—it’s a battlefield.
 
 ::metadata

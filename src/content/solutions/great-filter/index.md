@@ -13,6 +13,8 @@ media:
     overview: "A TV series (Video Game adaptation) examining the collapse of civilization due to a pandemic."
 ---
 
+## Overview
+
 The Great Filter Hypothesis is one of the most unsettling yet compelling solutions to the Fermi Paradox. It suggests that there is some kind of barrier—a "Great Filter"—that prevents intelligent life from reaching a stage where it can colonize the galaxy or communicate across interstellar distances. This barrier could lie in our past, meaning we’ve already overcome it, or in our future, implying that extinction-level challenges await us. Either way, the Great Filter forces us to confront the fragility of intelligent life and the potential obstacles to becoming a galactic civilization.
 
 ::metadata
@@ -62,10 +64,6 @@ Some argue that even if a Great Filter exists, advanced civilizations might find
 ## What This Means for Us
 
 The Great Filter Hypothesis has profound implications for humanity’s future. If the filter is behind us, we should celebrate our rarity and take steps to preserve our civilization. If it lies ahead, we must identify and mitigate potential existential risks, such as nuclear war, climate change, or unaligned artificial intelligence. In either case, the hypothesis underscores the importance of careful stewardship of our planet and our technology.
-
-## Pop Culture
-
-The Great Filter Hypothesis has inspired numerous works of science fiction, often exploring themes of existential risk and the fragility of civilization.
 
 ## Conclusion
 

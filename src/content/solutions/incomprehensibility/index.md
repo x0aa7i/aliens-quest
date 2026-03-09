@@ -15,6 +15,8 @@ media:
     overview: "A novel exploring non-conscious intelligence and the challenges of communicating with beings that think differently."
 ---
 
+## Overview
+
 What if intelligent alien civilizations exist, but their ways of thinking, communicating, and existing are so radically different from ours that we cannot recognize or understand them? This idea challenges our anthropocentric assumptions about intelligence and suggests that the universe might be teeming with life that operates on principles beyond human comprehension. Could the cosmos be filled with civilizations so alien that they are, for all intents and purposes, invisible to us?
 
 ::metadata

@@ -10,6 +10,8 @@ media:
     overview: "A franchise exploring the Prime Directive as a recurring theme, often presenting moral quandaries for the crew of the starship Enterprise."
 ---
 
+## Overview
+
 The Prime Directive Hypothesis offers a cultural and ethical explanation for the Fermi Paradox: advanced alien civilizations might be intentionally avoiding contact with humanity to allow us to develop naturally, free from external interference. Inspired by the fictional "Prime Directive" from _Star Trek_, this hypothesis suggests that extraterrestrial societies could be following a universal ethical code that prioritizes the autonomy and self-determination of emerging civilizations. Could the silence of the cosmos be a sign of respect rather than absence?
 
 ::metadata
