@@ -157,8 +157,8 @@ export function useToc(tocItems: TocEntry[], article?: HTMLElement | null, opts?
 	function isActive(item: TocEntry): boolean {
 		if (!activeId) return false;
 		const currentHash = `#${activeId}`;
-		return item.url === currentHash;
-		// return item.url === currentHash || !!item.items?.some((child) => child.url === currentHash);
+		// return item.url === currentHash;
+		return item.url === currentHash || !!item.items?.some((child) => child.url === currentHash);
 		// !!item.items.some(child => isActive(child)); // for deeper nesting:
 	}
 

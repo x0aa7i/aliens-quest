@@ -3,9 +3,12 @@ import type { Book, Movie, Tv } from "./src/lib/data/media";
 import { readFile } from "fs/promises";
 import { dirname, join } from "path";
 import { fileURLToPath } from "url";
+import rehypeAutolinkHeadings from "rehype-autolink-headings";
+import rehypeSlug from "rehype-slug";
 import remarkDirective from "remark-directive";
 import { defineCollection, defineConfig, s, z } from "velite";
 
+import { splitHtmlByH2 } from "$lib/data/content";
 import { remarkDirectivePlaceholders } from "$lib/utils/remark";
 
 import { getBook, getMovie, getTv } from "./src/lib/data/media";
@@ -112,7 +115,7 @@ export default defineConfig({
 		base: "/assets/",
 	},
 	markdown: {
-		rehypePlugins: [],
+		rehypePlugins: [rehypeSlug, rehypeAutolinkHeadings],
 		remarkPlugins: [remarkDirective, remarkDirectivePlaceholders],
 	},
 	collections: { solutions, about },
