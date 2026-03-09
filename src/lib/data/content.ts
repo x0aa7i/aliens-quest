@@ -1,9 +1,4 @@
-import type { Solution } from "$content/index";
-import type { Component } from "svelte";
-
 import { solutions } from "$content/index";
-
-export type DocResolver = () => Promise<{ default: Component; metadata: Solution }>;
 
 export function getSolutionMetadata(slug: string) {
 	return solutions.find(({ slug: postSlug }) => postSlug === slug);

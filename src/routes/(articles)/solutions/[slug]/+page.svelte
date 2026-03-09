@@ -83,7 +83,7 @@
 					</div>
 
 					<!-- Logo + Title -->
-					<div class="flex min-w-0 flex-col gap-2 md:gap-1">
+					<div class="flex min-w-0 flex-col gap-2">
 						<div class="flex flex-wrap items-center gap-3">
 							{#if metadata.logo}
 								<span class="text-primary **:stroke-3 [&_svg]:h-8 [&_svg]:w-16" aria-hidden="true">

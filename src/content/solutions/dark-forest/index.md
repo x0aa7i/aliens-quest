@@ -24,6 +24,10 @@ The Dark Forest Hypothesis proposes that advanced civilizations stay silent beca
 
 ::metadata
 
+:::quote{author="Liu Cixin, The Dark Forest"}
+“If I destroy you, what business is it of yours?”
+:::
+
 ## Origins
 
 The Dark Forest Hypothesis was popularized by Chinese science fiction writer Liu Cixin in his acclaimed _Remembrance of Earth’s Past_ trilogy, particularly in the second book, _The Dark Forest_. However, the idea has roots in broader discussions about game theory and the potential dangers of interstellar communication. It builds on the premise that in a universe with limited resources and unknown intentions, silence is the safest strategy.

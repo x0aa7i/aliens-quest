@@ -15,7 +15,7 @@
 	]);
 </script>
 
-<div class="not-prose mt-4 flex flex-wrap gap-4 select-none">
+<div class="not-prose my-6 flex flex-wrap gap-4 select-none">
 	{#each chips as { icon: ChipIcon, text }}
 		<span
 			class="inline-flex items-center gap-2 border p-2 px-3 font-head text-sm tracking-wide text-zinc-200 capitalize"
