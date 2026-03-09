@@ -40,23 +40,22 @@
 
 <Metadata {...seo} />
 
-<main class="relative min-h-screen">
-	<header class="relative border-b pt-24">
-		<!-- Cover image as background -->
-		{#if metadata.cover?.src}
-			<div class="pointer-events-none absolute inset-0" aria-hidden="true">
-				<img
-					src={metadata.cover.src}
-					width={metadata.cover.width}
-					height={metadata.cover.height}
-					alt=""
-					class="h-full w-full object-cover opacity-30"
-					loading="eager"
-				/>
-				<!-- style="mask-image: radial-gradient(ellipse 86% 165% at 9% 29%, transparent 0%, black 50%, black 100%), linear-gradient(to bottom, transparent 65%, black 100%); mask-composite: intersect;" -->
-			</div>
-		{/if}
+<main class="min-h-screen">
+	<!-- Cover image as background -->
+	{#if metadata.cover?.src}
+		<div class="pointer-events-none absolute inset-0 h-96" aria-hidden="true">
+			<img
+				src={metadata.cover.src}
+				width={metadata.cover.width}
+				height={metadata.cover.height}
+				alt="background"
+				class="cover-image h-full w-full object-cover opacity-60"
+				loading="eager"
+			/>
+		</div>
+	{/if}
 
+	<section class="pt-24">
 		<!-- Hero content -->
 		<div class="relative z-10 mx-auto px-4 py-10 md:container md:px-8 lg:px-10">
 			<!-- Vote widget (inline on mobile, absolute on desktop) -->
@@ -83,7 +82,7 @@
 
 				<!-- Logo + Title -->
 				<div class="flex min-w-0 flex-col gap-2">
-					<div class="flex flex-wrap items-center gap-3">
+					<div class="flex flex-wrap items-center gap-2 md:gap-3">
 						{#if metadata.logo}
 							<span class="text-primary **:stroke-3 [&_svg]:h-8 [&_svg]:w-16" aria-hidden="true">
 								<!-- eslint-disable-next-line svelte/no-at-html-tags -->
@@ -93,7 +92,7 @@
 
 						<h1
 							itemprop="headline"
-							class="font-head text-3xl leading-none font-medium tracking-tight text-primary md:text-4xl lg:text-5xl"
+							class="font-head text-4xl leading-none font-medium tracking-tight text-primary md:text-5xl lg:text-5xl"
 						>
 							{metadata.title}
 						</h1>
@@ -114,7 +113,7 @@
 				</div>
 			</div>
 		</div>
-	</header>
+	</section>
 
 	<!-- ═══════════════════════════════════════════════
 	     3-COLUMN BODY LAYOUT
@@ -124,14 +123,14 @@
 		class="mx-auto grid grid-cols-1 md:container md:px-8 lg:grid-cols-[14rem_1fr] lg:px-10 xl:grid-cols-[14rem_1fr_24rem]"
 	>
 		<!-- ── LEFT: Section nav + all-solutions sidebar ── -->
-		<div class="sticky top-0 z-10 h-full w-full bg-surface-raised max-md:border-x">
-			<aside class="sticky top-0 w-full border-x border-b lg:border-none lg:py-8">
+		<div class="sticky top-0 z-10 h-full w-full">
+			<aside class="sticky top-0 w-full border-y sm:border-x lg:border-none lg:py-8">
 				<!-- Section tabs -->
 				<nav aria-label="Article sections" class="no-scrollbar w-full overflow-x-auto">
 					<ul class="flex gap-y-1 divide-x lg:flex-col">
 						{#each metadata.toc as entry (entry.url)}
 							{@const isActive = tocProps.tocState.isActive(entry)}
-							<li class="lg:border">
+							<li class="bg-surface-raised lg:border">
 								<a
 									href={entry.url}
 									class={[
@@ -249,3 +248,19 @@
 		</aside>
 	</div>
 </main>
+
+<style>
+	.cover-image {
+		mask-image:
+			radial-gradient(ellipse 70% 60% at 10% 50%, black 0%, transparent 100%),
+			linear-gradient(to bottom, black 0%, transparent 100%);
+		mask-composite: intersect;
+		-webkit-mask-composite: source-in;
+
+		@media (max-width: 767px) {
+			mask-image:
+				radial-gradient(ellipse 90% 50% at 10% 40%, black 0%, transparent 100%),
+				linear-gradient(to bottom, black 0%, transparent 100%);
+		}
+	}
+</style>

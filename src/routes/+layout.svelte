@@ -17,4 +17,6 @@
 	});
 </script>
 
-{@render children()}
+<div class="relative min-h-svh bg-surface-raised">
+	{@render children()}
+</div>

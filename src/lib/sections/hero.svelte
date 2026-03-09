@@ -26,11 +26,10 @@
 </script>
 
 <section
-	class="relative flex h-[calc(100dvh-5rem)] max-h-275 w-full flex-col overflow-hidden bg-surface pt-6 pb-6 md:pt-10 md:pb-8"
+	class="relative flex h-[calc(100dvh-5rem)] max-h-275 w-full flex-col overflow-hidden pt-6 pb-6 md:pt-10 md:pb-8"
 >
 	<!-- Background -->
 	<div class="pointer-events-none absolute inset-0">
-		<!-- <div class="absolute inset-0 bg-linear-to-t from-black via-[#0a0a0a]/80 to-[#101010]/90"></div> -->
 		<img
 			src="/stars.svg"
 			alt="background stars"

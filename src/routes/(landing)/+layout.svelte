@@ -5,8 +5,6 @@
 	let { children } = $props();
 </script>
 
-<div class="min-h-svh">
-	<Header />
-	{@render children()}
-	<!-- <Footer class="bg-gray-900" /> -->
-</div>
+<Header />
+{@render children()}
+<!-- <Footer class="bg-gray-900" /> -->

@@ -8,16 +8,16 @@
 	];
 </script>
 
-<header class="container mx-auto w-full px-4 py-4 md:px-8">
+<header class="relative z-50 container mx-auto w-full px-4 py-4 md:px-8">
 	<nav class="flex flex-wrap items-center justify-between py-2 font-head">
-		<a href="/" class="flex shrink-0 items-center gap-2 text-base font-medium text-gray-50">
+		<a href="/" class="flex shrink-0 items-center gap-2 text-base font-medium text-primary">
 			<img src="/logo.svg" width="26" height="14" alt="logo" class="h-4 w-auto" />
 			<span class="">Aliens Quest</span>
 		</a>
 
-		<ul class="flex items-center gap-5 font-head font-medium text-gray-400 md:gap-8">
+		<ul class="flex items-center gap-4 font-head font-medium text-tertiary md:gap-6">
 			{#each navLinks as link (link.label)}
-				<li><a href={link.href} class="transition-colors hover:text-gray-100">{link.label}</a></li>
+				<li><a href={link.href} class="transition-colors hover:text-primary">{link.label}</a></li>
 			{/each}
 		</ul>
 	</nav>
