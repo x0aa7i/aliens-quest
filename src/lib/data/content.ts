@@ -1,3 +1,5 @@
+import type { Solution } from "$content/index";
+
 import { solutions } from "$content/index";
 
 export function getSolutionMetadata(slug: string) {
@@ -10,6 +12,28 @@ export function getAllSolutions() {
 
 export function getSolution(slug: string) {
 	return solutions.find(({ slug: postSlug }) => postSlug === slug);
+}
+
+export function getSimilar(current: Solution) {
+	const similarPosts = solutions
+		.filter((p) => p.slug !== current.slug)
+		.map((a) => ({
+			...a,
+			score:
+				(a.tags?.filter((t) => current.tags?.includes(t)).length || 0) * 2 +
+				(a.probability === current.probability ? 1 : 0) +
+				(a.risk === current.risk ? 1 : 0),
+		}))
+		.sort((a, b) => b.score - a.score)
+		.slice(0, 3);
+
+	return similarPosts.map(({ title, url, cover, logo, slug }) => ({
+		title,
+		url,
+		cover,
+		logo,
+		slug,
+	}));
 }
 
 /**

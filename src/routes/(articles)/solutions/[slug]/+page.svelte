@@ -11,7 +11,7 @@
 
 	let { data } = $props();
 
-	const metadata = $derived(data.post);
+	const post = $derived(data.post);
 
 	const titleMeta = $derived([
 		{ icon: ExpandIcon, label: "Rank", value: "2 Rank" },
@@ -20,20 +20,15 @@
 	]);
 
 	let articleRef: HTMLElement | null = $state(null);
-	const tocProps = $derived({ tocState: useToc(metadata.toc, articleRef), items: metadata.toc });
-
-	// Similar solutions: all posts except the current one (capped at 3)
-	const similarPosts = $derived(
-		data.posts.filter((p: { slug: string }) => p.slug !== metadata.slug).slice(0, 3)
-	);
+	const tocProps = $derived({ tocState: useToc(post.toc, articleRef), items: post.toc });
 
 	const seo = $derived({
-		title: `${metadata.title} - ${defaultMeta.name}`,
+		title: `${post.title} - ${defaultMeta.name}`,
 		type: "article",
 		orImage: {
-			url: defaultMeta.url + metadata.cover.src,
-			width: metadata.cover.width.toString(),
-			height: metadata.cover.height.toString(),
+			url: defaultMeta.url + post.cover.src,
+			width: post.cover.width.toString(),
+			height: post.cover.height.toString(),
 		},
 	});
 </script>
@@ -42,12 +37,12 @@
 
 <main class="min-h-screen">
 	<!-- Cover image as background -->
-	{#if metadata.cover?.src}
+	{#if post.cover?.src}
 		<div class="pointer-events-none absolute inset-0 h-96" aria-hidden="true">
 			<img
-				src={metadata.cover.src}
-				width={metadata.cover.width}
-				height={metadata.cover.height}
+				src={post.cover.src}
+				width={post.cover.width}
+				height={post.cover.height}
 				alt="background"
 				class="cover-image h-full w-full object-cover opacity-60"
 				loading="eager"
@@ -83,10 +78,10 @@
 				<!-- Logo + Title -->
 				<div class="flex min-w-0 flex-col gap-2">
 					<div class="flex flex-wrap items-center gap-2 md:gap-3">
-						{#if metadata.logo}
+						{#if post.logo}
 							<span class="text-primary **:stroke-3 [&_svg]:h-8 [&_svg]:w-16" aria-hidden="true">
 								<!-- eslint-disable-next-line svelte/no-at-html-tags -->
-								{@html metadata.logo}
+								{@html post.logo}
 							</span>
 						{/if}
 
@@ -94,7 +89,7 @@
 							itemprop="headline"
 							class="font-head text-4xl leading-none font-medium tracking-tight text-primary md:text-5xl lg:text-5xl"
 						>
-							{metadata.title}
+							{post.title}
 						</h1>
 					</div>
 
@@ -128,7 +123,7 @@
 				<!-- Section tabs -->
 				<nav aria-label="Article sections" class="no-scrollbar w-full overflow-x-auto">
 					<ul class="flex gap-y-1 divide-x lg:flex-col">
-						{#each metadata.toc as entry (entry.url)}
+						{#each post.toc as entry (entry.url)}
 							{@const isActive = tocProps.tocState.isActive(entry)}
 							<li class="bg-surface-raised lg:border">
 								<a
@@ -154,12 +149,12 @@
 			<!-- Prose body -->
 			<div class="w-full space-y-8 px-4 pt-6 pb-16 sm:px-6 xl:px-8 xl:pt-8">
 				<div class="prose mx-auto max-w-prose text-pretty">
-					{@html metadata.content}
+					{@html post.content}
 				</div>
 
 				<!-- Article footer: edit link + prev/next nav -->
 				<footer class="mx-auto mt-10 w-full max-w-prose border-t pt-6 text-lg">
-					<EditLink slug={metadata.slug} />
+					<EditLink slug={post.slug} />
 				</footer>
 			</div>
 		</article>
@@ -168,11 +163,11 @@
 		<aside class="hidden xl:block">
 			<div class="top-8 space-y-10 overflow-y-auto p-6">
 				<!-- Pop culture section -->
-				{#if metadata.media?.length}
+				{#if post.media?.length}
 					<section aria-labelledby="pop-culture-heading">
 						<h2 class="font-head text-xl font-medium tracking-wide text-white">Pop culture</h2>
 						<div class="mt-4 flex flex-wrap gap-4">
-							{#each metadata.media as item (item.id)}
+							{#each post.media as item (item.id)}
 								<div
 									class="group flex w-[calc(50%-0.5rem)] flex-col gap-2 overflow-hidden border transition-colors hover:border-zinc-600"
 								>
@@ -206,23 +201,23 @@
 				{/if}
 
 				<!-- Similar solutions section -->
-				{#if similarPosts.length}
+				{#if post.similar.length}
 					<section aria-labelledby="similar-solutions-heading">
 						<h2 class="font-head text-xl font-medium tracking-wide text-primary">
 							Similar solutions
 						</h2>
 						<div class="mt-4 flex flex-col gap-4">
-							{#each similarPosts as post (post.slug)}
+							{#each post.similar as p (p.slug)}
 								<a
-									href={post.url}
+									href={p.url}
 									class="group flex flex-col overflow-hidden border transition-colors hover:border-zinc-600"
 								>
 									<!-- Cover image -->
 									<div class="aspect-2/1 w-full overflow-hidden bg-zinc-900">
-										{#if post.cover?.src}
+										{#if p.cover?.src}
 											<img
-												src={post.cover.src}
-												alt={post.title}
+												src={p.cover.src}
+												alt={p.title}
 												loading="lazy"
 												class="h-full w-full object-cover opacity-70 transition-all duration-300 group-hover:scale-105 group-hover:opacity-90"
 											/>
@@ -236,7 +231,7 @@
 										<p
 											class="truncate font-sans text-base leading-snug font-medium text-primary group-hover:text-zinc-200"
 										>
-											{post.title}
+											{p.title}
 										</p>
 									</div>
 								</a>

@@ -1,6 +1,6 @@
 import { error } from "node:console";
 
-import { getSolution } from "$lib/data/content";
+import { getSimilar, getSolution } from "$lib/data/content";
 import { renderContent } from "$lib/data/render.js";
 
 export function load({ params }) {
@@ -8,6 +8,11 @@ export function load({ params }) {
 
 	if (!post) throw error(404, "Not found");
 
-	const content = renderContent(post);
-	return { post: { ...post, content } };
+	return {
+		post: {
+			...post,
+			content: renderContent(post),
+			similar: getSimilar(post),
+		},
+	};
 }
