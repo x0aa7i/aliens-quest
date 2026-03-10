@@ -3,6 +3,7 @@ title: The Dark Forest
 overview: "Civilizations remain silent out of fear that revealing themselves will lead to their destruction."
 risk: 3
 probability: 1
+tags: ["sociological", "pessimistic", "hiding", "philosophical"]
 media:
   - type: "book"
     badges: ["Novel Series"]

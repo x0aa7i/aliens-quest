@@ -3,6 +3,7 @@ title: Percolation Theory
 overview: "Civilizations may expand unevenly, forming isolated bubbles that never reach each other."
 risk: 1
 probability: 2
+tags: ["physical", "pessimistic", "temporal", "scientific"]
 media:
   - type: "book"
     id: "pushing-ice"

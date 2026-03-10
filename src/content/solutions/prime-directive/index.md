@@ -3,6 +3,7 @@ title: The Prime Directive
 overview: "Advanced civilizations intentionally avoid contact with less advanced ones, as a form of ethical non-interference."
 risk: 1
 probability: 2
+tags: ["sociological", "optimistic", "hiding", "speculative"]
 media:
   - type: "tv"
     badges: ["TV Series", "Movies"]

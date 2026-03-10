@@ -3,6 +3,7 @@ title: Self-Destruction
 overview: "Civilizations tend to destroy themselves before achieving the ability to communicate or explore space."
 risk: 3
 probability: 2
+tags: ["sociological", "pessimistic", "temporal", "scientific"]
 media:
   - type: "tv"
     id: "125988-silo"

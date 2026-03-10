@@ -8,7 +8,6 @@ import rehypeSlug from "rehype-slug";
 import remarkDirective from "remark-directive";
 import { defineCollection, defineConfig, s, z } from "velite";
 
-import { splitHtmlByH2 } from "$lib/data/content";
 import { remarkDirectivePlaceholders } from "$lib/utils/remark";
 
 import { getBook, getMovie, getTv } from "./src/lib/data/media";
@@ -81,6 +80,21 @@ const mediaObject = s.object({
 
 type MediaObject = z.infer<typeof mediaObject>;
 
+// see docs/tags.md for more info
+const tagEnum = s.enum([
+	"hiding",
+	"invisible",
+	"optimistic",
+	"pessimistic",
+	"philosophical",
+	"physical",
+	"rare",
+	"scientific",
+	"sociological",
+	"speculative",
+	"temporal",
+]);
+
 const solutions = defineCollection({
 	name: "Solution",
 	pattern: "solutions/**/index.md",
@@ -95,6 +109,7 @@ const solutions = defineCollection({
 			risk: s.number().min(1).max(5).optional(), // risk of the solution
 			probability: s.number().min(1).max(5).optional(), // probability of the solution
 			media: mediaObject.array().optional(),
+			tags: s.array(tagEnum).optional(),
 		})
 		// more additional fields (computed fields)
 		.transform(async (data) => ({
@@ -110,6 +125,7 @@ const solutions = defineCollection({
 
 export default defineConfig({
 	root: "./src/content",
+	collections: { solutions, about },
 	output: {
 		assets: "./static/assets",
 		base: "/assets/",
@@ -118,5 +134,4 @@ export default defineConfig({
 		rehypePlugins: [rehypeSlug, rehypeAutolinkHeadings],
 		remarkPlugins: [remarkDirective, remarkDirectivePlaceholders],
 	},
-	collections: { solutions, about },
 });

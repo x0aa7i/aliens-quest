@@ -3,6 +3,7 @@ title: The Berserker
 overview: "Rogue AIs or ancient probes may be silently wiping out intelligent life as it arises."
 risk: 3
 probability: 1
+tags: ["sociological", "pessimistic", "hiding", "speculative"]
 media:
   - type: "book"
     id: "berserker"

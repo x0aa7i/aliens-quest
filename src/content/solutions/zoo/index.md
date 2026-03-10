@@ -3,6 +3,7 @@ title: The Zoo
 overview: "Earth is deliberately isolated and observed, much like animals in a zoo, to avoid disrupting our natural development."
 risk: 2
 probability: 2
+tags: ["sociological", "optimistic", "hiding", "speculative"]
 ---
 
 ## Overview

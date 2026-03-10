@@ -3,6 +3,7 @@ title: The Simulation
 overview: "We may be living in a simulation, and the absence of aliens is simply part of the programmed environment."
 risk: 2
 probability: 2
+tags: ["physical", "pessimistic", "speculative", "philosophical"]
 media:
   - type: "movie"
     id: "603-the-matrix"
