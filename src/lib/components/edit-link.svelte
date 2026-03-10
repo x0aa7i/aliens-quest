@@ -9,7 +9,7 @@
 </script>
 
 <a
-	href={`https://github.com/x0aa7i/aliens-quest/edit/main/src/content/solutions/${slug}/index.md`}
+	href={`https://github.com/x0aa7i/aliens-quest/edit/main/content/solutions/${slug}/index.md`}
 	class="inline-flex items-center gap-1 text-base font-normal text-indigo-300 transition-colors hover:text-indigo-200"
 	target="_blank"
 >

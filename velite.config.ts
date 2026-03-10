@@ -116,7 +116,7 @@ const solutions = defineCollection({
 			...data,
 			slug: data.slug.replace(/^.*\//, ""),
 			url: `/${data.slug}`,
-			logo: await readSvgFile("./src/content/" + data.slug + "/logo.svg"),
+			logo: await readSvgFile("./content/" + data.slug + "/logo.svg"),
 			risk: getScale(data.risk),
 			probability: getScale(data.probability),
 			media: await loadMedia(data.media),
@@ -124,7 +124,7 @@ const solutions = defineCollection({
 });
 
 export default defineConfig({
-	root: "./src/content",
+	root: "./content",
 	collections: { solutions, about },
 	output: {
 		assets: "./static/assets",

@@ -2,7 +2,7 @@ import fs from "fs/promises";
 import path from "path";
 import matter from "gray-matter";
 
-const solutionsDir = path.join(process.cwd(), "src/content/solutions");
+const solutionsDir = path.join(process.cwd(), "content/solutions");
 const readmePath = path.join(process.cwd(), "README.md");
 
 type Solution = {
@@ -36,7 +36,7 @@ async function getSolutions(): Promise<Solution[]> {
 function formatTable(solutions: Solution[]): string {
 	const header = `| Title | Overview | Link |\n|-------|----------|------|`;
 	const rows = solutions.map((s) => {
-		const title = `[${s.title}](./src/content/solutions/${s.slug}/index.md)`;
+		const title = `[${s.title}](./content/solutions/${s.slug}/index.md)`;
 		const link = `<a href="https://aliensquest.com/solutions/${s.slug}" target="_blank">↗️</a>`;
 		return `| ${title} | ${s.overview} | ${link} |`;
 	});

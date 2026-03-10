@@ -2,9 +2,9 @@ import fs from "fs/promises";
 import { dirname, join } from "path";
 import { fileURLToPath } from "url";
 
-import booksJson from "../../content/media/books.json";
-import moviesJson from "../../content/media/movies.json";
-import tvJson from "../../content/media/tv.json";
+import booksJson from "../../../content/media/books.json";
+import moviesJson from "../../../content/media/movies.json";
+import tvJson from "../../../content/media/tv.json";
 
 interface MediaResponse {
 	title: string;
@@ -85,9 +85,9 @@ const __filename = fileURLToPath(import.meta.url);
 const __root = join(dirname(__filename), "..");
 
 const dataPaths = {
-	movies: join(__root, "./src/content/media/movies.json"),
-	books: join(__root, "./src/content/media/books.json"),
-	tv: join(__root, "./src/content/media/tv.json"),
+	movies: join(__root, "./content/media/movies.json"),
+	books: join(__root, "./content/media/books.json"),
+	tv: join(__root, "./content/media/tv.json"),
 };
 
 const cachedData = {
