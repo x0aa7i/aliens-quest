@@ -1,6 +1,7 @@
 import { eq } from "drizzle-orm";
 
 import { getAllSolutions } from "$lib/data/content";
+import { VISITOR_ID_COOKIE_NAME } from "$lib/hooks/fingerprint.svelte.js";
 import { getDb } from "$lib/server/db/index.js";
 import { solutions, votes } from "$lib/server/db/schema.js";
 
@@ -21,7 +22,7 @@ export async function load({ platform, cookies }) {
 	// const userVotesRes = await fetch("/api/votes");
 	// const userVotes = (await userVotesRes.json()) as Record<string, number>;
 
-	const fingerprint = cookies.get("alienId");
+	const fingerprint = cookies.get(VISITOR_ID_COOKIE_NAME);
 	if (!fingerprint) return { posts: mergedPosts, userVotes: {} };
 
 	// Fetch all votes for this specific device

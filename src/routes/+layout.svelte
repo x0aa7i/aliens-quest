@@ -1,7 +1,11 @@
 <script lang="ts">
+	import { onMount } from "svelte";
+
 	import { onNavigate } from "$app/navigation";
 
 	import "../styles/app.css";
+
+	import { initializeVisitorId } from "$lib/hooks/fingerprint.svelte";
 
 	let { children } = $props();
 
@@ -14,6 +18,10 @@
 				await navigation.complete;
 			});
 		});
+	});
+
+	onMount(async () => {
+		await initializeVisitorId();
 	});
 </script>
 

@@ -1,16 +1,15 @@
 <script lang="ts">
-	import FingerprintJS from "@fingerprintjs/fingerprintjs";
 	import CaretDownIcon from "~icons/bx/caret-down";
 	import CaretUpIcon from "~icons/bx/caret-up";
 	import ExpandIcon from "~icons/bx/expand-vertical";
 	import LikeIcon from "~icons/bx/like";
 	import MedalIcon from "~icons/bx/up-arrow-circle";
-	import { onMount } from "svelte";
 
 	import { enhance } from "$app/forms";
 
 	import EditLink from "$lib/components/edit-link.svelte";
 	import Metadata, { defaultMeta } from "$lib/components/metadata.svelte";
+	import { visitorId } from "$lib/hooks/fingerprint.svelte";
 	import { useToc } from "$lib/hooks/use-toc.svelte.js";
 
 	let { data } = $props();
@@ -24,23 +23,6 @@
 		{ icon: MedalIcon, label: "Votes", value: `${score} votes` },
 		{ icon: LikeIcon, label: "Positive", value: "68% Positive" },
 	]);
-
-	let visitorId = $state("");
-
-	onMount(async () => {
-		// Check if cookie already exists
-		const hasCookie = document.cookie.includes("alienId=");
-		visitorId = document.cookie.match(/alienId=([^;]+)/)?.[1] ?? "";
-
-		if (!hasCookie) {
-			const fp = await FingerprintJS.load();
-			const result = await fp.get();
-			visitorId = result.visitorId;
-
-			// Set cookie for 1 year, accessible by server
-			document.cookie = `alienId=${visitorId}; path=/; max-age=31536000; SameSite=Lax`;
-		}
-	});
 
 	let articleRef: HTMLElement | null = $state(null);
 	const tocProps = $derived({ tocState: useToc(post.toc, articleRef), items: post.toc });
@@ -86,7 +68,7 @@
 					aria-label="Vote on this solution"
 					use:enhance
 				>
-					<input type="hidden" name="fingerprint" value={visitorId} />
+					<input type="hidden" name="fingerprint" value={visitorId.current} />
 					<input type="hidden" name="solutionId" value={post.slug} />
 					<button
 						name="value"
