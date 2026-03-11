@@ -76,10 +76,10 @@
 						aria-label="Upvote"
 						aria-pressed={userVotes[post.slug] === 1}
 						class={[
-							"flex h-9 w-10 items-center justify-center border text-zinc-300 transition-colors hover:bg-zinc-700 hover:text-white",
+							"flex h-10 w-12 items-center justify-center border transition-colors hover:brightness-125",
 							userVotes[post.slug] === 1
-								? "border-blue-500 bg-zinc-700 text-white"
-								: "text-zinc-300",
+								? "border-[#007856] bg-[#05241E] text-emerald-50"
+								: "border bg-surface-raised/70 text-quaternary",
 						]}
 					>
 						<CaretUpIcon class="size-5" />
@@ -91,10 +91,10 @@
 						aria-label="Downvote"
 						aria-pressed={userVotes[post.slug] === -1}
 						class={[
-							"flex h-9 w-10 items-center justify-center border text-zinc-300 transition-colors hover:bg-zinc-700 hover:text-white",
+							"flex h-10 w-12 items-center justify-center border transition-colors hover:brightness-125",
 							userVotes[post.slug] === -1
-								? "border-blue-500 bg-zinc-700 text-white"
-								: "text-zinc-300",
+								? "border-[#7C4130] bg-[#281A15] text-orange-50"
+								: "border bg-surface-raised/70 text-quaternary",
 						]}
 					>
 						<CaretDownIcon class="size-5" />
