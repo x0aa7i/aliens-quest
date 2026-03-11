@@ -62,7 +62,7 @@
 
 	<section class="pt-24 md:pt-28">
 		<!-- Hero content -->
-		<div class="relative z-10 mx-auto px-4 py-10 md:container md:px-8 lg:px-10">
+		<div class="relative z-10 mx-auto px-4 py-10 sm:px-6 md:container md:px-8 lg:px-10">
 			<!-- Vote widget (inline on mobile, absolute on desktop) -->
 			<!-- Title row -->
 			<div class="flex flex-col items-start gap-4 md:flex-row md:items-center lg:gap-6">
@@ -125,7 +125,7 @@
 					</div>
 
 					<!-- Stats row: rank · votes · sentiment -->
-					<div class="flex flex-wrap items-center gap-4 opacity-80">
+					<div class="flex flex-wrap items-center gap-x-4 gap-y-1 opacity-80">
 						{#each titleMeta as { icon: Icon, label, value }}
 							<span
 								class="flex items-center gap-1.5 font-head text-sm font-medium tracking-wide text-secondary"
@@ -160,10 +160,10 @@
 								<a
 									href={entry.url}
 									class={[
-										"block w-full px-6 py-5 text-base text-nowrap transition-colors duration-200 ",
+										"block w-full px-6 py-5 text-base text-nowrap transition-colors duration-200 max-lg:border-b-2 lg:border-l-2",
 										isActive
-											? "bg-linear-to-r from-zinc-900/50 to-transparent text-white"
-											: "text-white/50 hover:text-white/80",
+											? "border-zinc-300 bg-linear-to-r from-zinc-900/50 to-transparent text-white"
+											: "border-transparent text-white/50 hover:text-white/80",
 									]}
 								>
 									{entry.title}

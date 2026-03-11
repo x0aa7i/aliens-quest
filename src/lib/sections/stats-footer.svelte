@@ -85,7 +85,7 @@
 {#snippet stats(stats: Stats[])}
 	<div class="flex flex-1 flex-col border border-b-0 bg-surface-raised font-head">
 		{#each stats as { label, value }}
-			<div class="flex flex-1 items-center justify-between border-b px-4 py-3">
+			<div class="flex flex-1 items-center justify-between gap-1 border-b px-4 py-3">
 				<span class="text-xs font-medium tracking-wider text-quaternary uppercase">
 					{label}
 				</span>

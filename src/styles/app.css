@@ -20,14 +20,15 @@
 		block-size: 100%;
 		-webkit-tap-highlight-color: transparent; /* remove tap highlight on mobile */
 
-		color: var(--color-zinc-100);
-		background-color: var(--color-zinc-950);
+		color: var(--text-color-primary);
+		background-color: var(--color-surface-raised);
 
 		font-synthesis: none;
 		text-rendering: optimizeLegibility;
 		-webkit-font-smoothing: antialiased;
 		-moz-osx-font-smoothing: grayscale;
 
+		scroll-behavior: smooth;
 		/* @media (prefers-reduced-motion: no-preference) { */
 		/* 	scroll-behavior: smooth; */
 		/* } */

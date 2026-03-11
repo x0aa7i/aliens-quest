@@ -1,7 +1,7 @@
 .prose {
-	--prose-color: var(--color-zinc-300);
+	--prose-color: var(--color-zinc-400);
 	--prose-heading-color: var(--color-gray-200);
-	--prose-strong-color: var(--color-white);
+	--prose-strong-color: var(--color-zinc-200);
 	--prose-link-color: var(--color-gray-300);
 	--prose-code-color: var(--color-white);
 	--prose-marker-color: color-mix(in oklab, var(--color-gray-300) 35%, transparent);
@@ -61,9 +61,9 @@
 
 	:is(h2, h3, h4):where(:not(.not-prose, .not-prose *)) {
 		font-family: var(--font-head);
-		scroll-margin-top: calc(var(--spacing) * 32);
+		scroll-margin-top: calc(var(--spacing) * 22);
 		@variant lg {
-			scroll-margin-top: calc(var(--spacing) * 24);
+			scroll-margin-top: calc(var(--spacing) * 8);
 		}
 	}
 

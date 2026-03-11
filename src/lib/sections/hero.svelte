@@ -39,13 +39,13 @@
 		<img
 			src="/stars.svg"
 			alt="background stars"
-			class="absolute inset-0 h-full w-full object-cover opacity-30 mix-blend-screen"
+			class="absolute inset-0 h-full w-full object-cover opacity-30"
 		/>
 	</div>
 
 	<!-- Main Container -->
 	<div
-		class="z-10 container mx-auto flex h-full w-full flex-col gap-6 overflow-hidden px-4 md:gap-8 md:px-8 lg:px-12"
+		class="z-10 mx-auto flex h-full w-full flex-col gap-6 overflow-hidden px-4 sm:px-8 md:container md:gap-8 lg:px-10"
 	>
 		<!-- Row 1: Title Area & Nav Controls -->
 		<div
