@@ -49,13 +49,13 @@
 				width={post.cover.width}
 				height={post.cover.height}
 				alt="background"
-				class="cover-image h-full w-full object-cover opacity-60"
+				class="cover-image h-full w-full object-cover opacity-40"
 				loading="eager"
 			/>
 		</div>
 	{/if}
 
-	<section class="pt-24">
+	<section class="pt-24 md:pt-28">
 		<!-- Hero content -->
 		<div class="relative z-10 mx-auto px-4 py-10 md:container md:px-8 lg:px-10">
 			<!-- Vote widget (inline on mobile, absolute on desktop) -->
@@ -273,15 +273,15 @@
 <style>
 	.cover-image {
 		mask-image:
-			radial-gradient(ellipse 70% 60% at 10% 50%, black 0%, transparent 100%),
-			linear-gradient(to bottom, black 0%, transparent 100%);
+			radial-gradient(ellipse 70% 60% at 10% 50%, black 25%, transparent 100%),
+			linear-gradient(to bottom, black 25%, rgba(0, 0, 0, 0.5) 50%, transparent 100%);
 		mask-composite: intersect;
 		-webkit-mask-composite: source-in;
 
 		@media (max-width: 767px) {
 			mask-image:
-				radial-gradient(ellipse 90% 50% at 10% 40%, black 0%, transparent 100%),
-				linear-gradient(to bottom, black 0%, transparent 100%);
+				radial-gradient(ellipse 90% 50% at 10% 40%, black 35%, transparent 100%),
+				linear-gradient(to bottom, black 25%, rgba(0, 0, 0, 0.75) 50%, transparent 100%);
 		}
 	}
 </style>
