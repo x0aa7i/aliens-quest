@@ -9,7 +9,7 @@
 	import StatsFooter from "$lib/sections/stats-footer.svelte";
 
 	type Props = {
-		cards: SolutionCardProps[];
+		cards: (SolutionCardProps & { score: number })[];
 	};
 
 	let { cards }: Props = $props();
@@ -124,6 +124,9 @@
 								>
 									{card.title}
 								</h3>
+								<span class="font-head text-sm font-medium text-quaternary">
+									{card.score}
+								</span>
 							</div>
 						</a>
 					</Carousel.Item>

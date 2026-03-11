@@ -8,6 +8,9 @@ importers:
 
   .:
     dependencies:
+      '@fingerprintjs/fingerprintjs':
+        specifier: ^5.1.0
+        version: 5.1.0
       '@fontsource-variable/ibm-plex-sans':
         specifier: ^5.2.8
         version: 5.2.8
@@ -3199,6 +3202,8 @@ snapshots:
     dependencies:
       '@eslint/core': 1.1.0
       levn: 0.4.1
+
+  '@fingerprintjs/fingerprintjs@5.1.0': {}
 
   '@floating-ui/core@1.7.5':
     dependencies:

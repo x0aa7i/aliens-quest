@@ -1,9 +1,13 @@
 <script lang="ts">
+	import FingerprintJS from "@fingerprintjs/fingerprintjs";
 	import CaretDownIcon from "~icons/bx/caret-down";
 	import CaretUpIcon from "~icons/bx/caret-up";
 	import ExpandIcon from "~icons/bx/expand-vertical";
 	import LikeIcon from "~icons/bx/like";
 	import MedalIcon from "~icons/bx/up-arrow-circle";
+	import { onMount } from "svelte";
+
+	import { enhance } from "$app/forms";
 
 	import EditLink from "$lib/components/edit-link.svelte";
 	import Metadata, { defaultMeta } from "$lib/components/metadata.svelte";
@@ -12,12 +16,31 @@
 	let { data } = $props();
 
 	const post = $derived(data.post);
+	const score = $derived(post.score);
+	const userVotes = $derived(data.userVotes); // { solutionId: value }
 
 	const titleMeta = $derived([
 		{ icon: ExpandIcon, label: "Rank", value: "2 Rank" },
-		{ icon: MedalIcon, label: "Votes", value: "1.2k votes" },
+		{ icon: MedalIcon, label: "Votes", value: `${score} votes` },
 		{ icon: LikeIcon, label: "Positive", value: "68% Positive" },
 	]);
+
+	let visitorId = $state("");
+
+	onMount(async () => {
+		// Check if cookie already exists
+		const hasCookie = document.cookie.includes("alienId=");
+		visitorId = document.cookie.match(/alienId=([^;]+)/)?.[1] ?? "";
+
+		if (!hasCookie) {
+			const fp = await FingerprintJS.load();
+			const result = await fp.get();
+			visitorId = result.visitorId;
+
+			// Set cookie for 1 year, accessible by server
+			document.cookie = `alienId=${visitorId}; path=/; max-age=31536000; SameSite=Lax`;
+		}
+	});
 
 	let articleRef: HTMLElement | null = $state(null);
 	const tocProps = $derived({ tocState: useToc(post.toc, articleRef), items: post.toc });
@@ -57,23 +80,44 @@
 			<!-- Title row -->
 			<div class="flex flex-col items-start gap-4 md:flex-row md:items-center lg:gap-6">
 				<!-- Upvote / Downvote widget -->
-				<div
+				<form
+					method="POST"
 					class="order-1 flex shrink-0 gap-1 md:order-0 md:flex-col"
 					aria-label="Vote on this solution"
+					use:enhance
 				>
+					<input type="hidden" name="fingerprint" value={visitorId} />
+					<input type="hidden" name="solutionId" value={post.slug} />
 					<button
-						class="flex h-9 w-10 items-center justify-center border text-zinc-300 transition-colors hover:bg-zinc-700 hover:text-white"
+						name="value"
+						value="1"
 						aria-label="Upvote"
+						aria-pressed={userVotes[post.slug] === 1}
+						class={[
+							"flex h-9 w-10 items-center justify-center border text-zinc-300 transition-colors hover:bg-zinc-700 hover:text-white",
+							userVotes[post.slug] === 1
+								? "border-blue-500 bg-zinc-700 text-white"
+								: "text-zinc-300",
+						]}
 					>
 						<CaretUpIcon class="size-5" />
 					</button>
+
 					<button
-						class="flex h-9 w-10 items-center justify-center border text-zinc-300 transition-colors hover:bg-zinc-700 hover:text-white"
+						name="value"
+						value="-1"
 						aria-label="Downvote"
+						aria-pressed={userVotes[post.slug] === -1}
+						class={[
+							"flex h-9 w-10 items-center justify-center border text-zinc-300 transition-colors hover:bg-zinc-700 hover:text-white",
+							userVotes[post.slug] === -1
+								? "border-blue-500 bg-zinc-700 text-white"
+								: "text-zinc-300",
+						]}
 					>
 						<CaretDownIcon class="size-5" />
 					</button>
-				</div>
+				</form>
 
 				<!-- Logo + Title -->
 				<div class="flex min-w-0 flex-col gap-2">
