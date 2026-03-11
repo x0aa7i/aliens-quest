@@ -15,13 +15,18 @@
 	let { data } = $props();
 
 	const post = $derived(data.post);
-	const score = $derived(post.score);
 	const userVotes = $derived(data.userVotes); // { solutionId: value }
+
+	const positivity = $derived.by(() => {
+		const total = post.upvotes + post.downvotes;
+		if (total === 0) return 0;
+		return (post.upvotes / total) * 100;
+	});
 
 	const titleMeta = $derived([
 		{ icon: ExpandIcon, label: "Rank", value: `${post.rank} Rank` },
-		{ icon: MedalIcon, label: "Votes", value: `${score} votes` },
-		{ icon: LikeIcon, label: "Positive", value: "68% Positive" },
+		{ icon: MedalIcon, label: "Votes", value: `${post.votes} Votes` },
+		{ icon: LikeIcon, label: "Positive", value: `${positivity}% Positive` },
 	]);
 
 	let articleRef: HTMLElement | null = $state(null);

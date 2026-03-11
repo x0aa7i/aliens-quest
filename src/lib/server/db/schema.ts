@@ -7,7 +7,8 @@ export const solutions = sqliteTable("solutions", {
 	id: text("id").primaryKey(),
 	title: text("title").notNull(),
 	// Denormalized score for instant display
-	totalScore: integer("total_score").notNull().default(0),
+	upvotes: integer("upvotes").notNull().default(0),
+	downvotes: integer("downvotes").notNull().default(0),
 });
 
 // 2. Votes Table

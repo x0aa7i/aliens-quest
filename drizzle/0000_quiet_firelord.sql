@@ -1,7 +1,8 @@
 CREATE TABLE `solutions` (
 	`id` text PRIMARY KEY NOT NULL,
 	`title` text NOT NULL,
-	`total_score` integer DEFAULT 0 NOT NULL
+	`upvotes` integer DEFAULT 0 NOT NULL,
+	`downvotes` integer DEFAULT 0 NOT NULL
 );
 --> statement-breakpoint
 CREATE TABLE `votes` (

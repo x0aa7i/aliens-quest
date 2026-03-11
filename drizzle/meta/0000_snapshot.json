@@ -1,124 +1,123 @@
 {
-  "version": "6",
-  "dialect": "sqlite",
-  "id": "5685541a-ecb5-4d91-b8f6-588a5f1d09ae",
-  "prevId": "00000000-0000-0000-0000-000000000000",
-  "tables": {
-    "solutions": {
-      "name": "solutions",
-      "columns": {
-        "id": {
-          "name": "id",
-          "type": "text",
-          "primaryKey": true,
-          "notNull": true,
-          "autoincrement": false
-        },
-        "title": {
-          "name": "title",
-          "type": "text",
-          "primaryKey": false,
-          "notNull": true,
-          "autoincrement": false
-        },
-        "total_score": {
-          "name": "total_score",
-          "type": "integer",
-          "primaryKey": false,
-          "notNull": true,
-          "autoincrement": false,
-          "default": 0
-        }
-      },
-      "indexes": {},
-      "foreignKeys": {},
-      "compositePrimaryKeys": {},
-      "uniqueConstraints": {},
-      "checkConstraints": {}
-    },
-    "votes": {
-      "name": "votes",
-      "columns": {
-        "fingerprint": {
-          "name": "fingerprint",
-          "type": "text",
-          "primaryKey": false,
-          "notNull": true,
-          "autoincrement": false
-        },
-        "solution_id": {
-          "name": "solution_id",
-          "type": "text",
-          "primaryKey": false,
-          "notNull": true,
-          "autoincrement": false
-        },
-        "value": {
-          "name": "value",
-          "type": "integer",
-          "primaryKey": false,
-          "notNull": true,
-          "autoincrement": false
-        },
-        "created_at": {
-          "name": "created_at",
-          "type": "integer",
-          "primaryKey": false,
-          "notNull": true,
-          "autoincrement": false,
-          "default": "(unixepoch())"
-        }
-      },
-      "indexes": {
-        "votes_solution_id_idx": {
-          "name": "votes_solution_id_idx",
-          "columns": [
-            "solution_id"
-          ],
-          "isUnique": false
-        }
-      },
-      "foreignKeys": {
-        "votes_solution_id_solutions_id_fk": {
-          "name": "votes_solution_id_solutions_id_fk",
-          "tableFrom": "votes",
-          "tableTo": "solutions",
-          "columnsFrom": [
-            "solution_id"
-          ],
-          "columnsTo": [
-            "id"
-          ],
-          "onDelete": "cascade",
-          "onUpdate": "no action"
-        }
-      },
-      "compositePrimaryKeys": {
-        "votes_fingerprint_solution_id_pk": {
-          "columns": [
-            "fingerprint",
-            "solution_id"
-          ],
-          "name": "votes_fingerprint_solution_id_pk"
-        }
-      },
-      "uniqueConstraints": {},
-      "checkConstraints": {
-        "vote_value_check": {
-          "name": "vote_value_check",
-          "value": "\"votes\".\"value\" IN (1, -1)"
-        }
-      }
-    }
-  },
-  "views": {},
-  "enums": {},
-  "_meta": {
-    "schemas": {},
-    "tables": {},
-    "columns": {}
-  },
-  "internal": {
-    "indexes": {}
-  }
+	"version": "6",
+	"dialect": "sqlite",
+	"id": "6b39c804-bbd1-4d39-82c0-aadf32bf9233",
+	"prevId": "00000000-0000-0000-0000-000000000000",
+	"tables": {
+		"solutions": {
+			"name": "solutions",
+			"columns": {
+				"id": {
+					"name": "id",
+					"type": "text",
+					"primaryKey": true,
+					"notNull": true,
+					"autoincrement": false
+				},
+				"title": {
+					"name": "title",
+					"type": "text",
+					"primaryKey": false,
+					"notNull": true,
+					"autoincrement": false
+				},
+				"upvotes": {
+					"name": "upvotes",
+					"type": "integer",
+					"primaryKey": false,
+					"notNull": true,
+					"autoincrement": false,
+					"default": 0
+				},
+				"downvotes": {
+					"name": "downvotes",
+					"type": "integer",
+					"primaryKey": false,
+					"notNull": true,
+					"autoincrement": false,
+					"default": 0
+				}
+			},
+			"indexes": {},
+			"foreignKeys": {},
+			"compositePrimaryKeys": {},
+			"uniqueConstraints": {},
+			"checkConstraints": {}
+		},
+		"votes": {
+			"name": "votes",
+			"columns": {
+				"fingerprint": {
+					"name": "fingerprint",
+					"type": "text",
+					"primaryKey": false,
+					"notNull": true,
+					"autoincrement": false
+				},
+				"solution_id": {
+					"name": "solution_id",
+					"type": "text",
+					"primaryKey": false,
+					"notNull": true,
+					"autoincrement": false
+				},
+				"value": {
+					"name": "value",
+					"type": "integer",
+					"primaryKey": false,
+					"notNull": true,
+					"autoincrement": false
+				},
+				"created_at": {
+					"name": "created_at",
+					"type": "integer",
+					"primaryKey": false,
+					"notNull": true,
+					"autoincrement": false,
+					"default": "(unixepoch())"
+				}
+			},
+			"indexes": {
+				"votes_solution_id_idx": {
+					"name": "votes_solution_id_idx",
+					"columns": ["solution_id"],
+					"isUnique": false
+				}
+			},
+			"foreignKeys": {
+				"votes_solution_id_solutions_id_fk": {
+					"name": "votes_solution_id_solutions_id_fk",
+					"tableFrom": "votes",
+					"tableTo": "solutions",
+					"columnsFrom": ["solution_id"],
+					"columnsTo": ["id"],
+					"onDelete": "cascade",
+					"onUpdate": "no action"
+				}
+			},
+			"compositePrimaryKeys": {
+				"votes_fingerprint_solution_id_pk": {
+					"columns": ["fingerprint", "solution_id"],
+					"name": "votes_fingerprint_solution_id_pk"
+				}
+			},
+			"uniqueConstraints": {},
+			"checkConstraints": {
+				"vote_value_check": {
+					"name": "vote_value_check",
+					"value": "\"votes\".\"value\" IN (1, -1)"
+				}
+			}
+		}
+	},
+	"views": {},
+	"enums": {},
+	"_meta": {
+		"schemas": {},
+		"tables": {},
+		"columns": {}
+	},
+	"internal": {
+		"indexes": {}
+	}
 }

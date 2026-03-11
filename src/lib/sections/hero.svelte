@@ -9,7 +9,13 @@
 	import StatsFooter from "$lib/sections/stats-footer.svelte";
 
 	type Props = {
-		cards: (SolutionCardProps & { score: number; rank: number })[];
+		cards: (SolutionCardProps & {
+			score: number;
+			rank: number;
+			votes: number;
+			upvotes: number;
+			downvotes: number;
+		})[];
 	};
 
 	let { cards }: Props = $props();
@@ -108,25 +114,28 @@
 							<div
 								class="relative flex w-full flex-col border-t bg-surface-raised/90 px-6 py-5 backdrop-blur-md"
 							>
-								<div class="flex items-center justify-between gap-2 md:gap-4">
-									<div class="**:stroke-[1.5] [&_svg]:h-10 [&_svg]:w-10">
+								<div class="flex items-start gap-2 md:gap-3">
+									<div class="**:stroke-[1.5] [&_svg]:h-8 [&_svg]:w-10">
 										<!-- eslint-disable-next-line svelte/no-at-html-tags -->
 										{@html card.logo}
 									</div>
 
-									<span class="font-head text-lg font-medium text-quaternary">
-										#{card.rank}
-									</span>
-								</div>
+									<div class="flex flex-col">
+										<h3
+											class="truncate font-head text-xl font-normal text-primary md:text-lg lg:text-xl lg:tracking-wide"
+										>
+											{card.title}
+										</h3>
 
-								<h3
-									class="truncate font-head text-xl font-normal text-primary md:text-lg lg:text-xl lg:tracking-wide"
-								>
-									{card.title}
-								</h3>
-								<span class="font-head text-sm font-medium text-quaternary">
-									{card.score}
-								</span>
+										<div
+											class="flex items-center gap-2 font-head text-sm font-medium text-quaternary"
+										>
+											<span class=""> #{card.rank} </span>
+											<span class=""> · </span>
+											<span class=""> {card.votes} Votes </span>
+										</div>
+									</div>
+								</div>
 							</div>
 						</a>
 					</Carousel.Item>

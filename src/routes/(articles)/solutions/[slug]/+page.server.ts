@@ -14,14 +14,16 @@ export async function load({ params, parent }) {
 	if (!post) throw error(404, "Not found");
 
 	const layoutData = await parent();
-	const { score, rank } = layoutData.posts.find((p) => p.slug === params.slug)!;
+	const { rank, upvotes, downvotes, votes } = layoutData.posts.find((p) => p.slug === params.slug)!;
 
 	return {
 		post: {
 			...post,
 			content: renderContent(post),
 			similar: getSimilar(post),
-			score,
+			upvotes,
+			downvotes,
+			votes,
 			rank,
 		},
 	};
@@ -32,10 +34,14 @@ export const actions = {
 		const formData = await request.formData();
 		const fingerprint = formData.get("fingerprint")?.toString();
 		const solutionId = formData.get("solutionId")?.toString();
-		const newValue = parseInt(formData.get("value")?.toString() || "0");
+		const newValue = parseInt(formData.get("value")?.toString() || "");
 
 		if (!fingerprint || !solutionId || !platform?.env.db) {
 			return fail(400, { message: "Missing data" });
+		}
+
+		if (newValue !== 1 && newValue !== -1) {
+			return fail(400, { message: "Invalid vote value" });
 		}
 
 		const db = getDb(platform);
@@ -49,47 +55,52 @@ export const actions = {
 				.get();
 
 			// 2. Determine action & calculate score delta
-			let scoreDelta = 0;
-			const operations: any[] = [];
+			const ops: any[] = [];
+			let upvoteDelta = 0;
+			let downvoteDelta = 0;
 
-			if (existing) {
-				if (existing.value === newValue) {
-					// User clicked same button again → REMOVE vote
-					scoreDelta = -existing.value;
-					operations.push(
-						db
-							.delete(votes)
-							.where(and(eq(votes.fingerprint, fingerprint), eq(votes.solutionId, solutionId)))
-					);
-				} else {
-					// User switched vote (e.g., -1 → 1)
-					scoreDelta = newValue - existing.value;
-					operations.push(
-						db
-							.insert(votes)
-							.values({ fingerprint, solutionId, value: newValue })
-							.onConflictDoUpdate({
-								target: [votes.fingerprint, votes.solutionId],
-								set: { value: newValue },
-							})
-					);
-				}
+			if (!existing) {
+				// New vote
+				upvoteDelta = newValue === 1 ? 1 : 0;
+				downvoteDelta = newValue === -1 ? 1 : 0;
+
+				ops.push(db.insert(votes).values({ fingerprint, solutionId, value: newValue }));
+			} else if (existing.value === newValue) {
+				// Remove vote (Toggle off)
+				upvoteDelta = newValue === 1 ? -1 : 0;
+				downvoteDelta = newValue === -1 ? -1 : 0;
+
+				ops.push(
+					db
+						.delete(votes)
+						.where(and(eq(votes.fingerprint, fingerprint), eq(votes.solutionId, solutionId)))
+				);
 			} else {
-				// First time voting
-				scoreDelta = newValue;
-				operations.push(db.insert(votes).values({ fingerprint, solutionId, value: newValue }));
+				// Switch vote (e.g., Up -> Down)
+				// If switching to Down (-1), upvote goes -1 and downvote goes +1
+				upvoteDelta = newValue === 1 ? 1 : -1;
+				downvoteDelta = newValue === -1 ? 1 : -1;
+				ops.push(
+					db
+						.update(votes)
+						.set({ value: newValue })
+						.where(and(eq(votes.fingerprint, fingerprint), eq(votes.solutionId, solutionId)))
+				);
 			}
 
-			// 3. Always update the score
-			operations.push(
+			// 3. Update both upvotes and downvotes
+			ops.push(
 				db
 					.update(solutions)
-					.set({ totalScore: sql`${solutions.totalScore} + ${scoreDelta}` })
+					.set({
+						upvotes: sql`${solutions.upvotes} + ${upvoteDelta}`,
+						downvotes: sql`${solutions.downvotes} + ${downvoteDelta}`,
+					})
 					.where(eq(solutions.id, solutionId))
 			);
 
 			// 4. Run as batch (atomic transaction)
-			await db.batch(operations as any);
+			await db.batch(ops as any);
 
 			return { success: true };
 		} catch (err) {
