@@ -9,7 +9,7 @@
 	import StatsFooter from "$lib/sections/stats-footer.svelte";
 
 	type Props = {
-		cards: (SolutionCardProps & { score: number })[];
+		cards: (SolutionCardProps & { score: number; rank: number })[];
 	};
 
 	let { cards }: Props = $props();
@@ -87,7 +87,7 @@
 		>
 			<!-- Embla container needs to hold the track flex items -->
 			<Carousel.Content class="flex h-full w-full flex-col md:flex-row">
-				{#each cards as card, id}
+				{#each cards as card (card.title)}
 					<Carousel.Item
 						class="h-full shrink-0 basis-full pb-4 md:basis-[calc(33%+0.49rem)] md:pb-0 md:pl-4 xl:basis-[calc(25%+0.25rem)]"
 					>
@@ -115,7 +115,7 @@
 									</div>
 
 									<span class="font-head text-lg font-medium text-quaternary">
-										#{id + 1}
+										#{card.rank}
 									</span>
 								</div>
 

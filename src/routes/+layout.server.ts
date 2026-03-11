@@ -14,10 +14,16 @@ export async function load({ platform, cookies }) {
 		.from(solutions);
 
 	const scoreMap = new Map(score.map((s) => [s.id, s.totalScore]));
-	const mergedPosts = posts.map((post) => ({
-		...post,
-		score: scoreMap.get(post.slug) ?? 0,
-	}));
+	const mergedPosts = posts
+		.map((post) => ({
+			...post,
+			score: scoreMap.get(post.slug) ?? 0,
+		}))
+		.sort((a, b) => b.score - a.score || a.slug.localeCompare(b.slug))
+		.map((post, index) => ({
+			...post,
+			rank: index + 1,
+		}));
 
 	// const userVotesRes = await fetch("/api/votes");
 	// const userVotes = (await userVotesRes.json()) as Record<string, number>;

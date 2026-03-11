@@ -14,7 +14,7 @@ export async function load({ params, parent }) {
 	if (!post) throw error(404, "Not found");
 
 	const layoutData = await parent();
-	const score = layoutData.posts.find((p) => p.slug === params.slug)?.score;
+	const { score, rank } = layoutData.posts.find((p) => p.slug === params.slug)!;
 
 	return {
 		post: {
@@ -22,6 +22,7 @@ export async function load({ params, parent }) {
 			content: renderContent(post),
 			similar: getSimilar(post),
 			score,
+			rank,
 		},
 	};
 }

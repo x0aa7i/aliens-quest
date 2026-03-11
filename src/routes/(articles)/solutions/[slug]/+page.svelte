@@ -19,7 +19,7 @@
 	const userVotes = $derived(data.userVotes); // { solutionId: value }
 
 	const titleMeta = $derived([
-		{ icon: ExpandIcon, label: "Rank", value: "2 Rank" },
+		{ icon: ExpandIcon, label: "Rank", value: `${post.rank} Rank` },
 		{ icon: MedalIcon, label: "Votes", value: `${score} votes` },
 		{ icon: LikeIcon, label: "Positive", value: "68% Positive" },
 	]);
