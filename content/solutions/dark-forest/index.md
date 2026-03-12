@@ -5,16 +5,15 @@ risk: 3
 probability: 1
 tags: ["sociological", "pessimistic", "hiding", "philosophical"]
 media:
-  - type: "book"
-    badges: ["Novel Series"]
-    id: "remembrance-of-earths-past"
-    overview: "A landmark sci-fi trilogy by Liu Cixin that formalizes the Dark Forest hypothesis as a framework for cosmic sociology."
-  - type: "tv"
+  - type: "series"
     id: "108545-3-body-problem"
     overview: "A Netflix adaptation emphasizing the series' core ideas about existential risk, technological disparity, and cosmic silence."
-  - type: "tv"
+  - type: "series"
     id: "204541-three-body"
     overview: "A Chinese adaptation that closely follows the novels, with a slower pace and greater focus on the characters' struggles and internal conflicts."
+  - type: "novel"
+    id: "remembrance-of-earths-past"
+    overview: "A landmark sci-fi trilogy by Liu Cixin that formalizes the Dark Forest hypothesis as a framework for cosmic sociology."
 ---
 
 ## Overview

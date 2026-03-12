@@ -5,10 +5,10 @@ risk: 1
 probability: 2
 tags: ["physical", "pessimistic", "temporal", "scientific"]
 media:
-  - type: "book"
+  - type: "novel"
     id: "pushing-ice"
     overview: "A novel delving into the difficulties of interstellar travel and the isolation that can result from vast distances."
-  - type: "tv"
+  - type: "series"
     id: "63639-the-expanse"
     overview: "A series exploring humanity's spread across the solar system, highlighting the challenges of colonization and resource limitations."
   - type: "movie"

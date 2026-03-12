@@ -1,6 +1,6 @@
 <script lang="ts">
 	import type { CardProps } from "./index.js";
-	import type { Book, Movie, Tv } from "$lib/data/media";
+	import type { Movie, Novel, Series } from "$lib/data/media";
 
 	import Calendar from "~icons/ri/calendar-line";
 	import Timer from "~icons/ri/timer-line";
@@ -8,7 +8,7 @@
 
 	import MediaCard from "./media-card.svelte";
 
-	type Media = Movie | Tv | Book;
+	type Media = Movie | Series | Novel;
 
 	interface Props {
 		media: Media[];
@@ -36,12 +36,12 @@
 						{ Icon: Timer, value: data.runtime, label: "Runtime" },
 					],
 				};
-			case "tv":
+			case "series":
 				return {
 					...commonProps,
 					metadata: [{ Icon: Calendar, value: data.year, label: "Year" }],
 				};
-			case "book":
+			case "novel":
 				return {
 					...commonProps,
 					metadata: [

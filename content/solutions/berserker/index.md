@@ -5,15 +5,12 @@ risk: 3
 probability: 1
 tags: ["sociological", "pessimistic", "hiding", "speculative"]
 media:
-  - type: "book"
+  - type: "novel"
     id: "berserker"
     overview: "A series of science fiction novels exploring the theme of AI and humanity."
-  - type: "book"
+  - type: "novel"
     id: "the-forge-of-god"
     overview: "A novel that explores the origins and fate of the Earth and humanity."
-  - type: "movie"
-    id: "218-the-terminator"
-    overview: "A film series exploring the theme of hostile AI and humanity's struggle for survival."
 ---
 
 ## Overview

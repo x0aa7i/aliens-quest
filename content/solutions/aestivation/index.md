@@ -5,10 +5,10 @@ risk: 1
 probability: 1
 tags: ["physical", "optimistic", "temporal", "invisible", "speculative"]
 media:
-  - type: "book"
+  - type: "novel"
     id: "the-last-question"
     overview: "A short story exploring humanity's quest to overcome entropy, touching on themes related to the Aestivation Hypothesis."
-  - type: "book"
+  - type: "novel"
     id: "diaspora"
     overview: "A far-future novel examining post-human civilizations and their strategies for enduring a changing universe."
 ---

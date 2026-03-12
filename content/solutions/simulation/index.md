@@ -11,7 +11,10 @@ media:
   - type: "movie"
     id: "27205-inception"
     overview: "A film that explores layered realities and the nature of perception, though not explicitly about simulations."
-  - type: "book"
+  - type: "series"
+    id: "81349-devs"
+    overview: "A series that explores determinism and the nature of reality."
+  - type: "novel"
     id: "simulacron-3"
     overview: "An early work exploring simulated worlds and questioning the nature of reality."
 ---

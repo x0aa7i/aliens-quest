@@ -8,10 +8,10 @@ media:
   - type: "movie"
     id: "329865-arrival"
     overview: "A film depicting humanity's attempt to communicate with aliens with a radically different perception of time and language."
-  - type: "book"
+  - type: "novel"
     id: "solaris"
     overview: "A novel exploring humanity's encounter with a sentient ocean."
-  - type: "book"
+  - type: "novel"
     id: "blindsight"
     overview: "A novel exploring non-conscious intelligence and the challenges of communicating with beings that think differently."
 ---
