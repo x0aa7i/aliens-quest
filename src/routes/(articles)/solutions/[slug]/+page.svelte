@@ -146,7 +146,7 @@
 	     left: section nav | center: article | right: sidebar
 	     ═══════════════════════════════════════════════ -->
 	<div
-		class="mx-auto grid grid-cols-1 md:container md:px-8 lg:grid-cols-[14rem_1fr] lg:px-10 xl:grid-cols-[14rem_1fr_24rem]"
+		class="mx-auto grid grid-cols-1 gap-x-4 md:container md:px-8 lg:grid-cols-[14rem_1fr] lg:px-10 xl:grid-cols-[14rem_1fr_22rem]"
 	>
 		<!-- ── LEFT: Section nav + all-solutions sidebar ── -->
 		<div class="sticky top-0 z-10 h-full w-full">
@@ -176,9 +176,9 @@
 		</div>
 
 		<!-- ── CENTER: Main article content ── -->
-		<article class="min-w-0 border-x lg:border-none" bind:this={articleRef}>
+		<article class="min-w-0 sm:border-x lg:border-none" bind:this={articleRef}>
 			<!-- Prose body -->
-			<div class="w-full space-y-8 px-4 pt-6 pb-16 sm:px-6 xl:px-8 xl:pt-8">
+			<div class="w-full space-y-8 px-4 py-12 sm:px-6 lg:px-8 lg:pt-8">
 				<div class="prose mx-auto max-w-prose text-pretty">
 					{@html post.content}
 				</div>
@@ -191,86 +191,94 @@
 		</article>
 
 		<!-- ── RIGHT: Pop culture + similar solutions ── -->
-		<aside class="hidden xl:block">
-			<div class="top-8 space-y-10 overflow-y-auto p-6">
-				<!-- Pop culture section -->
-				{#if post.media?.length}
-					<section aria-labelledby="pop-culture-heading">
-						<h2 class="font-head text-xl font-medium tracking-wide text-white">Pop culture</h2>
-						<div class="mt-4 flex flex-wrap gap-4">
-							{#each post.media as item (item.id)}
-								<div
-									class="group flex w-[calc(50%-0.5rem)] flex-col gap-2 overflow-hidden border transition-colors hover:border-zinc-600"
-								>
-									<!-- Placeholder image area -->
-									<div class="aspect-4/5 w-full overflow-hidden bg-zinc-900">
-										{#if item.cover}
-											<img
-												src={item.cover}
-												alt={item.title ?? item.id}
-												loading="lazy"
-												class="h-full w-full object-cover"
-											/>
-										{:else}
-											<div class="flex h-full w-full items-center justify-center text-zinc-700">
-												<span class="text-3xl">🎬</span>
-											</div>
-										{/if}
-									</div>
-									<div class="px-3 pb-3">
-										<p class="truncate font-sans text-base leading-snug font-medium text-white">
-											{item.title}
-										</p>
-										<p class="mt-0.5 truncate font-sans text-sm text-white/50">
-											{item.year ? `${item.type} · ${item.year}` : item.type}
-										</p>
-									</div>
+		<aside
+			class="w-full space-y-12 overflow-hidden px-4 py-8 sm:border-x sm:px-6 lg:col-start-2 lg:border-none lg:px-8 xl:col-start-3 xl:px-0"
+		>
+			<!-- Pop culture section -->
+			{#if post.media?.length}
+				<section aria-labelledby="pop-culture-heading">
+					<h2 class="font-head text-xl font-medium tracking-wide text-white">Pop culture</h2>
+					<div class="mt-4 no-scrollbar flex gap-4 overflow-x-auto xl:flex-wrap">
+						{#each post.media as item (item.id)}
+							<div
+								class="group flex max-w-56 min-w-48 flex-1 flex-col gap-2 overflow-hidden border xl:min-w-40"
+							>
+								<!-- Placeholder image area -->
+								<div class="aspect-4/5 w-full overflow-hidden bg-zinc-900">
+									{#if item.cover}
+										<img
+											src={item.cover}
+											alt={item.title ?? item.id}
+											loading="lazy"
+											class="h-full w-full object-cover"
+										/>
+									{:else}
+										<div class="flex h-full w-full items-center justify-center text-zinc-700">
+											<span class="text-3xl">🎬</span>
+										</div>
+									{/if}
 								</div>
-							{/each}
-						</div>
-					</section>
-				{/if}
+								<div class="px-4 pb-3">
+									<p class="truncate font-sans text-base leading-snug font-medium text-white">
+										{item.title}
+									</p>
+									<p class="mt-0.5 truncate font-sans text-sm text-white/50">
+										{item.year ? `${item.type} · ${item.year}` : item.type}
+									</p>
+								</div>
+							</div>
+						{/each}
+					</div>
+				</section>
+			{/if}
 
-				<!-- Similar solutions section -->
-				{#if post.similar.length}
-					<section aria-labelledby="similar-solutions-heading">
-						<h2 class="font-head text-xl font-medium tracking-wide text-primary">
-							Similar solutions
-						</h2>
-						<div class="mt-4 flex flex-col gap-4">
-							{#each post.similar as p (p.slug)}
-								<a
-									href={p.url}
-									class="group flex flex-col overflow-hidden border transition-colors hover:border-zinc-600"
+			<!-- Similar solutions section -->
+			{#if post.similar.length}
+				<section aria-labelledby="similar-solutions-heading">
+					<h2 class="font-head text-xl font-medium tracking-wide text-primary">
+						Similar solutions
+					</h2>
+					<div class="mt-4 no-scrollbar flex gap-4 overflow-x-auto xl:flex-col">
+						{#each post.similar as p (p.slug)}
+							<a
+								href={p.url}
+								class={[
+									"group flex min-w-80 flex-1 flex-col overflow-hidden",
+									"border transition-colors duration-300 hover:border-zinc-700",
+								]}
+							>
+								<!-- Cover image -->
+								<div class="aspect-5/2 w-full overflow-hidden bg-surface-raised">
+									{#if p.cover?.src}
+										<img
+											src={p.cover.src}
+											alt={p.title}
+											loading="lazy"
+											class="h-full w-full object-cover opacity-70 transition-opacity duration-300 group-hover:opacity-90"
+										/>
+									{:else}
+										<div class="flex h-full w-full items-center justify-center text-zinc-700">
+											<span class="text-3xl">🌌</span>
+										</div>
+									{/if}
+								</div>
+								<div
+									class="px-4 py-4 text-secondary transition-colors duration-300 group-hover:text-primary"
 								>
-									<!-- Cover image -->
-									<div class="aspect-2/1 w-full overflow-hidden bg-zinc-900">
-										{#if p.cover?.src}
-											<img
-												src={p.cover.src}
-												alt={p.title}
-												loading="lazy"
-												class="h-full w-full object-cover opacity-70 transition-all duration-300 group-hover:scale-105 group-hover:opacity-90"
-											/>
-										{:else}
-											<div class="flex h-full w-full items-center justify-center text-zinc-700">
-												<span class="text-3xl">🌌</span>
-											</div>
-										{/if}
-									</div>
-									<div class="px-3 py-4">
-										<p
-											class="truncate font-sans text-base leading-snug font-medium text-primary group-hover:text-zinc-200"
-										>
+									<div class="flex items-center gap-2">
+										<div class="**:stroke-[1.5] [&_svg]:h-6 [&_svg]:w-8">
+											{@html p.logo}
+										</div>
+										<p class="truncate font-head text-base leading-snug font-medium">
 											{p.title}
 										</p>
 									</div>
-								</a>
-							{/each}
-						</div>
-					</section>
-				{/if}
-			</div>
+								</div>
+							</a>
+						{/each}
+					</div>
+				</section>
+			{/if}
 		</aside>
 	</div>
 </main>
