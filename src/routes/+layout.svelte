@@ -1,10 +1,10 @@
 <script lang="ts">
 	import { onMount } from "svelte";
-
 	import { onNavigate } from "$app/navigation";
 
 	import "../styles/app.css";
 
+	import Metadata from "$lib/components/metadata.svelte";
 	import { initializeVisitorId } from "$lib/hooks/fingerprint.svelte";
 	import Header from "$lib/sections/header.svelte";
 
@@ -25,6 +25,8 @@
 		await initializeVisitorId();
 	});
 </script>
+
+<Metadata title="Aliens Quest — Exploring the Fermi Paradox Solutions" />
 
 <div class="relative min-h-svh bg-surface-raised">
 	<Header />

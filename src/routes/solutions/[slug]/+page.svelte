@@ -4,7 +4,6 @@
 	import ExpandIcon from "~icons/bx/expand-vertical";
 	import LikeIcon from "~icons/bx/like";
 	import MedalIcon from "~icons/bx/up-arrow-circle";
-
 	import { enhance } from "$app/forms";
 
 	import EditLink from "$lib/components/edit-link.svelte";
@@ -205,7 +204,7 @@
 							<a
 								href={p.url}
 								class={[
-									"group flex min-w-80 flex-1 flex-col overflow-hidden",
+									"group flex max-w-full min-w-72 flex-1 flex-col overflow-hidden",
 									"border transition-colors duration-300 hover:border-zinc-700",
 								]}
 							>

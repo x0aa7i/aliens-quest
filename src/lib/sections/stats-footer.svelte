@@ -27,6 +27,7 @@
 <div
 	class="hidden min-h-35 w-full shrink-0 grid-cols-4 gap-4 font-head select-none md:grid"
 	aria-hidden="true"
+	role="presentation"
 >
 	<!-- Left Stats Window -->
 	{@render stats(leftStats)}

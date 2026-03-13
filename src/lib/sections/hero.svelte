@@ -31,7 +31,7 @@
 	}
 </script>
 
-<section
+<main
 	class="relative flex h-[calc(100dvh-5rem)] max-h-275 w-full flex-col overflow-hidden pt-6 pb-6 md:pt-10 md:pb-8"
 >
 	<!-- Background -->
@@ -107,6 +107,7 @@
 								alt={card.title}
 								width={card.cover.width}
 								height={card.cover.height}
+								fetchpriority="high"
 								class="absolute inset-0 h-full w-full object-cover opacity-60 mix-blend-screen transition-opacity duration-300 group-hover:opacity-80"
 							/>
 
@@ -121,11 +122,11 @@
 									</div>
 
 									<div class="flex flex-col">
-										<h3
+										<h2
 											class="truncate font-head text-xl font-normal text-primary md:text-lg lg:text-xl lg:tracking-wide"
 										>
 											{card.title}
-										</h3>
+										</h2>
 
 										<div
 											class="flex items-center gap-2 font-head text-sm font-medium text-quaternary"
@@ -146,7 +147,7 @@
 		<!-- Row 3: Stats Footer (Desktop Only) -->
 		<StatsFooter />
 	</div>
-</section>
+</main>
 
 <style>
 	/* Shadcn Carousel Component Structural Overrides */
