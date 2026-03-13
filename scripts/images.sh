@@ -20,7 +20,19 @@ for IMAGE in "$SOURCE_DIR"/*; do
     # if [ -d "$DEST_DIR" ] && [ ! -f "$DEST_DIR/cover.webp" ]; then
     if [ -d "$DEST_DIR" ]; then
       # Convert image to .webp format and move to destination directory
-      magick "$IMAGE" -auto-orient -strip -resize 1024x1024\> -quality 80 -define webp:lossless=false "$DEST_DIR/cover.webp"
+      magick "$IMAGE" \
+        -auto-orient \
+        -strip \
+        -resize "2048x2048>" \
+        -sampling-factor 4:2:0 \
+        -interlace plane \
+        -colorspace sRGB \
+        -quality 82 \
+        -define webp:method=6 \
+        -define webp:alpha-compression=1 \
+        -define webp:alpha-filtering=1 \
+        -define webp:alpha-quality=90 \
+        "$DEST_DIR/cover.webp"
     fi
   fi
 done

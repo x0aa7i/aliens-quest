@@ -1,7 +1,7 @@
 .prose {
-	--prose-color: var(--color-gray-300);
+	--prose-color: var(--color-zinc-400);
 	--prose-heading-color: var(--color-gray-200);
-	--prose-strong-color: var(--color-white);
+	--prose-strong-color: var(--color-zinc-200);
 	--prose-link-color: var(--color-gray-300);
 	--prose-code-color: var(--color-white);
 	--prose-marker-color: color-mix(in oklab, var(--color-gray-300) 35%, transparent);
@@ -13,8 +13,8 @@
 	--prose-blockquote-border-color: var(--color-gray-600);
 
 	color: var(--prose-color);
-	font-size: var(--text-md);
-	line-height: 1.7;
+	font-size: calc(var(--text-md) + 1px);
+	line-height: 1.65;
 
 	*:where(:not(.not-prose, .not-prose *)) + *:where(:not(.not-prose, .not-prose *)) {
 		margin-top: calc(var(--spacing) * 4);
@@ -61,9 +61,9 @@
 
 	:is(h2, h3, h4):where(:not(.not-prose, .not-prose *)) {
 		font-family: var(--font-head);
-		scroll-margin-top: calc(var(--spacing) * 32);
+		scroll-margin-top: calc(var(--spacing) * 22);
 		@variant lg {
-			scroll-margin-top: calc(var(--spacing) * 24);
+			scroll-margin-top: calc(var(--spacing) * 8);
 		}
 	}
 
@@ -259,41 +259,41 @@
 	}
 
 	/* Anchor links */
-	h1,
-	h2,
-	h3,
-	h4,
-	h5,
-	h6 {
-		&:hover .anchor {
-			opacity: 1;
-		}
-
-		& .anchor {
-			position: absolute;
-			margin-left: 0.25em;
-			padding-inline: 0.25em;
-			color: var(--prose-link-anchor-color);
-			opacity: 0;
-			transition:
-				opacity 0.1s ease-in-out,
-				color 0.1s ease-in-out;
-
-			&:hover {
-				color: var(--prose-color);
-				text-decoration: underline 2px solid var(--prose-color);
-				text-underline-offset: 3px;
-			}
-
-			& .icon-link::after {
-				content: "";
-
-				@media (min-width: 768px) {
-					content: "#";
-				}
-			}
-		}
-	}
+	/* h1, */
+	/* h2, */
+	/* h3, */
+	/* h4, */
+	/* h5, */
+	/* h6 { */
+	/* 	&:hover .anchor { */
+	/* 		opacity: 1; */
+	/* 	} */
+	/**/
+	/* 	& .anchor { */
+	/* 		position: absolute; */
+	/* 		margin-left: 0.25em; */
+	/* 		padding-inline: 0.25em; */
+	/* 		color: var(--prose-link-anchor-color); */
+	/* 		opacity: 0; */
+	/* 		transition: */
+	/* 			opacity 0.1s ease-in-out, */
+	/* 			color 0.1s ease-in-out; */
+	/**/
+	/* 		&:hover { */
+	/* 			color: var(--prose-color); */
+	/* 			text-decoration: underline 2px solid var(--prose-color); */
+	/* 			text-underline-offset: 3px; */
+	/* 		} */
+	/**/
+	/* 		& .icon-link::after { */
+	/* 			content: ""; */
+	/**/
+	/* 			@media (min-width: 768px) { */
+	/* 				content: "#"; */
+	/* 			} */
+	/* 		} */
+	/* 	} */
+	/* } */
 }
 
 .prose-blog {

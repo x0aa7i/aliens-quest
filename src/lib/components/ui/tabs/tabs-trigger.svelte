@@ -12,8 +12,9 @@
 
 <TabsPrimitive.Trigger
 	bind:ref
+	data-slot="tabs-trigger"
 	class={cn(
-		"ring-offset-surface focus-visible:ring-ring data-[state=active]:text-primary text-md inline-flex cursor-pointer items-center justify-center whitespace-nowrap px-3 py-1.5 font-medium transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 data-[state=active]:shadow-sm",
+		"data-[state=active]:bg-background dark:data-[state=active]:text-foreground dark:data-[state=active]:border-input text-foreground dark:text-muted-foreground inline-flex flex-1 items-center justify-center gap-1.5 rounded-md border border-transparent px-2 py-1 text-sm font-medium whitespace-nowrap transition-[color] focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-ring/50 focus-visible:outline-1 focus-visible:outline-ring disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4",
 		className
 	)}
 	{...restProps}

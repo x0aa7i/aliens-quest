@@ -2,31 +2,47 @@ import fs from "fs/promises";
 import { dirname, join } from "path";
 import { fileURLToPath } from "url";
 
-import booksJson from "../../content/media/books.json";
-import moviesJson from "../../content/media/movies.json";
-import tvJson from "../../content/media/tv.json";
+import moviesJson from "../../../content/media/movies.json";
+import novelsJson from "../../../content/media/novels.json";
+import seriesJson from "../../../content/media/series.json";
 
-interface MediaResponse {
+// Constants
+
+const TMDB_API_KEY = process.env.TMDB_API_KEY;
+const TMDB_BASE_URL = "https://api.themoviedb.org/3";
+const TMDB_POSTER_BASE_URL = "https://image.tmdb.org/t/p/w500";
+const OPEN_LIBRARY_BASE_URL = "https://openlibrary.org";
+const BOOK_COVER_BASE_URL = "https://bookcover.longitood.com/bookcover";
+const OPEN_LIBRARY_FALLBACK_COVER = "https://covers.openlibrary.org/b/olid";
+
+const __root = join(dirname(fileURLToPath(import.meta.url)), "..");
+
+const DATA_PATHS = {
+	movies: join(__root, "./content/media/movies.json"),
+	novels: join(__root, "./content/media/novels.json"),
+	series: join(__root, "./content/media/series.json"),
+} as const;
+
+// Types
+
+type MediaType = "movie" | "series" | "novel";
+
+interface BaseMediaResponse {
 	title: string;
 	year?: number | string;
 	overview?: string;
-}
-
-interface MovieResponse extends MediaResponse {
-	poster: string;
-	runtime: string;
-}
-
-interface TvResponse extends MediaResponse {
-	poster: string;
-}
-
-interface BookResponse extends MediaResponse {
-	authors: string[];
 	cover: string;
 }
 
-type MediaType = "movie" | "tv" | "book";
+export interface MovieResponse extends BaseMediaResponse {
+	runtime: string;
+}
+
+export interface SeriesResponse extends BaseMediaResponse {}
+
+export interface BookResponse extends BaseMediaResponse {
+	authors: string[];
+}
 
 interface MediaFrontmatter {
 	id: string;
@@ -35,35 +51,34 @@ interface MediaFrontmatter {
 }
 
 export type Movie = MovieResponse & MediaFrontmatter & { type: "movie" };
-export type Tv = TvResponse & MediaFrontmatter & { type: "tv" };
-export type Book = BookResponse & MediaFrontmatter & { type: "book" };
+export type Series = SeriesResponse & MediaFrontmatter & { type: "series" };
+export type Novel = BookResponse & MediaFrontmatter & { type: "novel" };
 
-type MovieJson = Omit<MovieResponse, "id">;
-type TvJson = Omit<TvResponse, "id">;
-type BookJson = Omit<BookResponse, "id">;
+// TMDB API Types
 
-interface TmdbResponse {
+interface TmdbBaseResponse {
 	poster_path: string;
 	overview: string;
 	genres: { name: string }[];
 }
 
-interface TmdbMovieResponse extends TmdbResponse {
+interface TmdbMovieResponse extends TmdbBaseResponse {
 	title: string;
 	release_date: string;
 	runtime: number;
 }
 
-interface TmdbTvResponse extends TmdbResponse {
+interface TmdbSeriesResponse extends TmdbBaseResponse {
 	name: string;
 	first_air_date: string;
 	number_of_seasons: number;
 }
 
+// Open Library API Types
+
 interface OpenLibraryBookResponse {
 	title: string;
 	authors: { key: string }[];
-	// json response schema is not consistent
 	year_published?: number;
 	first_publish_date?: string;
 }
@@ -72,177 +87,168 @@ interface OpenLibraryAuthorResponse {
 	name: string;
 }
 
-type BookData = {
-	bySlug: { [key: string]: string };
-	entries: { [key: string]: BookJson };
+// Cache Types
+
+interface MediaCache<T> {
+	[id: string]: Omit<T, "id">;
+}
+
+const cache = {
+	movies: moviesJson as MediaCache<MovieResponse>,
+	series: seriesJson as MediaCache<SeriesResponse>,
+	novels: novelsJson as MediaCache<BookResponse>,
 };
 
-const TMDB_API_KEY = process.env.TMDB_API_KEY;
-const TMDB_POSTER_BASE_URL = "https://image.tmdb.org/t/p/w500";
-const TMDB_BASE_URL = "https://api.themoviedb.org/3";
-const OPEN_LIBRARY_BASE_URL = "https://openlibrary.org";
-const BOOK_COVER_BASE_URL = "https://bookcover.longitood.com/bookcover";
+// HTTP Helpers
 
-const __filename = fileURLToPath(import.meta.url);
-const __root = join(dirname(__filename), "..");
+async function fetchJson<T>(url: string): Promise<T> {
+	const response = await fetch(url);
+	if (!response.ok) throw new Error(`HTTP ${response.status}: ${response.statusText} — ${url}`);
+	return response.json();
+}
 
-const dataPaths = {
-	movies: join(__root, "./src/content/media/movies.json"),
-	books: join(__root, "./src/content/media/books.json"),
-	tv: join(__root, "./src/content/media/tv.json"),
-};
+async function fetchTmdb<T>(endpoint: string): Promise<T> {
+	if (!TMDB_API_KEY) throw new Error("TMDB_API_KEY is not set in environment variables");
+	return fetchJson<T>(`${TMDB_BASE_URL}/${endpoint}?api_key=${TMDB_API_KEY}`);
+}
 
-const cachedData = {
-	movies: moviesJson as { [id: string]: MovieJson },
-	books: booksJson as BookData,
-	tv: tvJson as { [id: string]: TvJson },
-};
+async function fetchOpenLibrary<T>(endpoint: string): Promise<T> {
+	return fetchJson<T>(`${OPEN_LIBRARY_BASE_URL}/${endpoint}.json`);
+}
 
-async function cacheMedia<T>(
+// Cache Helpers
+
+async function persistCache(filePath: string, data: unknown): Promise<void> {
+	await fs.writeFile(filePath, JSON.stringify(data, null, 2));
+}
+
+async function withCache<T>(
 	id: string,
-	cache: { [id: string]: T },
+	store: { [id: string]: T },
 	filePath: string,
 	fetcher: (id: string) => Promise<T | null>
 ): Promise<T | null> {
-	if (!id) {
-		throw new Error("ID is required");
-	}
-
-	if (cache[id]) return cache[id];
+	if (!id) throw new Error("ID is required");
+	if (store[id]) return store[id];
 
 	const data = await fetcher(id);
 	if (data) {
-		cache[id] = data;
-		await fs.writeFile(filePath, JSON.stringify(cache, null, 2));
+		store[id] = data;
+		await persistCache(filePath, store);
 	}
 	return data;
 }
 
-async function cacheBook(
-	slug: string,
-	cache: BookData,
-	filePath: string,
-	fetcher: (id: string) => Promise<BookJson | null>
-): Promise<BookResponse | null> {
-	if (!slug) {
-		throw new Error("Slug is required");
-	}
+// Formatters
 
-	const id = cache.bySlug[slug];
-	if (cache.entries[id]) return cache.entries[id];
-
-	const data = await fetcher(id);
-	if (data) {
-		cache.entries[id] = data;
-		console.dir(filePath);
-		await fs.writeFile(filePath, JSON.stringify(cache, null, 2));
-	}
-	return data;
+function formatRuntime(minutes: number): string {
+	const h = Math.floor(minutes / 60);
+	const m = (minutes % 60).toString().padStart(2, "0");
+	return `${h}h ${m}min`;
 }
 
-export async function getMovie(id: string): Promise<MovieResponse | null> {
-	return cacheMedia(id, cachedData.movies, dataPaths.movies, fetchMovie);
+function extractYear(dateString: string): string {
+	return dateString.slice(0, 4);
 }
 
-async function fetchMovie(id: string): Promise<MovieJson | null> {
+function parseBookYear(data: OpenLibraryBookResponse): number {
+	return data.year_published ?? parseInt(data.first_publish_date?.split(" ").pop() ?? "", 10);
+}
+
+// Fetchers
+
+async function fetchMovie(id: string): Promise<Omit<MovieResponse, "id"> | null> {
 	try {
-		const data = await fetchTmdbData<TmdbMovieResponse>(`movie/${id}`);
+		const data = await fetchTmdb<TmdbMovieResponse>(`movie/${id}`);
 		return {
-			poster: `${TMDB_POSTER_BASE_URL}/${data.poster_path}`,
 			title: data.title,
-			year: data.release_date.slice(0, 4),
+			year: extractYear(data.release_date),
 			runtime: formatRuntime(data.runtime),
 			overview: data.overview,
+			cover: `${TMDB_POSTER_BASE_URL}/${data.poster_path}`,
 		};
 	} catch (error) {
-		console.error(error);
+		console.error(`Failed to fetch movie ${id}:`, error);
 		return null;
 	}
 }
 
-export async function getTv(id: string): Promise<TvResponse | null> {
-	return cacheMedia(id, cachedData.tv, dataPaths.tv, fetchTv);
-}
-
-async function fetchTv(id: string): Promise<TvJson | null> {
+async function fetchSeries(id: string): Promise<Omit<SeriesResponse, "id"> | null> {
 	try {
-		const data = await fetchTmdbData<TmdbTvResponse>(`tv/${id}`);
+		const data = await fetchTmdb<TmdbSeriesResponse>(`tv/${id}`);
 		return {
-			poster: `${TMDB_POSTER_BASE_URL}/${data.poster_path}`,
 			title: data.name,
-			year: data.first_air_date.slice(0, 4),
+			year: extractYear(data.first_air_date),
 			overview: data.overview,
+			cover: `${TMDB_POSTER_BASE_URL}/${data.poster_path}`,
 		};
 	} catch (error) {
-		console.error(error);
+		console.error(`Failed to fetch series ${id}:`, error);
 		return null;
 	}
 }
 
-export async function getBook(slug: string): Promise<BookResponse | null> {
-	return cacheBook(slug, cachedData.books, dataPaths.books, fetchBook);
+async function fetchBookCover(isbn: string): Promise<string> {
+	try {
+		const { url } = await fetchJson<{ url: string }>(`${BOOK_COVER_BASE_URL}/${isbn}`);
+		return url;
+	} catch {
+		return `${OPEN_LIBRARY_FALLBACK_COVER}/${isbn}-M.jpg`;
+	}
 }
 
-async function fetchBook(id: string): Promise<BookJson | null> {
+async function fetchNovel(id: string): Promise<Omit<BookResponse, "id"> | null> {
 	try {
-		const data = await fetchBookData<OpenLibraryBookResponse>(`isbn/${id}`);
+		const book = await fetchOpenLibrary<OpenLibraryBookResponse>(`isbn/${id}`);
 
+		const authorKeys = book.authors.slice(0, 3).map((a) => a.key);
 		const authors = await Promise.all(
-			data.authors
-				.slice(0, 3)
-				.map((author) => fetchBookData<OpenLibraryAuthorResponse>(`${author.key}`))
+			authorKeys.map((key) => fetchOpenLibrary<OpenLibraryAuthorResponse>(key))
 		);
 
-		const year =
-			data.year_published ?? parseInt(data.first_publish_date?.split(" ").pop() ?? "", 10);
-
 		return {
-			title: data.title,
-			authors: authors.map((author) => author.name),
-			year: year,
+			title: book.title,
+			authors: authors.map((a) => a.name),
+			year: parseBookYear(book),
 			cover: await fetchBookCover(id),
 		};
 	} catch (error) {
-		console.error(error);
+		console.error(`Failed to fetch novel ${id}:`, error);
 		return null;
 	}
 }
 
-async function fetchBookCover(id: string): Promise<string> {
-	try {
-		const response = await fetch(`${BOOK_COVER_BASE_URL}/${id}`);
-		if (!response.ok) throw new Error(response.statusText);
-		const jsonData: { url: string } = await response.json();
-		return jsonData.url;
-	} catch (error) {
-		console.error(error);
-		return `https://covers.openlibrary.org/b/olid/${id}-M.jpg`;
-	}
+// Public API
+
+export function getMovie(id: string): Promise<MovieResponse | null> {
+	return withCache(id, cache.movies, DATA_PATHS.movies, fetchMovie);
 }
 
-async function fetchBookData<T>(endpoint: string): Promise<T> {
-	const response = await fetch(`${OPEN_LIBRARY_BASE_URL}/${endpoint}.json`);
-	if (!response.ok) {
-		throw new Error(`Failed to fetch book data: ${response.statusText}`);
-	}
-	return response.json();
+export function getSeries(id: string): Promise<SeriesResponse | null> {
+	return withCache(id, cache.series, DATA_PATHS.series, fetchSeries);
 }
 
-async function fetchTmdbData<T>(endpoint: string): Promise<T> {
-	if (!TMDB_API_KEY) {
-		console.log(import.meta.env);
-		console.log(process.env);
-		throw new Error("TMDB API key is not set");
-	}
-
-	const url = `${TMDB_BASE_URL}/${endpoint}?api_key=${TMDB_API_KEY}`;
-	const response = await fetch(url);
-	if (!response.ok) throw new Error(response.statusText);
-	return response.json();
+export function getNovel(slug: string): Promise<BookResponse | null> {
+	return withCache(slug, cache.novels, DATA_PATHS.novels, fetchNovel);
 }
 
-function formatRuntime(minutes: number): string {
-	const hours = Math.floor(minutes / 60);
-	const remainingMinutes = minutes % 60;
-	return `${hours}h ${remainingMinutes.toString().padStart(2, "0")}min`;
+export function getMedia(id: string, type: "movie"): Promise<MovieResponse | null>;
+export function getMedia(id: string, type: "series"): Promise<SeriesResponse | null>;
+export function getMedia(id: string, type: "novel"): Promise<BookResponse | null>;
+export function getMedia(
+	id: string,
+	type: MediaType
+): Promise<MovieResponse | SeriesResponse | BookResponse | null>;
+export function getMedia(
+	id: string,
+	type: MediaType
+): Promise<MovieResponse | SeriesResponse | BookResponse | null> {
+	switch (type) {
+		case "movie":
+			return getMovie(id);
+		case "series":
+			return getSeries(id);
+		case "novel":
+			return getNovel(id);
+	}
 }

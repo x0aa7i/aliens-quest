@@ -8,6 +8,10 @@
 
 <TabsPrimitive.List
 	bind:ref
-	class={cn("inline-flex h-10 items-center justify-center p-1 text-gray-500", className)}
+	data-slot="tabs-list"
+	class={cn(
+		"bg-muted text-muted-foreground inline-flex w-fit items-center justify-center",
+		className
+	)}
 	{...restProps}
 />

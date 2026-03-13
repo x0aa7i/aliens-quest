@@ -1,111 +1,300 @@
 <script lang="ts">
-	import ArticleNav from "$lib/components/article-nav.svelte";
+	import CaretDownIcon from "~icons/bx/caret-down";
+	import CaretUpIcon from "~icons/bx/caret-up";
+	import ExpandIcon from "~icons/bx/expand-vertical";
+	import LikeIcon from "~icons/bx/like";
+	import MedalIcon from "~icons/bx/up-arrow-circle";
+
+	import { enhance } from "$app/forms";
+
 	import EditLink from "$lib/components/edit-link.svelte";
-	import Danger from "$lib/components/icons/danger.svelte";
-	import Target from "$lib/components/icons/target.svelte";
 	import Metadata, { defaultMeta } from "$lib/components/metadata.svelte";
-	import Sidebar from "$lib/components/sidebar/sidebar.svelte";
-	import Toc from "$lib/components/toc/toc.svelte";
+	import { visitorId } from "$lib/hooks/fingerprint.svelte";
 	import { useToc } from "$lib/hooks/use-toc.svelte.js";
 
 	let { data } = $props();
 
-	const metadata = $derived(data.post.metadata);
-	const ContentComponent = $derived(data.post.component);
+	const post = $derived(data.post);
+	const userVotes = $derived(data.userVotes); // { solutionId: value }
 
-	let articleRef: HTMLElement | null = $state(null);
-	const tocProps = $derived({ tocState: useToc(metadata.toc, articleRef), items: metadata.toc });
+	const positivity = $derived.by(() => {
+		const total = post.upvotes + post.downvotes;
+		if (total === 0) return 0;
+		return (post.upvotes / total) * 100;
+	});
 
-	const stats = $derived([
-		{ name: "risk", value: metadata.risk, Icon: Danger },
-		{ name: "scenario", value: metadata.probability, Icon: Target },
+	const titleMeta = $derived([
+		{ icon: ExpandIcon, label: "Rank", value: `${post.rank} Rank` },
+		{ icon: MedalIcon, label: "Votes", value: `${post.votes} Votes` },
+		{ icon: LikeIcon, label: "Positive", value: `${positivity}% Positive` },
 	]);
 
-	const meta = $derived({
-		title: `${metadata.title} - ${defaultMeta.name}`,
+	let articleRef: HTMLElement | null = $state(null);
+	const tocProps = $derived({ tocState: useToc(post.toc, articleRef), items: post.toc });
+
+	const seo = $derived({
+		title: `${post.title} - ${defaultMeta.name}`,
 		type: "article",
 		orImage: {
-			url: defaultMeta.url + metadata.cover.src,
-			width: metadata.cover.width.toString(),
-			height: metadata.cover.height.toString(),
+			url: defaultMeta.url + post.cover.src,
+			width: post.cover.width.toString(),
+			height: post.cover.height.toString(),
 		},
 	});
 </script>
 
-<Metadata {...meta} />
+<Metadata {...seo} />
 
-<main class="container mx-auto min-h-[calc(100vh-220px)] md:pt-4 lg:px-8" bind:this={articleRef}>
-	<div
-		class="grid auto-rows-fr grid-cols-1 lg:grid-cols-[200px_minmax(0,1fr)] xl:grid-cols-[200px_minmax(0,1fr)_240px]"
-	>
-		<!-- Desktop Sidebar -->
-		<aside class="hidden pr-6 pt-5 lg:block">
-			<Sidebar items={data.posts} />
-		</aside>
+<main class="min-h-screen">
+	<!-- Cover image as background -->
+	{#if post.cover?.src}
+		<div class="pointer-events-none absolute inset-0 h-96" aria-hidden="true">
+			<img
+				src={post.cover.src}
+				width={post.cover.width}
+				height={post.cover.height}
+				alt="background"
+				class="cover-image h-full w-full object-cover opacity-40"
+				loading="eager"
+			/>
+		</div>
+	{/if}
 
-		<article class="border-t sm:border-l sm:border-r">
-			<!-- Mobile Header with Navigation -->
-			<div class="sticky top-0 border-b bg-gray-900 px-4 sm:px-6 xl:hidden xl:px-8">
-				<div class="mx-auto flex h-14 max-w-prose items-center justify-end">
-					<Sidebar items={data.posts} type="mobile" />
-					<Toc {...tocProps} type="mobile" />
+	<section class="pt-24 md:pt-28">
+		<!-- Hero content -->
+		<div class="relative z-10 mx-auto px-4 py-10 sm:px-6 md:container md:px-8 lg:px-10">
+			<!-- Vote widget (inline on mobile, absolute on desktop) -->
+			<!-- Title row -->
+			<div class="flex flex-col items-start gap-4 md:flex-row md:items-center lg:gap-6">
+				<!-- Upvote / Downvote widget -->
+				<form
+					method="POST"
+					class="order-1 flex shrink-0 gap-1 md:order-0 md:flex-col"
+					aria-label="Vote on this solution"
+					use:enhance
+				>
+					<input type="hidden" name="fingerprint" value={visitorId.current} />
+					<input type="hidden" name="solutionId" value={post.slug} />
+					<button
+						name="value"
+						value="1"
+						aria-label="Upvote"
+						aria-pressed={userVotes[post.slug] === 1}
+						class={[
+							"flex h-10 w-12 items-center justify-center border transition-colors hover:brightness-125",
+							userVotes[post.slug] === 1
+								? "border-[#007856] bg-[#05241E] text-emerald-50"
+								: "border bg-surface-raised/70 text-quaternary",
+						]}
+					>
+						<CaretUpIcon class="size-5" />
+					</button>
+
+					<button
+						name="value"
+						value="-1"
+						aria-label="Downvote"
+						aria-pressed={userVotes[post.slug] === -1}
+						class={[
+							"flex h-10 w-12 items-center justify-center border transition-colors hover:brightness-125",
+							userVotes[post.slug] === -1
+								? "border-[#7C4130] bg-[#281A15] text-orange-50"
+								: "border bg-surface-raised/70 text-quaternary",
+						]}
+					>
+						<CaretDownIcon class="size-5" />
+					</button>
+				</form>
+
+				<!-- Logo + Title -->
+				<div class="flex min-w-0 flex-col gap-2">
+					<div class="flex flex-wrap items-center gap-2 md:gap-3">
+						{#if post.logo}
+							<span class="text-primary **:stroke-3 [&_svg]:h-8 [&_svg]:w-16" aria-hidden="true">
+								<!-- eslint-disable-next-line svelte/no-at-html-tags -->
+								{@html post.logo}
+							</span>
+						{/if}
+
+						<h1
+							itemprop="headline"
+							class="font-head text-4xl leading-none font-medium tracking-tight text-primary md:text-5xl lg:text-5xl"
+						>
+							{post.title}
+						</h1>
+					</div>
+
+					<!-- Stats row: rank · votes · sentiment -->
+					<div class="flex flex-wrap items-center gap-x-4 gap-y-1 opacity-80">
+						{#each titleMeta as { icon: Icon, label, value }}
+							<span
+								class="flex items-center gap-1.5 font-head text-sm font-medium tracking-wide text-secondary"
+							>
+								<Icon class="size-4" aria-hidden="true" />
+								<span class="sr-only">{label}</span>
+								<span>{value}</span>
+							</span>
+						{/each}
+					</div>
 				</div>
 			</div>
+		</div>
+	</section>
 
-			<!-- Article Header -->
-			<header class="space-y-2 px-4 py-8 sm:px-6 xl:px-8">
-				<div class="text-primary mx-auto flex max-w-prose flex-wrap items-center gap-3">
-					{#if metadata.logo}
-						<!-- eslint-disable-next-line svelte/no-at-html-tags -->
-						{@html metadata.logo}
-					{/if}
-					<h1 itemprop="headline" class="font-head text-3xl font-semibold">
-						{metadata.title}
-					</h1>
-				</div>
+	<!-- ═══════════════════════════════════════════════
+	     3-COLUMN BODY LAYOUT
+	     left: section nav | center: article | right: sidebar
+	     ═══════════════════════════════════════════════ -->
+	<div
+		class="mx-auto grid grid-cols-1 gap-x-4 md:container md:px-8 lg:grid-cols-[14rem_1fr] lg:px-10 xl:grid-cols-[14rem_1fr_22rem]"
+	>
+		<!-- ── LEFT: Section nav + all-solutions sidebar ── -->
+		<div class="sticky top-0 z-10 h-full w-full">
+			<aside class="sticky top-0 w-full border-y sm:border-x lg:border-none lg:py-8">
+				<!-- Section tabs -->
+				<nav aria-label="Article sections" class="no-scrollbar w-full overflow-x-auto">
+					<ul class="flex gap-y-1 divide-x lg:flex-col">
+						{#each post.toc as entry (entry.url)}
+							{@const isActive = tocProps.tocState.isActive(entry)}
+							<li class="bg-surface-raised lg:border">
+								<a
+									href={entry.url}
+									class={[
+										"block w-full px-6 py-5 text-base text-nowrap transition-colors duration-200 max-lg:border-b-2 lg:border-l-2",
+										isActive
+											? "border-zinc-300 bg-linear-to-r from-zinc-900/50 to-transparent text-white"
+											: "border-transparent text-white/50 hover:text-white/80",
+									]}
+								>
+									{entry.title}
+								</a>
+							</li>
+						{/each}
+					</ul>
+				</nav>
+			</aside>
+		</div>
 
-				<div class="text-quaternary mx-auto flex max-w-prose flex-wrap gap-x-4">
-					{#each stats as { name, value, Icon } (name)}
-						{#if value}
-							<div class="inline-flex items-center justify-center gap-1">
-								<Icon width="16" height="16" class="shrink-0" aria-hidden="true" />
-								<span class="text-tertiary text-sm capitalize"> {value} {name} </span>
-							</div>
-						{/if}
-					{/each}
-				</div>
-			</header>
-
-			<!-- Article Body -->
-			<div class="w-full space-y-8 border-t px-4 pb-12 pt-6 sm:px-6 xl:px-8 xl:pt-8">
-				{#if metadata.cover && metadata.cover.src}
-					<figure class="mx-auto h-44 w-full max-w-prose overflow-hidden bg-cover">
-						<img
-							src={metadata.cover.src}
-							width={metadata.cover.width}
-							height={metadata.cover.height}
-							alt="Cover for {metadata.title}"
-							class="h-full w-full object-cover"
-							loading="lazy"
-						/>
-					</figure>
-				{/if}
-
+		<!-- ── CENTER: Main article content ── -->
+		<article class="min-w-0 sm:border-x lg:border-none" bind:this={articleRef}>
+			<!-- Prose body -->
+			<div class="w-full space-y-8 px-4 py-12 sm:px-6 lg:px-8 lg:pt-8">
 				<div class="prose mx-auto max-w-prose text-pretty">
-					<ContentComponent media={metadata.media} />
+					{@html post.content}
 				</div>
 
-				<!-- Article Footer: Edit Link and Navigation  -->
-				<footer class="@container mx-auto mt-10 max-w-prose space-y-5">
-					<EditLink slug={metadata.slug} />
-					<ArticleNav posts={data.posts} current={metadata.slug} />
+				<!-- Article footer: edit link + prev/next nav -->
+				<footer class="mx-auto mt-10 w-full max-w-prose border-t pt-6 text-lg">
+					<EditLink slug={post.slug} />
 				</footer>
 			</div>
 		</article>
 
-		<!-- Desktop Table of Contents -->
-		<aside class="hidden pl-8 pt-5 xl:block">
-			<Toc {...tocProps} type="desktop" />
+		<!-- ── RIGHT: Pop culture + similar solutions ── -->
+		<aside
+			class="w-full space-y-12 overflow-hidden px-4 py-8 sm:border-x sm:px-6 lg:col-start-2 lg:border-none lg:px-8 xl:col-start-3 xl:px-0"
+		>
+			<!-- Pop culture section -->
+			{#if post.media?.length}
+				<section aria-labelledby="pop-culture-heading">
+					<h2 class="font-head text-xl font-medium tracking-wide text-white">Pop culture</h2>
+					<div class="mt-4 no-scrollbar flex gap-4 overflow-x-auto xl:flex-wrap">
+						{#each post.media as item (item.id)}
+							<div
+								class="group flex max-w-56 min-w-48 flex-1 flex-col gap-2 overflow-hidden border xl:min-w-40"
+							>
+								<!-- Placeholder image area -->
+								<div class="aspect-4/5 w-full overflow-hidden bg-zinc-900">
+									{#if item.cover}
+										<img
+											src={item.cover}
+											alt={item.title ?? item.id}
+											loading="lazy"
+											class="h-full w-full object-cover"
+										/>
+									{:else}
+										<div class="flex h-full w-full items-center justify-center text-zinc-700">
+											<span class="text-3xl">🎬</span>
+										</div>
+									{/if}
+								</div>
+								<div class="px-4 pb-3">
+									<p class="truncate font-sans text-base leading-snug font-medium text-white">
+										{item.title}
+									</p>
+									<p class="mt-0.5 truncate font-sans text-sm text-white/50">
+										{item.year ? `${item.type} · ${item.year}` : item.type}
+									</p>
+								</div>
+							</div>
+						{/each}
+					</div>
+				</section>
+			{/if}
+
+			<!-- Similar solutions section -->
+			{#if post.similar.length}
+				<section aria-labelledby="similar-solutions-heading">
+					<h2 class="font-head text-xl font-medium tracking-wide text-primary">
+						Similar solutions
+					</h2>
+					<div class="mt-4 no-scrollbar flex gap-4 overflow-x-auto xl:flex-col">
+						{#each post.similar as p (p.slug)}
+							<a
+								href={p.url}
+								class={[
+									"group flex min-w-80 flex-1 flex-col overflow-hidden",
+									"border transition-colors duration-300 hover:border-zinc-700",
+								]}
+							>
+								<!-- Cover image -->
+								<div class="aspect-5/2 w-full overflow-hidden bg-surface-raised">
+									{#if p.cover?.src}
+										<img
+											src={p.cover.src}
+											alt={p.title}
+											loading="lazy"
+											class="h-full w-full object-cover opacity-70 transition-opacity duration-300 group-hover:opacity-90"
+										/>
+									{:else}
+										<div class="flex h-full w-full items-center justify-center text-zinc-700">
+											<span class="text-3xl">🌌</span>
+										</div>
+									{/if}
+								</div>
+								<div
+									class="px-4 py-4 text-secondary transition-colors duration-300 group-hover:text-primary"
+								>
+									<div class="flex items-center gap-2">
+										<div class="**:stroke-[1.5] [&_svg]:h-6 [&_svg]:w-8">
+											{@html p.logo}
+										</div>
+										<p class="truncate font-head text-base leading-snug font-medium">
+											{p.title}
+										</p>
+									</div>
+								</div>
+							</a>
+						{/each}
+					</div>
+				</section>
+			{/if}
 		</aside>
 	</div>
 </main>
+
+<style>
+	.cover-image {
+		mask-image:
+			radial-gradient(ellipse 70% 60% at 10% 50%, black 25%, transparent 100%),
+			linear-gradient(to bottom, black 25%, rgba(0, 0, 0, 0.5) 50%, transparent 100%);
+		mask-composite: intersect;
+		-webkit-mask-composite: source-in;
+
+		@media (max-width: 767px) {
+			mask-image:
+				radial-gradient(ellipse 90% 50% at 10% 40%, black 35%, transparent 100%),
+				linear-gradient(to bottom, black 25%, rgba(0, 0, 0, 0.75) 50%, transparent 100%);
+		}
+	}
+</style>
