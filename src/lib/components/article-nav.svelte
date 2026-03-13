@@ -21,19 +21,19 @@
 		<a
 			href={post.url}
 			class={[
-				"text-quaternary flex flex-1 flex-col border px-4 py-3 first:items-start last:items-end last:text-right",
-				"hover:text-tertiary transition-colors duration-300 hover:border-gray-700",
+				"flex flex-1 flex-col border px-4 py-3 text-quaternary first:items-start last:items-end last:text-right",
+				"transition-colors duration-300 hover:border-gray-700 hover:text-tertiary",
 			]}
 		>
 			<span class="truncate text-sm">{label}</span>
-			<span class="text-primary truncate whitespace-nowrap">{post.title}</span>
+			<span class="truncate whitespace-nowrap text-primary">{post.title}</span>
 		</a>
 	{:else}
 		<div class="flex-1"></div>
 	{/if}
 {/snippet}
 
-<div class="@max-sm:flex-col-reverse flex flex-wrap items-stretch justify-between gap-3">
+<div class="flex flex-wrap items-stretch justify-between gap-3 @max-sm:flex-col-reverse">
 	{@render PostNavigation(prev, "Previous")}
 	{@render PostNavigation(next, "Next")}
 </div>

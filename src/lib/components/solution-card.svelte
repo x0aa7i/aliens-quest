@@ -34,7 +34,7 @@
 		{/if}
 
 		{#if logo}
-			<div class="duration-250 card-logo z-10 shrink-0 transition-colors">
+			<div class="card-logo z-10 shrink-0 transition-colors duration-250">
 				<!-- eslint-disable-next-line svelte/no-at-html-tags -->
 				{@html logo}
 			</div>
@@ -43,7 +43,7 @@
 		<!-- title -->
 		<h2
 			itemprop="headline"
-			class="font-head duration-250 card-title z-10 truncate text-2xl uppercase transition-colors md:text-3xl"
+			class="card-title z-10 truncate font-head text-2xl uppercase transition-colors duration-250 md:text-3xl"
 		>
 			{title}
 		</h2>

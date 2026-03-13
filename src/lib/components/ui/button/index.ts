@@ -10,5 +10,5 @@ export {
 	buttonVariants,
 	type ButtonProps,
 	type ButtonSize,
-	type ButtonVariant
+	type ButtonVariant,
 };
