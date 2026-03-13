@@ -4,6 +4,7 @@ overview: "Civilizations remain silent out of fear that revealing themselves wil
 risk: 3
 probability: 1
 tags: ["sociological", "pessimistic", "hiding", "philosophical"]
+maxim: "Every star could hide a hunter. The safest signal is silence."
 media:
   - type: "series"
     id: "108545-3-body-problem"
@@ -18,9 +19,7 @@ media:
 
 ## Overview
 
-:::maxim
-Transmit nothing. Observe everything.
-:::
+::maxim
 
 The Dark Forest Hypothesis proposes that advanced civilizations stay silent because the universe is dangerous. To avoid being destroyed by others, everyone hides instead of reaching out, which could explain why we have not detected alien life.
 

@@ -98,6 +98,7 @@ const solutions = defineCollection({
 			// excerpt: s.excerpt(), // used in meta description
 			toc: s.toc(),
 			risk: s.number().min(1).max(3).optional(), // risk of the solution
+			maxim: s.string().optional(),
 			probability: s.number().min(1).max(3).optional(), // probability of the solution
 			media: s.array(mediaObject).optional(),
 			tags: s.array(tagEnum).optional(),

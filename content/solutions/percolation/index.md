@@ -4,6 +4,7 @@ overview: "Civilizations may expand unevenly, forming isolated bubbles that neve
 risk: 1
 probability: 2
 tags: ["physical", "pessimistic", "temporal", "scientific"]
+maxim: "Expansion spreads unevenly. Some regions remain untouched."
 media:
   - type: "novel"
     id: "9780441014019" # Pushing Ice
@@ -17,6 +18,8 @@ media:
 ---
 
 ## Overview
+
+::maxim
 
 Percolation Theory offers a unique and mathematically grounded solution to the Fermi Paradox. It suggests that interstellar colonization might not be a uniform or inevitable process but rather a patchy and incomplete one, constrained by the vast distances between stars and the limitations of resources and time. Just as water percolates unevenly through soil, filling some pores while bypassing others, intelligent civilizations might spread through the galaxy in a similarly uneven manner, leaving large regions untouched and explaining why we haven’t encountered them. Could the silence of the cosmos be a result of cosmic "gaps" in the spread of intelligent life?
 

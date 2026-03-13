@@ -4,6 +4,7 @@ overview: "Alien life may exist but be so different from us that we fail to reco
 risk: 1
 probability: 2
 tags: ["sociological", "invisible", "speculative", "philosophical"]
+maxim: "They may be everywhere. We just lack the senses to notice."
 media:
   - type: "movie"
     id: "329865-arrival"
@@ -17,6 +18,8 @@ media:
 ---
 
 ## Overview
+
+::maxim
 
 What if intelligent alien civilizations exist, but their ways of thinking, communicating, and existing are so radically different from ours that we cannot recognize or understand them? This idea challenges our anthropocentric assumptions about intelligence and suggests that the universe might be teeming with life that operates on principles beyond human comprehension. Could the cosmos be filled with civilizations so alien that they are, for all intents and purposes, invisible to us?
 

@@ -4,9 +4,12 @@ overview: "Complex life is extremely rare due to a unique set of astronomical an
 risk: 1
 probability: 3
 tags: ["physical", "pessimistic", "rare", "scientific"]
+maxim: "Life is fragile. Intelligence is rarer still."
 ---
 
 ## Overview
+
+::maxim
 
 The Rare Earth Hypothesis offers a compelling explanation for the Fermi Paradox: complex life, and by extension intelligent life, might be extraordinarily rare in the universe. This idea challenges the optimistic assumption that the cosmos is teeming with life, suggesting instead that the specific conditions required for complex life to arise and thrive are so unique that Earth might be one of the very few—or even the only—planet where such life exists. Could humanity be alone not because life is fleeting or civilizations are hiding, but because the universe is inherently inhospitable to complex life?
 

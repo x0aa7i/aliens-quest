@@ -4,6 +4,7 @@ overview: "We may be living in a simulation, and the absence of aliens is simply
 risk: 2
 probability: 2
 tags: ["physical", "pessimistic", "speculative", "philosophical"]
+maxim: "Perhaps we are just variables in someone else’s experiment."
 media:
   - type: "movie"
     id: "603-the-matrix"
@@ -20,6 +21,8 @@ media:
 ---
 
 ## Overview
+
+::maxim
 
 The Simulation Hypothesis offers a radical and mind-bending solution to the Fermi Paradox: what if we are living in a simulated reality, and the reason we don’t see evidence of extraterrestrial civilizations is because they don’t exist within our simulation? This idea suggests that our universe, and everything in it, might be an artificial construct created by an advanced civilization—perhaps as an experiment, a form of entertainment, or even a historical re-creation. Could the silence of the cosmos be a clue that we are living in a digital illusion?
 

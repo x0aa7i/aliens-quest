@@ -4,6 +4,7 @@ overview: "Advanced civilizations are waiting for a cooler universe to compute m
 risk: 1
 probability: 1
 tags: ["physical", "optimistic", "temporal", "invisible", "speculative"]
+maxim: "The universe will be colder later. Sleep now, compute later."
 media:
   - type: "novel"
     id: "9781884214493" # The Last Question
@@ -14,6 +15,8 @@ media:
 ---
 
 ## Overview
+
+::maxim
 
 What if advanced civilizations aren’t missing—they’re just waiting? The Aestivation Hypothesis offers a fascinating and counterintuitive solution to the Fermi Paradox: perhaps intelligent life is not absent from the universe but is instead in a state of cosmic hibernation, biding its time until the universe becomes more hospitable to their needs. This idea challenges our assumptions about the behavior of advanced civilizations and suggests that the silence we hear might not be a sign of absence, but of patience.
 

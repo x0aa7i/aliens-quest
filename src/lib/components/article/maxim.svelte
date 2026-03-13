@@ -1,5 +1,5 @@
 <script lang="ts">
-	let { innerHtml } = $props();
+	let { maxim }: { maxim: string } = $props();
 </script>
 
 <div
@@ -9,7 +9,7 @@
 		"border-l-2 border-violet-800",
 	]}
 >
-	<p class="font-head text-xl leading-snug tracking-wide text-primary capitalize md:text-2xl">
-		{@html innerHtml}
+	<p class="font-head text-lg leading-snug tracking-wide text-secondary capitalize md:text-xl">
+		{maxim}
 	</p>
 </div>

@@ -4,6 +4,7 @@ overview: "Rogue AIs or ancient probes may be silently wiping out intelligent li
 risk: 3
 probability: 1
 tags: ["sociological", "pessimistic", "hiding", "speculative"]
+maxim: "Any signal might be a target. Erase it before it spreads."
 media:
   - type: "novel"
     id: "9780441054954" # Berserker
@@ -14,6 +15,8 @@ media:
 ---
 
 ## Overview
+
+::maxim
 
 The Berserker Hypothesis offers a chilling explanation for the Fermi Paradox: intelligent civilizations might be silent because they are being systematically destroyed by self-replicating, hostile machines. Imagine a galaxy where ancient, autonomous weapons roam the stars, hunting down any emerging intelligence before it can spread. This hypothesis suggests that the universe is not just empty—it’s a battlefield.
 

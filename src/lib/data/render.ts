@@ -17,7 +17,7 @@ const componentMap = {
 const componentProps = {
 	metadata: ["risk", "probability"],
 	media: ["media"],
-	maxim: [],
+	maxim: ["maxim"],
 	quote: [],
 } as const satisfies Record<keyof typeof componentMap, string[]>;
 

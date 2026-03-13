@@ -4,6 +4,7 @@ overview: "Advanced civilizations intentionally avoid contact with less advanced
 risk: 1
 probability: 2
 tags: ["sociological", "optimistic", "hiding", "speculative"]
+maxim: "Let them grow on their own. Observation only. No contact."
 media:
   - type: "series"
     badges: ["TV Series", "Movies"]
@@ -12,6 +13,8 @@ media:
 ---
 
 ## Overview
+
+::maxim
 
 The Prime Directive Hypothesis offers a cultural and ethical explanation for the Fermi Paradox: advanced alien civilizations might be intentionally avoiding contact with humanity to allow us to develop naturally, free from external interference. Inspired by the fictional "Prime Directive" from _Star Trek_, this hypothesis suggests that extraterrestrial societies could be following a universal ethical code that prioritizes the autonomy and self-determination of emerging civilizations. Could the silence of the cosmos be a sign of respect rather than absence?
 
