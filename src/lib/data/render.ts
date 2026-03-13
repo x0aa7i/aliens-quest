@@ -5,15 +5,18 @@ import { render } from "svelte/server";
 import Maxim from "$lib/components/article/maxim.svelte";
 import Metadata from "$lib/components/article/metadata.svelte";
 import Quote from "$lib/components/article/quote.svelte";
+import MediaGrid from "$lib/components/media-grid.svelte";
 
 const componentMap = {
 	metadata: Metadata,
 	maxim: Maxim,
 	quote: Quote,
+	media: MediaGrid,
 } as const;
 
 const componentProps = {
 	metadata: ["risk", "probability"],
+	media: ["media"],
 	maxim: [],
 	quote: [],
 } as const satisfies Record<keyof typeof componentMap, string[]>;

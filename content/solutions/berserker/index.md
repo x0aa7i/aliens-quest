@@ -55,6 +55,10 @@ Another critique is the assumption that an advanced civilization would create su
 
 The Berserker Hypothesis serves as a cautionary tale for humanity. As we develop advanced technologies, including artificial intelligence and self-replicating machines, we must consider the potential consequences. If berserkers exist, our efforts to broadcast our presence into the cosmos could be incredibly risky. On the other hand, if we can avoid creating such destructive technologies, we might have a chance to survive and thrive in a potentially dangerous universe.
 
+## Pop Culture
+
+::media
+
 ## Conclusion
 
 The Berserker Hypothesis presents a grim but compelling solution to the Fermi Paradox. It suggests that the silence of the cosmos might be the result of ancient, self-replicating machines hunting down intelligent life. While the hypothesis faces criticisms, it raises important questions about the dangers of advanced technology and the potential risks of reaching out to the stars. Whether or not berserkers exist, the idea serves as a reminder of the need for caution as we explore the universe and our place within it.

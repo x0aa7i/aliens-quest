@@ -194,44 +194,6 @@
 		<aside
 			class="w-full space-y-12 overflow-hidden px-4 py-8 sm:border-x sm:px-6 lg:col-start-2 lg:border-none lg:px-8 xl:col-start-3 xl:px-0"
 		>
-			<!-- Pop culture section -->
-			{#if post.media?.length}
-				<section aria-labelledby="pop-culture-heading">
-					<h2 class="font-head text-xl font-medium tracking-wide text-white">Pop culture</h2>
-					<div class="mt-4 no-scrollbar flex gap-4 overflow-x-auto xl:flex-wrap">
-						{#each post.media as item (item.id)}
-							<div
-								class="group flex max-w-48 min-w-42 flex-1 flex-col gap-2 overflow-hidden border xl:max-w-42"
-							>
-								<!-- Placeholder image area -->
-								<div class="aspect-4/5 w-full overflow-hidden bg-zinc-900">
-									{#if item.cover}
-										<img
-											src={item.cover}
-											alt={item.title ?? item.id}
-											loading="lazy"
-											class="h-full w-full object-cover"
-										/>
-									{:else}
-										<div class="flex h-full w-full items-center justify-center text-zinc-700">
-											<span class="text-3xl">🎬</span>
-										</div>
-									{/if}
-								</div>
-								<div class="px-4 pb-3">
-									<p class="truncate font-sans text-base leading-snug font-medium text-white">
-										{item.title}
-									</p>
-									<p class="mt-0.5 truncate font-sans text-sm text-white/50">
-										{item.year ? `${item.type} · ${item.year}` : item.type}
-									</p>
-								</div>
-							</div>
-						{/each}
-					</div>
-				</section>
-			{/if}
-
 			<!-- Similar solutions section -->
 			{#if post.similar.length}
 				<section aria-labelledby="similar-solutions-heading">

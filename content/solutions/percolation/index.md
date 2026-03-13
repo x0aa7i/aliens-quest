@@ -62,6 +62,10 @@ Some argue that Percolation Theory relies on the assumption that Earth is in an 
 
 Percolation Theory suggests that humanity’s future in the galaxy might be shaped by the same constraints that have limited other civilizations. If the theory is correct, our ability to colonize other star systems will depend on our ability to overcome the challenges of distance, resource limitations, and time. It also implies that we might be alone in our corner of the galaxy, at least for the foreseeable future, giving us a unique opportunity to explore and expand without competition.
 
+## Pop Culture
+
+::media
+
 ## Conclusion
 
 Percolation Theory provides a compelling and mathematically grounded solution to the Fermi Paradox. By framing the spread of civilizations as a patchy and incomplete process, it explains why we might not see evidence of galactic-scale colonization. While the theory faces criticisms, particularly regarding the potential for advanced technologies to overcome its constraints, it offers a valuable perspective on the challenges of interstellar exploration and the potential isolation of humanity in the cosmos. Whether or not the galaxy is filled with gaps, Percolation Theory reminds us of the immense scale and complexity of the universe and the challenges we must overcome to explore it.

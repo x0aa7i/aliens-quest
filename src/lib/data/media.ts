@@ -53,6 +53,7 @@ interface MediaFrontmatter {
 export type Movie = MovieResponse & MediaFrontmatter & { type: "movie" };
 export type Series = SeriesResponse & MediaFrontmatter & { type: "series" };
 export type Novel = BookResponse & MediaFrontmatter & { type: "novel" };
+export type Media = Movie | Series | Novel;
 
 // TMDB API Types
 

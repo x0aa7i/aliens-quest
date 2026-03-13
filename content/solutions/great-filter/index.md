@@ -66,6 +66,10 @@ Some argue that even if a Great Filter exists, advanced civilizations might find
 
 The Great Filter Hypothesis has profound implications for humanity’s future. If the filter is behind us, we should celebrate our rarity and take steps to preserve our civilization. If it lies ahead, we must identify and mitigate potential existential risks, such as nuclear war, climate change, or unaligned artificial intelligence. In either case, the hypothesis underscores the importance of careful stewardship of our planet and our technology.
 
+## Pop Culture
+
+::media
+
 ## Conclusion
 
 The Great Filter Hypothesis is a sobering yet thought-provoking solution to the Fermi Paradox. It forces us to confront the possibility that intelligent life is either extraordinarily rare or extraordinarily fragile. Whether the filter lies in our past or our future, the hypothesis challenges us to reflect on our place in the universe and the steps we must take to ensure our survival. By understanding and addressing potential existential risks, we can strive to overcome any filters that may lie ahead and secure a future for humanity among the stars.
