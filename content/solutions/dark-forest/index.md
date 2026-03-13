@@ -12,7 +12,7 @@ media:
     id: "204541-three-body"
     overview: "A Chinese adaptation that closely follows the novels, with a slower pace and greater focus on the characters' struggles and internal conflicts."
   - type: "novel"
-    id: "remembrance-of-earths-past"
+    id: "9781786699749" # Remembrance of Earth's Past
     overview: "A landmark sci-fi trilogy by Liu Cixin that formalizes the Dark Forest hypothesis as a framework for cosmic sociology."
 ---
 

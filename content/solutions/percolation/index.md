@@ -6,7 +6,7 @@ probability: 2
 tags: ["physical", "pessimistic", "temporal", "scientific"]
 media:
   - type: "novel"
-    id: "pushing-ice"
+    id: "9780441014019" # Pushing Ice
     overview: "A novel delving into the difficulties of interstellar travel and the isolation that can result from vast distances."
   - type: "series"
     id: "63639-the-expanse"

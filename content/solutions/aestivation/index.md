@@ -6,10 +6,10 @@ probability: 1
 tags: ["physical", "optimistic", "temporal", "invisible", "speculative"]
 media:
   - type: "novel"
-    id: "the-last-question"
+    id: "9781884214493" # The Last Question
     overview: "A short story exploring humanity's quest to overcome entropy, touching on themes related to the Aestivation Hypothesis."
   - type: "novel"
-    id: "diaspora"
+    id: "9783453161818" # Diaspora.
     overview: "A far-future novel examining post-human civilizations and their strategies for enduring a changing universe."
 ---
 

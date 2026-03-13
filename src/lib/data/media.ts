@@ -89,17 +89,14 @@ interface OpenLibraryAuthorResponse {
 
 // Cache Types
 
-type MovieCache = { [id: string]: Omit<MovieResponse, "id"> };
-type SeriesCache = { [id: string]: Omit<SeriesResponse, "id"> };
-type NovelCache = {
-	bySlug: { [slug: string]: string };
-	entries: { [id: string]: Omit<BookResponse, "id"> };
-};
+interface MediaCache<T> {
+	[id: string]: Omit<T, "id">;
+}
 
 const cache = {
-	movies: moviesJson as MovieCache,
-	series: seriesJson as SeriesCache,
-	novels: novelsJson as NovelCache,
+	movies: moviesJson as MediaCache<MovieResponse>,
+	series: seriesJson as MediaCache<SeriesResponse>,
+	novels: novelsJson as MediaCache<BookResponse>,
 };
 
 // HTTP Helpers
@@ -125,7 +122,7 @@ async function persistCache(filePath: string, data: unknown): Promise<void> {
 	await fs.writeFile(filePath, JSON.stringify(data, null, 2));
 }
 
-async function withSimpleCache<T>(
+async function withCache<T>(
 	id: string,
 	store: { [id: string]: T },
 	filePath: string,
@@ -137,25 +134,6 @@ async function withSimpleCache<T>(
 	const data = await fetcher(id);
 	if (data) {
 		store[id] = data;
-		await persistCache(filePath, store);
-	}
-	return data;
-}
-
-async function withNovelCache(
-	slug: string,
-	store: NovelCache,
-	filePath: string,
-	fetcher: (id: string) => Promise<Omit<BookResponse, "id"> | null>
-): Promise<BookResponse | null> {
-	if (!slug) throw new Error("Slug is required");
-
-	const id = store.bySlug[slug];
-	if (store.entries[id]) return store.entries[id];
-
-	const data = await fetcher(id);
-	if (data) {
-		store.entries[id] = data;
 		await persistCache(filePath, store);
 	}
 	return data;
@@ -243,15 +221,15 @@ async function fetchNovel(id: string): Promise<Omit<BookResponse, "id"> | null> 
 // Public API
 
 export function getMovie(id: string): Promise<MovieResponse | null> {
-	return withSimpleCache(id, cache.movies, DATA_PATHS.movies, fetchMovie);
+	return withCache(id, cache.movies, DATA_PATHS.movies, fetchMovie);
 }
 
 export function getSeries(id: string): Promise<SeriesResponse | null> {
-	return withSimpleCache(id, cache.series, DATA_PATHS.series, fetchSeries);
+	return withCache(id, cache.series, DATA_PATHS.series, fetchSeries);
 }
 
 export function getNovel(slug: string): Promise<BookResponse | null> {
-	return withNovelCache(slug, cache.novels, DATA_PATHS.novels, fetchNovel);
+	return withCache(slug, cache.novels, DATA_PATHS.novels, fetchNovel);
 }
 
 export function getMedia(id: string, type: "movie"): Promise<MovieResponse | null>;

@@ -15,7 +15,7 @@ media:
     id: "81349-devs"
     overview: "A series that explores determinism and the nature of reality."
   - type: "novel"
-    id: "simulacron-3"
+    id: "9782290007785" # Simulacron 3
     overview: "An early work exploring simulated worlds and questioning the nature of reality."
 ---
 

@@ -6,10 +6,10 @@ probability: 1
 tags: ["sociological", "pessimistic", "hiding", "speculative"]
 media:
   - type: "novel"
-    id: "berserker"
+    id: "9780441054954" # Berserker
     overview: "A series of science fiction novels exploring the theme of AI and humanity."
   - type: "novel"
-    id: "the-forge-of-god"
+    id: "9780575096837" # The Forge of God
     overview: "A novel that explores the origins and fate of the Earth and humanity."
 ---
 
