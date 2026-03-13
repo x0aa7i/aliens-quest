@@ -6,6 +6,7 @@
 	import "../styles/app.css";
 
 	import { initializeVisitorId } from "$lib/hooks/fingerprint.svelte";
+	import Header from "$lib/sections/header.svelte";
 
 	let { children } = $props();
 
@@ -26,5 +27,6 @@
 </script>
 
 <div class="relative min-h-svh bg-surface-raised">
+	<Header />
 	{@render children()}
 </div>
