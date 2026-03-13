@@ -201,7 +201,7 @@
 					<div class="mt-4 no-scrollbar flex gap-4 overflow-x-auto xl:flex-wrap">
 						{#each post.media as item (item.id)}
 							<div
-								class="group flex max-w-56 min-w-48 flex-1 flex-col gap-2 overflow-hidden border xl:min-w-40"
+								class="group flex max-w-48 min-w-42 flex-1 flex-col gap-2 overflow-hidden border xl:max-w-42"
 							>
 								<!-- Placeholder image area -->
 								<div class="aspect-4/5 w-full overflow-hidden bg-zinc-900">
