@@ -6,15 +6,17 @@
 	import MedalIcon from "~icons/bx/up-arrow-circle";
 	import { enhance } from "$app/forms";
 
+	import ArticleToc from "$lib/components/article-toc.svelte";
 	import EditLink from "$lib/components/edit-link.svelte";
 	import Metadata, { defaultMeta } from "$lib/components/metadata.svelte";
 	import { visitorId } from "$lib/hooks/fingerprint.svelte";
-	import { useToc } from "$lib/hooks/use-toc.svelte.js";
 
 	let { data } = $props();
 
 	const post = $derived(data.post);
 	const userVotes = $derived(data.userVotes); // { solutionId: value }
+
+	let articleRef: HTMLElement | null = $state(null);
 
 	const positivity = $derived.by(() => {
 		const total = post.upvotes + post.downvotes;
@@ -27,9 +29,6 @@
 		{ icon: MedalIcon, label: "Votes", value: `${post.votes} Votes` },
 		{ icon: LikeIcon, label: "Positive", value: `${positivity}% Positive` },
 	]);
-
-	let articleRef: HTMLElement | null = $state(null);
-	const tocProps = $derived({ tocState: useToc(post.toc, articleRef), items: post.toc });
 
 	const seo = $derived({
 		title: `${post.title} - ${defaultMeta.name}`,
@@ -140,38 +139,14 @@
 		</div>
 	</section>
 
-	<!-- ═══════════════════════════════════════════════
-	     3-COLUMN BODY LAYOUT
-	     left: section nav | center: article | right: sidebar
-	     ═══════════════════════════════════════════════ -->
+	<!-- 3-COLUMN BODY LAYOUT -->
+	<!-- left: section nav | center: article | right: sidebar -->
 	<div
-		class="mx-auto grid grid-cols-1 gap-x-4 md:container md:px-8 lg:grid-cols-[14rem_1fr] lg:px-10 xl:grid-cols-[14rem_1fr_22rem]"
+		class="mx-auto grid grid-cols-1 gap-x-4 md:container md:px-8 lg:grid-cols-[14rem_minmax(0,1fr)] lg:px-10 xl:grid-cols-[14rem_minmax(0,1fr)_22rem]"
 	>
-		<!-- ── LEFT: Section nav + all-solutions sidebar ── -->
+		<!-- LEFT: Section nav  -->
 		<div class="sticky top-0 z-10 h-full w-full">
-			<aside class="sticky top-0 w-full border-y sm:border-x lg:border-none lg:py-8">
-				<!-- Section tabs -->
-				<nav aria-label="Article sections" class="no-scrollbar w-full overflow-x-auto">
-					<ul class="flex gap-y-1 divide-x lg:flex-col">
-						{#each post.toc as entry (entry.url)}
-							{@const isActive = tocProps.tocState.isActive(entry)}
-							<li class="bg-surface-raised lg:border">
-								<a
-									href={entry.url}
-									class={[
-										"block w-full px-6 py-5 text-base text-nowrap transition-colors duration-200 max-lg:border-b-2 lg:border-l-2",
-										isActive
-											? "border-zinc-300 bg-linear-to-r from-zinc-900/50 to-transparent text-white"
-											: "border-transparent text-white/50 hover:text-white/80",
-									]}
-								>
-									{entry.title}
-								</a>
-							</li>
-						{/each}
-					</ul>
-				</nav>
-			</aside>
+			<ArticleToc toc={post.toc} {articleRef} />
 		</div>
 
 		<!-- ── CENTER: Main article content ── -->
