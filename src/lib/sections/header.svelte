@@ -1,13 +1,8 @@
 <script lang="ts">
-	import { MediaQuery } from "svelte/reactivity";
-
 	type NavLink = { label: string; href: string };
 
-	const isSmall = new MediaQuery("(min-width: 640px)");
-
 	const navLinks: NavLink[] = $derived([
-		...(isSmall.current ? [{ label: "Solutions", href: "/" }] : []),
-		// { label: "Fermi Paradox", href: "/" },
+		{ label: "Solutions", href: "/" }, // hidden on small screens
 		{ label: "About", href: "/about" },
 	]);
 </script>
@@ -21,7 +16,9 @@
 
 		<ul class="flex items-center gap-4 font-head font-medium text-tertiary md:gap-6">
 			{#each navLinks as link (link.label)}
-				<li><a href={link.href} class="transition-colors hover:text-primary">{link.label}</a></li>
+				<li class={link.label === "Solutions" ? "hidden sm:inline-block" : ""}>
+					<a href={link.href} class="transition-colors hover:text-primary">{link.label}</a>
+				</li>
 			{/each}
 		</ul>
 	</nav>
