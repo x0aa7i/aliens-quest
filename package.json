@@ -31,7 +31,6 @@
 		"@ianvs/prettier-plugin-sort-imports": "^4.7.1",
 		"@iconify-json/bx": "^1.2.3",
 		"@internationalized/date": "^3.12.0",
-		"@lucide/svelte": "^0.577.0",
 		"@sveltejs/adapter-auto": "^7.0.1",
 		"@sveltejs/adapter-cloudflare": "^7.2.8",
 		"@sveltejs/kit": "^2.53.4",
@@ -52,7 +51,6 @@
 		"prettier": "^3.8.1",
 		"prettier-plugin-svelte": "^3.5.1",
 		"prettier-plugin-tailwindcss": "^0.7.2",
-		"rehype-autolink-headings": "^7.1.0",
 		"rehype-slug": "^6.0.0",
 		"remark-directive": "^4.0.0",
 		"svelte": "^5.53.7",
@@ -65,7 +63,6 @@
 		"typescript-eslint": "^8.56.1",
 		"unist-util-visit": "^5.1.0",
 		"unplugin-icons": "^23.0.1",
-		"vaul-svelte": "1.0.0-next.6",
 		"velite": "^0.3.1",
 		"vite": "^7.3.1",
 		"wrangler": "^4.71.0"
