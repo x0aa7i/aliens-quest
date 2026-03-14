@@ -2,8 +2,8 @@
 	import type { CarouselAPI } from "$lib/components/ui/carousel/context.js";
 	import type { LayoutSolution } from "$lib/data/content";
 
-	import ChevronLeft from "@lucide/svelte/icons/chevron-left";
-	import ChevronRight from "@lucide/svelte/icons/chevron-right";
+	import ChevronLeft from "~icons/bx/chevron-left";
+	import ChevronRight from "~icons/bx/chevron-right";
 
 	import * as Carousel from "$lib/components/ui/carousel/index.js";
 	import StatsFooter from "$lib/sections/stats-footer.svelte";
@@ -64,14 +64,14 @@
 				<button
 					onclick={scrollLeft}
 					aria-label="Scroll left"
-					class="flex h-10 w-10 cursor-pointer items-center justify-center border bg-surface-raised text-secondary transition-colors hover:bg-surface-raised-hover hover:text-primary"
+					class="flex h-10 w-10 cursor-pointer items-center justify-center border bg-surface-raised text-tertiary transition-colors hover:bg-surface-raised-hover hover:text-primary"
 				>
 					<ChevronLeft class="h-6 w-6" />
 				</button>
 				<button
 					onclick={scrollRight}
 					aria-label="Scroll right"
-					class="flex h-10 w-10 cursor-pointer items-center justify-center border bg-surface-raised text-secondary transition-colors hover:bg-surface-raised-hover hover:text-primary"
+					class="flex h-10 w-10 cursor-pointer items-center justify-center border bg-surface-raised text-tertiary transition-colors hover:bg-surface-raised-hover hover:text-primary"
 				>
 					<ChevronRight class="h-6 w-6" />
 				</button>

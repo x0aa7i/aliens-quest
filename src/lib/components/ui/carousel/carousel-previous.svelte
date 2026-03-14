@@ -2,7 +2,7 @@
 	import type { Props } from "$lib/components/ui/button/index.js";
 	import type { WithoutChildren } from "bits-ui";
 
-	import ArrowLeftIcon from "@lucide/svelte/icons/arrow-left";
+	import ArrowLeftIcon from "~icons/bx/chevron-left";
 
 	import { Button } from "$lib/components/ui/button/index.js";
 	import { cn } from "$lib/utils.js";
@@ -28,8 +28,8 @@
 	class={cn(
 		"absolute size-8 rounded-full",
 		emblaCtx.orientation === "horizontal"
-			? "-start-12 top-1/2 -translate-y-1/2"
-			: "start-1/2 -top-12 -translate-x-1/2 rotate-90",
+			? "-inset-s-12 top-1/2 -translate-y-1/2"
+			: "inset-s-1/2 -top-12 -translate-x-1/2 rotate-90",
 		className
 	)}
 	onclick={emblaCtx.scrollPrev}
