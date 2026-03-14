@@ -3,7 +3,6 @@ import type { Movie, Novel, Series } from "./src/lib/data/media";
 import { readFile } from "fs/promises";
 import { dirname, join } from "path";
 import { fileURLToPath } from "url";
-import rehypeAutolinkHeadings from "rehype-autolink-headings";
 import rehypeSlug from "rehype-slug";
 import remarkDirective from "remark-directive";
 import { defineCollection, defineConfig, s, z } from "velite";
@@ -95,6 +94,7 @@ const solutions = defineCollection({
 			slug: s.path(), // auto generate slug from file path
 			cover: s.image().optional().default("./cover.webp"), // input image relative path, output image object with blurImage.
 			content: s.markdown(), // transform markdown to html
+			overview: s.string().optional(),
 			// excerpt: s.excerpt(), // used in meta description
 			toc: s.toc(),
 			risk: s.number().min(1).max(3).optional(), // risk of the solution
@@ -126,7 +126,7 @@ export default defineConfig({
 		clean: true,
 	},
 	markdown: {
-		rehypePlugins: [rehypeSlug, rehypeAutolinkHeadings],
+		rehypePlugins: [rehypeSlug],
 		remarkPlugins: [remarkDirective, remarkDirectivePlaceholders],
 	},
 });

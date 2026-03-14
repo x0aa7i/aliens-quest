@@ -2,12 +2,24 @@ import type { Solution } from "$content/index";
 
 import { solutions } from "$content/index";
 
+export type LayoutSolution = Pick<
+	Solution,
+	"title" | "url" | "cover" | "logo" | "slug" | "overview"
+>;
+
 export function getSolutionMetadata(slug: string) {
 	return solutions.find(({ slug: postSlug }) => postSlug === slug);
 }
 
-export function getAllSolutions() {
-	return solutions.map(({ title, url, cover, logo, slug }) => ({ title, url, cover, logo, slug }));
+export function getAllSolutions(): LayoutSolution[] {
+	return solutions.map(({ title, url, cover, logo, slug, overview }) => ({
+		title,
+		url,
+		cover,
+		logo,
+		slug,
+		overview,
+	}));
 }
 
 export function getSolution(slug: string) {

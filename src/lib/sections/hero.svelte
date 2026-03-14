@@ -1,6 +1,6 @@
 <script lang="ts">
-	import type { SolutionCardProps } from "$lib/components/solution-card.svelte";
 	import type { CarouselAPI } from "$lib/components/ui/carousel/context.js";
+	import type { LayoutSolution } from "$lib/data/content";
 
 	import ChevronLeft from "@lucide/svelte/icons/chevron-left";
 	import ChevronRight from "@lucide/svelte/icons/chevron-right";
@@ -8,17 +8,15 @@
 	import * as Carousel from "$lib/components/ui/carousel/index.js";
 	import StatsFooter from "$lib/sections/stats-footer.svelte";
 
-	type Props = {
-		cards: (SolutionCardProps & {
-			score: number;
-			rank: number;
-			votes: number;
-			upvotes: number;
-			downvotes: number;
-		})[];
-	};
+	type Cards = (LayoutSolution & {
+		score: number;
+		rank: number;
+		votes: number;
+		upvotes: number;
+		downvotes: number;
+	})[];
 
-	let { cards }: Props = $props();
+	let { cards }: { cards: Cards } = $props();
 
 	let emblaApi = $state<CarouselAPI>();
 
@@ -113,29 +111,22 @@
 
 							<!-- Card Header / Footer -->
 							<div
-								class="relative flex w-full flex-col border-t bg-surface-raised/90 px-6 py-5 backdrop-blur-md"
+								class="relative flex w-full flex-col gap-1 border-t bg-surface-raised/90 px-6 py-5 backdrop-blur-md"
 							>
 								<div class="flex items-start gap-2 md:gap-3">
 									<div class="**:stroke-[1.5] [&_svg]:h-8 [&_svg]:w-10">
 										<!-- eslint-disable-next-line svelte/no-at-html-tags -->
 										{@html card.logo}
 									</div>
+									<h2
+										class="truncate font-head text-xl font-normal text-primary md:text-lg lg:text-xl lg:tracking-wide"
+									>
+										{card.title}
+									</h2>
+								</div>
 
-									<div class="flex flex-col">
-										<h2
-											class="truncate font-head text-xl font-normal text-primary md:text-lg lg:text-xl lg:tracking-wide"
-										>
-											{card.title}
-										</h2>
-
-										<div
-											class="flex items-center gap-2 font-head text-sm font-medium text-quaternary"
-										>
-											<span class=""> #{card.rank} </span>
-											<span class=""> · </span>
-											<span class=""> {card.votes} Votes </span>
-										</div>
-									</div>
+								<div class="pl-1 text-sm text-quaternary">
+									<span class="line-clamp-2"> {card.overview} </span>
 								</div>
 							</div>
 						</a>
