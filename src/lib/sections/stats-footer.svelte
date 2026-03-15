@@ -25,7 +25,7 @@
 </script>
 
 <div
-	class="hidden min-h-35 w-full shrink-0 grid-cols-4 gap-4 font-head select-none md:grid"
+	class="hidden w-full shrink-0 grid-cols-4 gap-4 font-head select-none md:grid"
 	aria-hidden="true"
 	role="presentation"
 >
@@ -33,7 +33,9 @@
 	{@render stats(leftStats)}
 
 	<!-- Center Monitoring Window -->
-	<div class="col-span-2 flex flex-col overflow-hidden border bg-surface-raised font-head">
+	<div
+		class="order-first col-span-4 col-start-1 flex flex-col overflow-hidden border bg-surface-raised xl:order-0 xl:col-span-2"
+	>
 		<div
 			class={[
 				"flex shrink-0 items-center justify-between border-b px-4 py-3",
@@ -84,7 +86,7 @@
 </div>
 
 {#snippet stats(stats: Stats[])}
-	<div class="flex flex-1 flex-col border border-b-0 bg-surface-raised font-head">
+	<div class="col-span-2 flex flex-col border border-b-0 bg-surface-raised xl:col-span-1">
 		{#each stats as { label, value }}
 			<div class="flex flex-1 items-center justify-between gap-1 border-b px-4 py-3">
 				<span class="text-xs font-medium tracking-wider text-quaternary uppercase">

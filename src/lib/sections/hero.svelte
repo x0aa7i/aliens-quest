@@ -29,9 +29,7 @@
 	}
 </script>
 
-<main
-	class="relative flex h-[calc(100dvh-5rem)] max-h-275 w-full flex-col overflow-hidden pt-6 pb-6 md:pt-10 md:pb-8"
->
+<main class="h-hero relative flex max-h-200 w-full flex-col pt-6 md:pt-10 md:pb-4">
 	<!-- Background -->
 	<div class="pointer-events-none absolute inset-0">
 		<img
@@ -42,12 +40,10 @@
 	</div>
 
 	<!-- Main Container -->
-	<div
-		class="z-10 mx-auto flex h-full w-full flex-col gap-6 overflow-hidden px-4 sm:px-8 md:container md:gap-8 lg:px-10"
-	>
+	<div class="mx-auto flex h-full w-full flex-col gap-4 px-4 sm:px-8 md:container lg:px-10">
 		<!-- Row 1: Title Area & Nav Controls -->
 		<div
-			class="z-10 flex w-full shrink-0 flex-col items-start justify-between gap-4 md:flex-row md:items-end"
+			class="flex w-full shrink-0 flex-col items-start justify-between gap-4 md:flex-row md:items-end"
 		>
 			<div class="flex flex-col border-l-[3px] border-white pl-6 text-left font-head">
 				<h2 class="text-sm font-medium tracking-wider text-tertiary uppercase md:text-base">
@@ -80,7 +76,7 @@
 
 		<!-- Row 2: Carousel Track -->
 		<Carousel.Root
-			class="relative flex min-h-50 w-full flex-1 flex-col overflow-hidden"
+			class="flex min-h-72 flex-1 flex-col"
 			opts={{
 				loop: true,
 				align: "start",
@@ -90,13 +86,13 @@
 			setApi={(api) => (emblaApi = api)}
 		>
 			<!-- Embla container needs to hold the track flex items -->
-			<Carousel.Content class="flex h-full w-full flex-col md:flex-row">
+			<Carousel.Content class="flex h-full w-full flex-col sm:flex-row">
 				{#each cards as card (card.title)}
 					<Carousel.Item
-						class="h-full shrink-0 basis-full pb-4 md:basis-[calc(33%+0.49rem)] md:pb-0 md:pl-4 xl:basis-[calc(25%+0.25rem)]"
+						class="h-full shrink-0 basis-full py-2 md:basis-[calc(33%+0.49rem)] md:py-0 xl:basis-[calc(25%+0.25rem)]"
 					>
 						<a
-							class="group relative flex h-full min-h-[55vh] w-full flex-col justify-end overflow-hidden border bg-surface md:min-h-0"
+							class="group relative flex h-full w-full flex-col justify-end overflow-hidden border bg-surface"
 							href={card.url}
 						>
 							<!-- Background Image -->
@@ -171,5 +167,10 @@
 			scroll-snap-align: start;
 			scroll-snap-stop: always;
 		}
+	}
+
+	.h-hero {
+		height: calc(100dvh - 5rem);
+		height: calc(100vh - 5rem);
 	}
 </style>
