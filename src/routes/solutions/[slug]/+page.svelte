@@ -8,7 +8,7 @@
 
 	import ArticleToc from "$lib/components/article-toc.svelte";
 	import EditLink from "$lib/components/edit-link.svelte";
-	import Metadata, { defaultMeta } from "$lib/components/metadata.svelte";
+	import Metatags, { defaultMeta } from "$lib/components/metatags.svelte";
 	import { visitorId } from "$lib/hooks/fingerprint.svelte";
 
 	let { data } = $props();
@@ -31,7 +31,7 @@
 	]);
 
 	const seo = $derived({
-		title: `${post.title} - ${defaultMeta.name}`,
+		title: post.title,
 		type: "article",
 		orImage: {
 			url: defaultMeta.url + post.cover.src,
@@ -41,7 +41,7 @@
 	});
 </script>
 
-<Metadata {...seo} />
+<Metatags {...seo} />
 
 <main class="min-h-screen">
 	<!-- Cover image as background -->

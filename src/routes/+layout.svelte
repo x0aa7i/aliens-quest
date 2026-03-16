@@ -4,7 +4,7 @@
 
 	import "../styles/app.css";
 
-	import Metadata from "$lib/components/metadata.svelte";
+	import Metatags from "$lib/components/metatags.svelte";
 	import { initializeVisitorId } from "$lib/hooks/fingerprint.svelte";
 	import Header from "$lib/sections/header.svelte";
 
@@ -26,7 +26,7 @@
 	});
 </script>
 
-<Metadata title="Aliens Quest — Exploring the Fermi Paradox Solutions" />
+<Metatags title="Exploring the Fermi Paradox Solutions" titleTemplate="Aliens Quest | %s" />
 
 <div class="relative min-h-svh bg-surface-raised">
 	<Header />

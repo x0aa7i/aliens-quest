@@ -1,4 +1,5 @@
 import type { Actions } from "./$types";
+import type { BatchItem } from "drizzle-orm/batch";
 
 import { error } from "node:console";
 import { fail } from "@sveltejs/kit";
@@ -55,7 +56,7 @@ export const actions = {
 				.get();
 
 			// 2. Determine action & calculate score delta
-			const ops: any[] = [];
+			const ops: BatchItem<"sqlite">[] = [];
 			let upvoteDelta = 0;
 			let downvoteDelta = 0;
 
