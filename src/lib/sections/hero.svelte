@@ -170,7 +170,7 @@
 	}
 
 	.h-hero {
-		height: calc(100dvh - 5rem);
 		height: calc(100vh - 5rem);
+		height: calc(100dvh - 5rem);
 	}
 </style>
